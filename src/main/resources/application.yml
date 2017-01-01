@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: sprint-graph
+    datasource:
+      platform: h2
+      url: "jdbc:h2:${java.io.tmpdir}/sprint-graph;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+    jpa:
+      show-sql: true
+      database: H2
+      database-platform: H2
+      generate-ddl: true
+      hibernate.ddl-auto: update
+    data:
+      rest:
+        basePath: /api
+server:
+    port: 9000
