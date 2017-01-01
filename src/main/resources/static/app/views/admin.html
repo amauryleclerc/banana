@@ -1,55 +1,58 @@
-<h2>Admin</h2>
-<form novalidate ng-submit="adminCtrl.save()" class="simple-form">
-	<div class="form-group">
-		<label for="sprintNumber">Sprint Number</label> <input type="text"
-			class="form-control" id="sprintNumber" ng-model="adminCtrl.sprint.id"
-			required>
-	</div>
-	<div class="form-group">
-		<label for="sprintStart">Sprint start</label>
-		<p class="input-group">
-			<input type="text" id="sprintStart" class="form-control"
-				uib-datepicker-popup="yyyy-MM-dd" ng-model="adminCtrl.sprint.start"
-				is-open="openedStart" datepicker-options="adminCtrl.dateOptions"
-				ng-required="true" close-text="Close" /> <span
-				class="input-group-btn" required>
-				<button type="button" class="btn btn-default"
-					ng-click="openedStart = !openedStart">open</button>
-			</span>
-		</p>
-	</div>
-	<div class="form-group">
-		<label for="sprintEnd">Sprint end</label>
-		<p class="input-group">
-			<input type="text" id="sprintEnd" class="form-control"
-				uib-datepicker-popup="yyyy-MM-dd" ng-model="adminCtrl.sprint.end"
-				is-open="openedEnd" datepicker-options="adminCtrl.dateOptions"
-				ng-required="true" close-text="Close" /> <span
-				class="input-group-btn" required>
-				<button type="button" class="btn btn-default"
-					ng-click="openedEnd = !openedEnd">open</button>
-			</span>
-		</p>
-	</div>
+<div class="container">
+	<h2>Admin</h2>
+	<h3>Add Sprint</h3>
+	<form novalidate ng-submit="adminCtrl.save()" class="simple-form">
+		<div class="form-group">
+			<label for="sprintNumber">Sprint Number</label> <input type="text"
+				class="form-control" id="sprintNumber"
+				ng-model="adminCtrl.sprint.id" required>
+		</div>
+		<div class="form-group">
+			<label for="sprintStart">Sprint start</label>
+			<p class="input-group">
+				<input type="text" id="sprintStart" class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy" ng-model="adminCtrl.sprint.start"
+					is-open="openedStart" datepicker-options="adminCtrl.dateOptions"
+					ng-required="true" close-text="Close" /> <span
+					class="input-group-btn" required>
+					<button type="button" class="btn btn-default"
+						ng-click="openedStart = !openedStart">open</button>
+				</span>
+			</p>
+		</div>
+		<div class="form-group">
+			<label for="sprintEnd">Sprint end</label>
+			<p class="input-group">
+				<input type="text" id="sprintEnd" class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy" ng-model="adminCtrl.sprint.end"
+					is-open="openedEnd" datepicker-options="adminCtrl.dateOptions"
+					ng-required="true" close-text="Close" /> <span
+					class="input-group-btn" required>
+					<button type="button" class="btn btn-default"
+						ng-click="openedEnd = !openedEnd">open</button>
+				</span>
+			</p>
+		</div>
 
-	<button type="button" class="btn btn-default"
-		ng-click="adminCtrl.addStory()">Add Story</button>
-	<ul class="list-group">
-		<li class="list-group-item"
-			ng-repeat="story in adminCtrl.sprint.stories">
-			<h4>{{$index+1}}</h4>
-			<div class="form-group">
-				<label>Story Number</label> <input type="text" class="form-control"
-					ng-model="story.id" required>
-			</div>
-			<div class="form-group">
-				<label>Story Complexity</label> <input type="number"
-					class="form-control" ng-model="story.complexity"
-					placeholder="number" required>
-			</div>
-		</li>
-	</ul>
-	<input type="submit" class="btn btn-primary" value="Save" />
-</form>
+		<button type="button" class="btn btn-default"
+			ng-click="adminCtrl.addStory()">Add Story</button>
+		<ul class="list-group">
+			<li class="list-group-item"
+				ng-repeat="story in adminCtrl.sprint.stories">
+				<h4>{{$index+1}}</h4>
+				<div class="form-group">
+					<label>Story Number</label> <input type="text" class="form-control"
+						ng-model="story.id" required>
+				</div>
+				<div class="form-group">
+					<label>Story Complexity</label> <input type="number"
+						class="form-control" ng-model="story.complexity"
+						placeholder="number" required>
+				</div>
+			</li>
+		</ul>
+		<input type="submit" class="btn btn-primary" value="Save" />
+	</form>
 
-{{adminCtrl.sprint}}
+	{{adminCtrl.sprint}}
+</div>

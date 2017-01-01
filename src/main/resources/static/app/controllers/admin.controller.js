@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').controller('AdminCtrl', ['SprintService', '$scope', function (sprintService,$scope) {
+angular.module('sprintGraphApp').controller('AdminCtrl', ['SprintService', function (sprintService) {
     this.sprints = [];
 	this.sprint = {
     stories:[]
@@ -9,9 +9,7 @@ angular.module('sprintGraphApp').controller('AdminCtrl', ['SprintService', '$sco
         sprintService.save(this.sprint);
     }
 
-    sprintService.get(function(resultat){
-        vm.sprints = resultat;
-    });
+
     this.addStory = function(){
         vm.sprint.stories.push({});
     }

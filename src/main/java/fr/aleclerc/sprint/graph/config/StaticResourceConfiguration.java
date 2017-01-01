@@ -1,4 +1,4 @@
-package fr.aleclerc.sprint.graph;
+package fr.aleclerc.sprint.graph.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

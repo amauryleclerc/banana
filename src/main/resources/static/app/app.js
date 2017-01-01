@@ -2,9 +2,6 @@
 
 angular.module('sprintGraphApp', ['ngResource','ui.bootstrap', 'ui.router']);
 
-angular.module('sprintGraphApp')
-    .constant("BASE_URL", "localhost:9000/api");
-
 angular.module('sprintGraphApp').config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/graph");
@@ -25,3 +22,8 @@ angular.module('sprintGraphApp').config(function ($stateProvider, $urlRouterProv
    
 
 });
+
+angular.module('sprintGraphApp')
+.factory("BASE_URL",["$location", function($location){
+	return $location.host()+":"+$location.port()+"/api";
+}]);
