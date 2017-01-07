@@ -6,7 +6,7 @@ angular.module('sprintGraphApp').controller('AdminCtrl', ['SprintService', funct
   };
     var vm = this;
     this.save = function(){
-        sprintService.save(this.sprint);
+        sprintService.save(this.sprint).subscribe(console.log, console.error);
     }
 
 

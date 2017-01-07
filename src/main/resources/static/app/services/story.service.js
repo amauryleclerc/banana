@@ -1,4 +1,11 @@
 "use strict";
-angular.module('sprintGraphApp').factory('StoryService', ['$resource', 'BASE_URL', function ($resource, BASE_URL) {
-	return $resource(`http://${BASE_URL}/storys`);
+angular.module('sprintGraphApp').factory('StoryService', ['StoryResource', 'rx', function (storyResource, rx) {
+	return {save:function(story){
+		return rx.Observable.just(story)//
+		.flatMap(function(s) {
+		    	return storyResource.save(s).$promise;
+		    });
+		
+		
+	}};
 }]);
