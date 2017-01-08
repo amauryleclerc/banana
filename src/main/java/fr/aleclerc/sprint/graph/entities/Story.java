@@ -6,12 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import fr.aleclerc.sprint.graph.config.InstantDeserializer;
-import fr.aleclerc.sprint.graph.config.InstantSerializer;
-
 
 @Entity
 public class Story {
@@ -20,12 +14,8 @@ public class Story {
 	@Column
 	private Float complexity;
 	@Column
-	@JsonSerialize(using = InstantSerializer.class)
-	@JsonDeserialize(using = InstantDeserializer.class)
 	private Instant addDate;
 	@Column
-	@JsonSerialize(using = InstantSerializer.class)
-	@JsonDeserialize(using = InstantDeserializer.class)
 	private Instant closeDate;
 	
 	public Story(){
