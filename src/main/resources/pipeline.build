@@ -1,0 +1,18 @@
+node {
+   def mvnHome
+   stage('Prepare') {
+      git 'https://github.com/amauryleclerc/sprint-graph.git'
+      mvnHome = tool 'M339'
+   }
+   stage('Build') {
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+   }
+   stage('Deploy') {
+      archive 'target/*.jar'
+   }
+}
