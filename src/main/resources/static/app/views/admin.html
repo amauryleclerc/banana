@@ -53,6 +53,28 @@
 		</ul>
 		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-
-	{{adminCtrl.sprint}}
+	<h3>Close a Story</h3>
+	<form novalidate ng-submit="adminCtrl.updateStory()"
+		class="simple-form">
+		<div class="form-group">
+			<label for="sprint">Story</label> <select id="sprint"
+				class="form-control input-lg" ng-model="adminCtrl.story"
+				ng-options="story.id for story in adminCtrl.stories">
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="storyClose">Story close date </label>
+			<p class="input-group">
+				<input type="text" id="storyClose" class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy" ng-model="adminCtrl.story.closeDate"
+					is-open="openedClose" datepicker-options="adminCtrl.dateOptions"
+					ng-required="true" close-text="Close" /> <span
+					class="input-group-btn" required>
+					<button type="button" class="btn btn-default"
+						ng-click="openedClose = !openedClose">open</button>
+				</span>
+			</p>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Save" />
+	</form>
 </div>

@@ -1,14 +1,15 @@
 <h2>Graph</h2>
-	<form novalidate n class="simple-form">
-		<div class="form-group">
-			<label for="sprint">Sprint</label> 
-			<select  id="sprint" class="form-control input-lg" ng-change="graphCtrl.onSprintChange()" 	ng-model="graphCtrl.sprint"  ng-options="sprint.id for sprint in graphCtrl.sprints" >
-			</select>
-	
-		</div>
-	</form>
+<form novalidate n class="simple-form">
+	<div class="form-group">
+		<label for="sprint">Sprint</label> <select id="sprint"
+			class="form-control input-lg" ng-change="graphCtrl.onSprintChange()"
+			ng-model="graphCtrl.sprint"
+			ng-options="sprint.id for sprint in graphCtrl.sprints">
+		</select>
 
-<highchart id="sprint" config="graphCtrl.chartConfig"></highchart>
-<pre>
-{{graphCtrl.pretty}}
-</pre>
+	</div>
+</form>
+<div class="row">
+<highchart  id="sprint" config="graphCtrl.chartConfig"></highchart>
+
+</div>
