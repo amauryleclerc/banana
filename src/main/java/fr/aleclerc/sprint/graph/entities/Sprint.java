@@ -8,23 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import fr.aleclerc.sprint.graph.config.InstantDeserializer;
-import fr.aleclerc.sprint.graph.config.InstantSerializer;
-
 @Entity
 public class Sprint {
 	@Id
 	private String id;
 	@Column
-	@JsonSerialize(using = InstantSerializer.class)
-	@JsonDeserialize(using = InstantDeserializer.class)
 	private Instant start;
 	@Column
-	@JsonSerialize(using = InstantSerializer.class)
-	@JsonDeserialize(using = InstantDeserializer.class)
 	private Instant end;
 	@ManyToMany
 	private List<Story> stories;

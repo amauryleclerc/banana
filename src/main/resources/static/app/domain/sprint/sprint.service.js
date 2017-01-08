@@ -36,7 +36,7 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			}).flatMap(function(id) {
 				return rx.Observable.fromPromise(sprintResource.getStories({
 					id : id
-				}).$promise);
+				}).$promise)
 			});
 		}
 	};
