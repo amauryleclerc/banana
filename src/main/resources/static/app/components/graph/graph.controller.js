@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').controller('GraphCtrl', [ 'SprintService', '$timeout', 'rx', function(sprintService, $timeout, rx) {
+angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'SprintService', '$timeout', 'rx', function(graphService, sprintService, $timeout, rx) {
 	var vm = this;
 	this.sprints = [];
 	this.sprint = null;
@@ -15,66 +15,31 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'SprintService', '$ti
 
 		})
 	});
-
+	graphService.getSeries().subscribe(function(series) {
+		$timeout(function() {
+			console.log(series);
+			vm.chartConfig.series = series;
+		})
+	});
+	graphService.getXAxis().subscribe(function(xAxis) {
+		$timeout(function() {
+			console.log(xAxis);
+			vm.chartConfig.xAxis = xAxis;
+		})
+	});
+	
 	this.onSprintChange = function() {
 		vm.chartConfig.title.text = vm.sprint.id;
-		sprintService.getStories(vm.sprint).subscribe(function(resultat) {
-			$timeout(function() {
-				updateChart(resultat._embedded.stories);
-			});
-		});
-	}
-	function updateChart(stories) {
-
-		vm.chartConfig.xAxis.min = new Date(vm.sprint.start).getTime();
-		vm.chartConfig.xAxis.max = new Date(vm.sprint.end).getTime();
-
-		rx.Observable.range(0, daydiff(new Date(vm.sprint.start), new Date(vm.sprint.end)))//
-		.map(function(index) {
-			return  new Date(vm.sprint.start).getTime() + (index * 1000 * 60 * 60 * 24);
-		})//
-		.filter(function(date){
-			return date<=Date.now();
-		})//
-		.map(function(date) {
-			return [ date, getComplexity(date,stories) ];
-		})//
-		.toArray()//
-		.map(function(list) {
-			return [ {
-				name : 'Complexity',
-				data : list
-			} ];
-		}).subscribe(function(series) {
-			$timeout(function() {
-				vm.chartConfig.series = series;
-			});
-		}, console.error);
-
-	}
-	function getComplexity(date, stories) {
-		return stories.filter(function(story) {
-			return (story.closeDate == null || new Date(story.closeDate).getTime() > date );
-		}).map(function(story) {
-			return story.complexity;
-		}).reduce(function(acc, complexity) {
-			return acc + complexity;
-		},0);
-
+		graphService.setSprint(vm.sprint);
+		
 	}
 
-	function daydiff(first, second) {
-		return Math.round((second - first) / (1000 * 60 * 60 * 24));
-	}
 
 	this.chartConfig = {
 		title : {
 			text : "",
 			x : -20
 		// center
-		},
-		xAxis : {
-			type : 'datetime'
 		},
 		yAxis : {
 			min : 0
