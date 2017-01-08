@@ -1,15 +1,26 @@
 "use strict";
-angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'SprintService', '$timeout', 'rx', function(graphService, sprintService, $timeout, rx) {
+angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'SprintService', '$timeout', 'rx', '$localStorage', function(graphService, sprintService, $timeout, rx, $localStorage) {
 	var vm = this;
 	this.sprints = [];
 	this.sprint = null;
 
-
-	sprintService.getAll().subscribe(function(resultat) {
+	sprintService.getAll().map(function(resultat) {
+		return resultat._embedded.sprints;
+	}).subscribe(function(resultat) {
 		$timeout(function() {
-			vm.sprints = resultat._embedded.sprints;
+			vm.sprints = resultat;
 			if (vm.sprints.length > 0) {
-				vm.sprint = resultat._embedded.sprints[0];
+				if ($localStorage.sprintId) {
+					var sprintsFind = resultat.filter(function(s) {
+						return s.id === $localStorage.sprintId;
+					});
+					if (sprintsFind.length > 0) {
+						vm.sprint = sprintsFind[0];
+					}
+				}
+				if (vm.sprint == null) {
+					vm.sprint = resultat[0];
+				}
 				vm.onSprintChange();
 			}
 
@@ -27,13 +38,13 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
 			vm.chartConfig.xAxis = xAxis;
 		})
 	});
-	
+
 	this.onSprintChange = function() {
 		vm.chartConfig.title.text = vm.sprint.id;
 		graphService.setSprint(vm.sprint);
-		
-	}
+		$localStorage.sprintId = vm.sprint.id;
 
+	}
 
 	this.chartConfig = {
 		title : {
