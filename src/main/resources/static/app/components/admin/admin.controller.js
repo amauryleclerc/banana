@@ -13,7 +13,15 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 	function getStories() {
 		sprintService.getStories(vm.selectedSprint).subscribe(function(stories) {
 			$timeout(function() {
-				vm.stories = stories;
+				vm.stories = stories.map(function(story){
+					if(story.addDate){
+						story.addDate = new Date(story.addDate);
+					}
+					if(story.closeDate){
+						story.closeDate = new Date(story.closeDate);
+					}
+					return story;
+				});
 				if (vm.stories.length > 0 && vm.story == null) {
 					vm.story = vm.stories[0];
 				}
