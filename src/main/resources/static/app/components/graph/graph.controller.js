@@ -4,9 +4,7 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
 	this.sprints = [];
 	this.sprint = null;
 
-	sprintService.getAll().map(function(resultat) {
-		return resultat._embedded.sprints;
-	}).subscribe(function(resultat) {
+	sprintService.getAll().subscribe(function(resultat) {
 		$timeout(function() {
 			vm.sprints = resultat;
 			if (vm.sprints.length > 0) {

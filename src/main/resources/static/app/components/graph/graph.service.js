@@ -9,8 +9,6 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 
 	var storiesObs = sprintObs.switchMap(function(sprint) {
 		return sprintService.getStories(sprint);
-	}).map(function(resultat) {
-		return resultat._embedded.stories;
 	})
 
 	var seriesObs = sprintObs.flatMap(function(sprint) {
