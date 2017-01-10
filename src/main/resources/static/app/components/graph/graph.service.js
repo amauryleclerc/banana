@@ -28,9 +28,21 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		.toArray()//
 		.map(function(list) {
 			return [ {
-				name : 'Complexity',
-				data : list
-			} ];
+				name : 'Commited',
+				type : "line",
+				data : list,
+				color: '#0000FF'
+			}, {
+			    name : 'Bonus',
+				type : "line",
+			    data : list,
+			    color: '#FF0000'
+			}, {
+                name : 'Ideal',
+				type : "line",
+               	data : [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
+               	color: '#00FF00'
+            }];
 		})
 	}).shareReplay(1);
 
@@ -54,8 +66,8 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		}).reduce(function(acc, complexity) {
 			return acc + complexity;
 		}, 0);
-
 	}
+
 	function daydiff(first, second) {
 		return Math.round((second - first) / (1000 * 60 * 60 * 24));
 	}
