@@ -46,7 +46,7 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
 
 	this.chartConfig = {
 		title : {
-			text : "",
+			text : "Burndown chart",
 			x : -20
 		// center
 		},
