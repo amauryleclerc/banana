@@ -9,7 +9,7 @@ spring:
       database: H2
       database-platform: H2
       generate-ddl: true
-      hibernate.ddl-auto: create-drop
+      hibernate.ddl-auto: update
     data:
       rest:
         basePath: /api
