@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'StoryService', '$timeout', '$uibModal',function(sprintService, storyService, $timeout,$uibModal) {
+angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'StoryService', 'storyComplexities','$timeout', '$uibModal',function(sprintService, storyService, storyComplexities, $timeout,$uibModal) {
 	this.stories = [];
 	this.story = null;
 	this.sprints = [];
@@ -10,6 +10,7 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 	};
 	this.selectedSprint = null;
 	this.editStoryId = null;
+	this.storyComplexities = storyComplexities;
 	var vm = this;
 
 	function getDate(plusDay){
@@ -92,7 +93,12 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 		      ariaDescribedBy: 'modal-body',
 		      templateUrl: 'app/components/admin/story.html',
 		      controller: 'StoryCtrl',
-		      controllerAs: 'storyCtrl'
+		      controllerAs: 'storyCtrl',
+		      resolve: {
+		          sprint: function () {
+		            return vm.selectedSprint;
+		          }
+		        }
 		    });
 
 		    modalInstance.result.then(function (story) {
