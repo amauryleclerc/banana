@@ -1,23 +1,28 @@
 "use strict";
-angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'StoryService', '$timeout', function(sprintService, storyService, $timeout) {
+angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'StoryService', '$timeout', '$uibModal',function(sprintService, storyService, $timeout,$uibModal) {
 	this.stories = [];
 	this.story = null;
 	this.sprints = [];
 	this.newSprint = {
+		start : getDate(0),
+		end : getDate(19),
 		stories : []
 	};
 	this.selectedSprint = null;
 	this.editStoryId = null;
 	var vm = this;
 
+	function getDate(plusDay){
+		return new Date(new Date().getTime() + (60*60*24) * 1000 * plusDay);
+	}
 	function getStories() {
 		sprintService.getStories(vm.selectedSprint).subscribe(function(stories) {
 			$timeout(function() {
-				vm.stories = stories.map(function(story){
-					if(story.addDate){
+				vm.stories = stories.map(function(story) {
+					if (story.addDate) {
 						story.addDate = new Date(story.addDate);
 					}
-					if(story.closeDate){
+					if (story.closeDate) {
 						story.closeDate = new Date(story.closeDate);
 					}
 					return story;
@@ -42,14 +47,14 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 	}
 	getSprints();
 
-	this.selectSprint = function(sprint){
+	this.selectSprint = function(sprint) {
 		vm.selectedSprint = sprint;
 		vm.onSprintChange();
 	}
-	this.onSprintChange =function(){
+	this.onSprintChange = function() {
 		getStories();
 	}
-	
+
 	this.save = function() {
 		sprintService.save(vm.newSprint).subscribe(function(result) {
 			getSprints();
@@ -62,14 +67,11 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 			getStories();
 		}, console.error);
 	}
-	this.removeStory = function(story){
+	this.removeStory = function(story) {
 		var index = vm.stories.indexOf(story);
 		if (index > -1) {
 			vm.stories.splice(index, 1);
 		}
-	}
-	this.addStory = function() {
-		vm.newSprint.stories.push({});
 	}
 
 	this.dateOptions = {
@@ -82,5 +84,19 @@ angular.module('sprintGraphApp').controller('AdminCtrl', [ 'SprintService', 'Sto
 		console.log(story);
 
 	}
+	this.openNewStory = function(){
+		  var modalInstance = $uibModal.open({
+		      animation:  true,
+		      ariaLabelledBy: 'modal-title',
+		      size: 'bg',
+		      ariaDescribedBy: 'modal-body',
+		      templateUrl: 'app/components/admin/story.html',
+		      controller: 'StoryCtrl',
+		      controllerAs: 'storyCtrl'
+		    });
 
+		    modalInstance.result.then(function (story) {
+		    	vm.stories.push(story);
+		    });
+	}
 } ]);

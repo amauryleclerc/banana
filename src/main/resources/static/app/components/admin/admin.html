@@ -1,6 +1,6 @@
 <div class="container">
 	<h2>Admin</h2>
-	<h3>Add Sprint</h3>
+	<h3>Add sprint</h3>
 	<form novalidate ng-submit="adminCtrl.save()" class="simple-form">
 		<div class="form-group">
 			<label for="sprintNumber">Sprint Number</label> <input type="text"
@@ -33,27 +33,9 @@
 				</span>
 			</p>
 		</div>
-
-		<button type="button" class="btn btn-default"
-			ng-click="adminCtrl.addStory()">Add Story</button>
-		<ul class="list-group">
-			<li class="list-group-item"
-				ng-repeat="story in adminCtrl.newSprint.stories">
-				<h4>{{$index+1}}</h4>
-				<div class="form-group">
-					<label>Story Number</label> <input type="text" class="form-control"
-						ng-model="story.id" required>
-				</div>
-				<div class="form-group">
-					<label>Story Complexity</label> <input type="number"
-						class="form-control" ng-model="story.complexity"
-						placeholder="number" required>
-				</div>
-			</li>
-		</ul>
 		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-	<h3>Edit Story</h3>
+	<h3>Edit sprint</h3>
 	<form novalidate class="simple-form">
 		<div class="form-group">
 			<label for="selectedSprint">Sprint</label> <select
@@ -63,6 +45,9 @@
 				ng-options="sprint.id for sprint in adminCtrl.sprints">
 			</select>
 		</div>
+		<button type="button" class="btn btn-primary" ng-if="adminCtrl.selectedSprint" ng-click="adminCtrl.openNewStory()">
+		 	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		 </button>
 		<table class="table table-hover" ng-if="adminCtrl.selectedSprint">
 			<thead>
 				<tr>
