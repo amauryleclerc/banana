@@ -13,5 +13,8 @@ spring:
     data:
       rest:
         basePath: /api
+    mvc:
+      favicon:
+        enabled: false
 server:
     port: 9000

@@ -1,7 +1,6 @@
 "use strict";
 angular.module('sprintGraphApp').controller('StoryCtrl', [ '$uibModalInstance', 'storyComplexities', 'sprint', function($uibModalInstance, storyComplexities, sprint) {
 	var vm = this;
-	console.log(storyComplexities);
 	this.story = {
 		complexity:0,
 		addDate : new Date(sprint.start)
