@@ -15,7 +15,9 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 		.flatMap(function(s) {
 			return rx.Observable.from(s.stories)//
 			.map(function(story) {
-				story.addDate = s.start;
+				if (story.addDate == null) {
+					story.addDate = s.start;
+				}
 				return story;
 			}).flatMap(function(story) {
 				return storyService.save(story);
@@ -32,12 +34,21 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 				return result._embedded.sprints;
 			});
 		},
+		saveStory : function(sprint, story) {
+			return storyService.save(story)//
+			.concatMap(function(response) {
+				var uri = response._links.self.href;
+				return rx.Observable.fromPromise(sprintResource.saveStory({
+					sprintId : sprint.id
+				},  uri ).$promise)
+			})
+		},
 		getStories : function(sprint) {
 			return rx.Observable.just(sprint).map(function(s) {
 				return s.id;
 			}).flatMap(function(id) {
 				return rx.Observable.fromPromise(sprintResource.getStories({
-					id : id
+					sprintId : id
 				}).$promise)
 
 			}).map(function(result) {
