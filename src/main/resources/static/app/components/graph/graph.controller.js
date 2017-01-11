@@ -45,15 +45,52 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
 	}
 
 	this.chartConfig = {
-		title : {
-			text : "Burndown chart",
-			x : -20
-		// center
-		},
-		yAxis : {
-			min : 0
-		},
-		series : []
+		 options: {
+                    chart: {
+                        type: 'line',
+                        backgroundColor: '#333333'
+                    },
+                    labels: {
+                        style: {
+                            color: '#ffffff',
+                            fontSize: 18
+                            }
+                    },
+                    legend: {
+                        itemStyle: {
+                            color: '#ffffff',
+                            fontSize: 18
+                        }
+                    },
+                    plotOptions: {
+                      series: {
+                          stacking: ''
+                    },
+                    yAxis: {
+                        title: {
+                            style: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+          },
+		series : [],
+		title: {
+            text: 'Sprint 28 de XXX',
+            style: { 'color': '#ffffff' }
+          },
+          credits: {
+            enabled: false
+          },
+          loading: false,
+          size: {
+            width: '1680',
+            height: '960'
+          },
+          subtitle: {
+            text: 'Du 9 Janvier 2017 au 27 Janvier 2017'
+          }
 	}
 
 } ]);

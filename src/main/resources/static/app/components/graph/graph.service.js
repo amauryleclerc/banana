@@ -28,21 +28,15 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		.toArray()//
 		.map(function(list) {
 			return [ {
-				name : 'Commited',
-				type : "line",
 				data : list,
-				color: '#0000FF'
-			}, {
-			    name : 'Bonus',
-				type : "line",
-			    data : list,
-			    color: '#FF0000'
-			}, {
-                name : 'Ideal',
-				type : "line",
-               	data : [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
-               	color: '#00FF00'
-            }];
+				color: '#0000FF',
+				id: '1',
+                name: 'Engagé',
+                type: 'line',
+                dashStyle: 'Solid',
+                lineWidth: 5,
+                color: '#41b2c7'
+			}];
 		})
 	}).shareReplay(1);
 
