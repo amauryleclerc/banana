@@ -69,10 +69,8 @@ angular.module('sprintGraphApp').controller('AdminCtrl',
 				}, console.error);
 			}
 			this.removeStory = function(story) {
-				var index = vm.stories.indexOf(story);
-				if (index > -1) {
-					vm.stories.splice(index, 1);
-				}
+				return sprintService.removeStory(vm.selectedSprint, story)//
+				.subscribe(console.log, console.error, getStories)
 			}
 
 			this.dateOptions = {

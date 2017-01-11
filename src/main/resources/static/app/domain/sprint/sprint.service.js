@@ -54,6 +54,12 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			}).map(function(result) {
 				return result._embedded.stories;
 			});
+		},
+		removeStory: function(sprint, story){
+				return rx.Observable.fromPromise(sprintResource.removeStory({
+					sprintId : sprint.id,
+					subResourceId:story.id
+				}).$promise)
 		}
 	};
 } ]);
