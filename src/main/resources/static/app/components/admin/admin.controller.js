@@ -63,10 +63,17 @@ angular.module('sprintGraphApp').controller('AdminCtrl',
 				}, console.error);
 
 			}
-			this.updateStory = function() {
-				storyService.save(vm.story).subscribe(function(result) {
-					getStories();
-				}, console.error);
+			this.updateStory = function(story) {
+				storyService.update(story).subscribe(console.log, console.error, function() {
+					$timeout(function() {
+						vm.editStoryId = null;
+						getStories();
+					})
+				});
+			}
+			this.cancelUpdateStory = function(){
+				vm.editStoryId = null;
+				getStories();
 			}
 			this.removeStory = function(story) {
 				return sprintService.removeStory(vm.selectedSprint, story)//

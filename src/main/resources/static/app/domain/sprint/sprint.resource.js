@@ -19,6 +19,9 @@ angular.module('sprintGraphApp').factory('SprintResource', [ '$resource', 'BASE_
 				subResource : 'stories',
 			},
 			method : 'DELETE'
+		},
+		update:{
+			method : 'PUT'
 		}
 	});
 } ]);

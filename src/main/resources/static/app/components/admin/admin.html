@@ -107,11 +107,11 @@
 					</td>
 					<td ng-If="story.id == adminCtrl.editStoryId">
 						<button class="btn btn-primary "
-							ng-click="adminCtrl.saveStory(story)">
+							ng-click="adminCtrl.updateStory(story)">
 							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 						</button>
 						<button class="btn btn-default "
-							ng-click="adminCtrl.editStoryId = null">
+							ng-click="adminCtrl.cancelUpdateStory()">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
 

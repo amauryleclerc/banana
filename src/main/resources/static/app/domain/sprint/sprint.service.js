@@ -60,6 +60,11 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 					sprintId : sprint.id,
 					subResourceId:story.id
 				}).$promise)
+		},
+		update:function(sprint){
+			return rx.Observable.fromPromise(sprintResource.update({
+				sprintId : sprint.id,
+			},sprint).$promise)
 		}
 	};
 } ]);

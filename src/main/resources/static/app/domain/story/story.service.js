@@ -10,6 +10,11 @@ angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx'
 		},
 		getAll : function() {
 			return rx.Observable.fromPromise(storyResource.get().$promise);
+		}, 
+		update:function(story){
+			return rx.Observable.fromPromise(storyResource.update({
+				id : story.id,
+			},story).$promise)
 		}
 	};
 } ]);
