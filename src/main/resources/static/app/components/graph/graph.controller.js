@@ -52,13 +52,13 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
                     },
                     labels: {
                         style: {
-                            color: '#ffffff',
+                            color: '#000000',
                             fontSize: 18
                             }
                     },
                     legend: {
                         itemStyle: {
-                            color: '#ffffff',
+                            color: '#000000',
                             fontSize: 18
                         }
                     },
@@ -69,27 +69,27 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
                     yAxis: {
                         title: {
                             style: {
-                                color: '#ffffff'
+                                color: '#000000'
                             }
                         }
                     }
                 }
-          },
-		series : [],
-		title: {
+        },
+        series : [],
+        title: {
             text: 'Sprint 28 de XXX',
-            style: { 'color': '#ffffff' }
+            style: { 'color': '#000000' }
           },
           credits: {
             enabled: false
           },
           loading: false,
-          size: {
-            width: '1680',
-            height: '960'
-          },
           subtitle: {
             text: 'Du 9 Janvier 2017 au 27 Janvier 2017'
+          },
+          chart: {
+            width: 1680,
+            height: 960
           }
 	}
 
