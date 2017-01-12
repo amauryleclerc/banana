@@ -4,8 +4,6 @@ angular.module('sprintGraphApp').controller('SprintsCtrl',
 			this.sprints = [];
 			this.editSprintId = null;
 			var vm = this;
-
-
 			function getSprints() {
 				sprintService.getAll().subscribe(function(sprints) {
 					$timeout(function() {

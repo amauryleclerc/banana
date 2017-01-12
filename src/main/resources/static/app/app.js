@@ -30,7 +30,7 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		url : "/story/:id",
 		templateUrl : "app/components/story/story.html",
 		controller : 'StoryCtrl',
-		controllerAs : 'StoryCtrl'
+		controllerAs : 'storyCtrl'
 	});
 
 });

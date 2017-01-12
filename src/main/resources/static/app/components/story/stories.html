@@ -2,10 +2,10 @@
 	<h2>Stories</h2>
 	<form novalidate class="simple-form">
 		<button type="button" class="btn btn-primary"
-			 ng-click="storiesCtrl.newStory()">
+			ng-click="storiesCtrl.newStory()">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
 		</button>
-		<table class="table table-hover" >
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -34,6 +34,10 @@
 							ng-click="storiesCtrl.remove(story)">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
+						<button class="btn btn-primary "
+							ng-click="storiesCtrl.showStory(story)">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+						</button>
 					</td>
 
 
@@ -55,10 +59,11 @@
 						<p class="input-group">
 							<input type="text" id="sprintEnd" class="form-control"
 								uib-datepicker-popup="dd/MM/yyyy" ng-model="story.closeDate"
-								is-open="openedClose" datepicker-options="storiesCtrl.dateOptions"
-								ng-required="true" close-text="Close" /> <span
-								class="input-group-btn"><button type="button"
-									class="btn btn-default" ng-click="openedClose = !openedClose">open</button></span>
+								is-open="openedClose"
+								datepicker-options="storiesCtrl.dateOptions" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn"><button
+									type="button" class="btn btn-default"
+									ng-click="openedClose = !openedClose">open</button></span>
 						</p> </span>
 					</td>
 					<td ng-If="story.id == storiesCtrl.editStoryId">

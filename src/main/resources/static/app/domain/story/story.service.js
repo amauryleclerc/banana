@@ -1,6 +1,9 @@
 "use strict";
 angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx', function(storyResource, rx) {
 	return {
+		get:function(id){
+			return rx.Observable.fromPromise(storyResource.get({id:id}).$promise);
+		},
 		save : function(story) {
 			return rx.Observable.just(story)//
 			.flatMap(function(s) {

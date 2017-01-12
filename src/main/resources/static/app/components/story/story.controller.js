@@ -1,21 +1,16 @@
 "use strict";
-angular.module('sprintGraphApp').controller('StoryCtrl', [ '$uibModalInstance', 'storyComplexities',  function($uibModalInstance, storyComplexities) {
+angular.module('sprintGraphApp').controller('StoryCtrl', [ 'StoryService' ,'$stateParams', '$timeout',function(storyService,$stateParams,$timeout) {
 	var vm = this;
-	this.story = {
-		complexity:0
+	this.story = {};
+	function getStory() {
+		storyService.get($stateParams.id).subscribe(function(story) {
+			
+			$timeout(function() {
+				console.log(story);
+				vm.story = story;
+			})
 
-	};
-	this.storyComplexities = [];
-	this.storyComplexities = storyComplexities;
-	
-	this.save = function() {
-		$uibModalInstance.close(vm.story);
-	};
-
-	this.cancel = function() {
-		$uibModalInstance.dismiss('cancel');
-	};
-	this.dateOptions = {
-		startingDay : 1
-	};
+		}, console.error);
+	}
+	getStory();
 } ]);

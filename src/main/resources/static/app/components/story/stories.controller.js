@@ -1,6 +1,6 @@
 "use strict";
 angular.module('sprintGraphApp').controller('StoriesCtrl',
-		[ 'StoryService', 'storyComplexities', '$timeout', '$uibModal', 'rx', function(storyService, storyComplexities, $timeout, $uibModal, rx) {
+		[ 'StoryService', 'storyComplexities', '$timeout', '$uibModal', 'rx','$state', function(storyService, storyComplexities, $timeout, $uibModal, rx,$state) {
 			this.stories = [];
 			this.editStoryId = null;
 			this.storyComplexities = storyComplexities;
@@ -67,5 +67,8 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 					return storyService.save(story);
 				}).subscribe(console.log, console.error, getStories)
 
+			}
+			this.showStory = function(story){
+				$state.go('story',{id:story.id});
 			}
 		} ]);
