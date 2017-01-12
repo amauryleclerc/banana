@@ -9,3 +9,14 @@ http://localhost:9000/
 
 ## API
 http://localhost:9000/api
+
+## Deployment
+
+# Build the docker image
+docker build -t amauryleclerc/sprint-graph .
+
+# Deploy the image within your container
+docker run -p 9000:9000 amauryleclerc/sprint-graph
+
+# Undeploy
+docker stop <ID>
