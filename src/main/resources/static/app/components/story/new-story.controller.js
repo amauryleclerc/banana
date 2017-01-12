@@ -1,12 +1,12 @@
 "use strict";
-angular.module('sprintGraphApp').controller('StoryCtrl', [ '$uibModalInstance', 'storyComplexities', 'sprint', function($uibModalInstance, storyComplexities, sprint) {
+angular.module('sprintGraphApp').controller('NewStoryCtrl', [ '$uibModalInstance', 'storyComplexities', 'sprint', function($uibModalInstance, storyComplexities, sprint) {
 	var vm = this;
 	this.story = {
 		complexity:0,
-		addDate : new Date(sprint.start)
-
 	};
-	this.sprint = sprint;
+	if(sprint != null){
+		this.story.addDate = new Date(sprint.start)
+	}
 	this.storyComplexities = [];
 	this.storyComplexities = storyComplexities;
 	

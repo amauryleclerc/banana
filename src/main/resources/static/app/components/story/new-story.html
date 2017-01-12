@@ -1,0 +1,55 @@
+<div></div>
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">New story</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<form novalidate ng-submit="newStoryCtrl.save()" class="simple-form">
+		<div class="form-group">
+			<label for="story">Number</label> <input type="text"
+				class="form-control" id="story" ng-model="newStoryCtrl.story.id"
+				required>
+		</div>
+		<div class="form-group">
+			<label for="complexity">Complexity</label> 
+			 <select
+				id="complexity" class="form-control"
+				ng-model="newStoryCtrl.story.complexity"
+				ng-options="complexity for complexity in newStoryCtrl.storyComplexities">
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="sprintEnd">Add date</label>
+			<p class="input-group">
+				<input type="text" id="sprintEnd" class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy"
+					ng-model="newStoryCtrl.story.addDate" is-open="openedAdd"
+					datepicker-options="newStoryCtrl.dateOptions" ng-required="true"
+					close-text="Close" /> <span class="input-group-btn"><button
+						type="button" class="btn btn-default"
+						ng-click="openedAdd = !openedAdd">open</button></span>
+			</p>
+		</div>
+		<div class="form-group">
+			<label for="sprintEnd">Close date</label>
+			<p class="input-group">
+				<input type="text" id="sprintEnd" class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy"
+					ng-model="newStoryCtrl.story.closeDate" is-open="openedClose"
+					datepicker-options="newStoryCtrl.dateOptions" ng-required="false"
+					close-text="Close" /> <span class="input-group-btn"><button
+						type="button" class="btn btn-default"
+						ng-click="openedClose = !openedClose">open</button></span>
+			</p>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="submit" class="btn btn-primary "
+		ng-click="newStoryCtrl.save()">
+		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+	</button>
+	<button class="btn btn-default " ng-click="newStoryCtrl.cancel()">
+		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+	</button>
+
+</div>

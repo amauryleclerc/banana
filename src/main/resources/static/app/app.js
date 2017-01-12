@@ -11,11 +11,26 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		templateUrl : "app/components/graph/graph.html",
 		controller : 'GraphCtrl',
 		controllerAs : 'graphCtrl'
-	}).state('admin', {
-		url : "/admin",
-		templateUrl : "app/components/admin/admin.html",
-		controller : 'AdminCtrl',
-		controllerAs : 'adminCtrl'
+	}).state('sprints', {
+		url : "/sprints",
+		templateUrl : "app/components/sprint/sprints.html",
+		controller : 'SprintsCtrl',
+		controllerAs : 'sprintsCtrl'
+	}).state('sprint', {
+		url : "/sprint/:id",
+		templateUrl : "app/components/sprint/sprint.html",
+		controller : 'SprintCtrl',
+		controllerAs : 'sprintCtrl'
+	}).state('stories', {
+		url : "/stories",
+		templateUrl : "app/components/story/stories.html",
+		controller : 'StoriesCtrl',
+		controllerAs : 'storiesCtrl'
+	}).state('story', {
+		url : "/story/:id",
+		templateUrl : "app/components/story/story.html",
+		controller : 'StoryCtrl',
+		controllerAs : 'StoryCtrl'
 	});
 
 });

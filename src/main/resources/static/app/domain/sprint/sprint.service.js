@@ -26,6 +26,9 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 	}
 
 	return {
+		get:function(id){
+			return rx.Observable.fromPromise(sprintResource.get({sprintId:id}).$promise);
+		},
 		save : function(sprint) {
 			return rx.Observable.concat(saveStories(sprint), saveSprint(sprint));
 		},
@@ -35,6 +38,7 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			});
 		},
 		saveStory : function(sprint, story) {
+			
 			return storyService.save(story)//
 			.concatMap(function(response) {
 				var uri = response._links.self.href;
@@ -44,6 +48,7 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			})
 		},
 		getStories : function(sprint) {
+			console.log(sprint);
 			return rx.Observable.just(sprint).map(function(s) {
 				return s.id;
 			}).flatMap(function(id) {
@@ -65,6 +70,11 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			return rx.Observable.fromPromise(sprintResource.update({
 				sprintId : sprint.id,
 			},sprint).$promise)
+		},
+		remove:function(sprint){
+			return rx.Observable.fromPromise(sprintResource.remove({
+				sprintId : sprint.id,
+			}).$promise)
 		}
 	};
 } ]);

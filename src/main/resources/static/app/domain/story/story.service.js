@@ -9,12 +9,19 @@ angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx'
 
 		},
 		getAll : function() {
-			return rx.Observable.fromPromise(storyResource.get().$promise);
+			return rx.Observable.fromPromise(storyResource.get().$promise).map(function(result) {
+				return result._embedded.stories;
+			});;
 		}, 
 		update:function(story){
 			return rx.Observable.fromPromise(storyResource.update({
 				id : story.id,
 			},story).$promise)
+		},
+		remove:function(story){
+			return rx.Observable.fromPromise(storyResource.remove({
+				id : story.id,
+			}).$promise)
 		}
 	};
 } ]);
