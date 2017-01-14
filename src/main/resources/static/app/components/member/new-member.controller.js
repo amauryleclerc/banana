@@ -3,12 +3,9 @@ angular.module('sprintGraphApp').controller('NewMemberCtrl', [ '$uibModalInstanc
 	var vm = this;
 	this.member = {
 	};
-
-	
 	this.save = function() {
 		$uibModalInstance.close(vm.member);
 	};
-
 	this.cancel = function() {
 		$uibModalInstance.dismiss('cancel');
 	};

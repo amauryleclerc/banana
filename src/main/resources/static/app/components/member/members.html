@@ -48,7 +48,7 @@
 						type="text" class="form-control" ng-model="member.email" /></td>
 					<td ng-If="member.id == membersCtrl.editMemberId">
 						<div class="checkbox">
-							<label> <input type="checkbox"> 
+							<label> <input type="checkbox"  ng-model="member.useGravatar"> 
 							</label>
 						</div>
 					</td>

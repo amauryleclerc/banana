@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'rx',  function(memberResource, rx ) {
+angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'AbsenceService','rx',  function(memberResource,absenceService, rx ) {
 
 	return {
 		get:function(id){
@@ -17,6 +17,22 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'r
 			return rx.Observable.fromPromise(memberResource.update({
 				id : member.id,
 			},member).$promise)
+		},
+		getAbsences:function(member){
+			return rx.Observable.just(member).map(function(s) {
+				return s.id;
+			}).flatMap(function(id) {
+				return rx.Observable.fromPromise(memberResource.getAbsences({
+					id : id
+				}).$promise)
+			}).map(function(result) {
+				return result._embedded.absences;
+			});
+		},
+		saveAbsence:function(absence){
+			return absenceService.save(absence);
+			
+			
 		}
 	};
 } ]);
