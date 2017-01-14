@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', function(sprintResource, rx, storyService, BASE_URL) {
+angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', 'BASE_URL', function(sprintResource, rx, storyService, BASE_URL) {
 	var saveSprint = function(sprint) {
 		return rx.Observable.just(sprint).map(function(s) {
 			s.stories = s.stories.map(function(story) {
