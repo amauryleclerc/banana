@@ -6,7 +6,7 @@
 	<form novalidate ng-submit="newStoryCtrl.save()" class="simple-form">
 		<div class="form-group">
 			<label for="story">Number</label> <input type="text"
-				class="form-control" id="story" ng-model="newStoryCtrl.story.id"
+				class="form-control" id="story" ng-model="newStoryCtrl.story.id"  focus-me="true" 
 				required>
 		</div>
 		<div class="form-group">
@@ -26,7 +26,7 @@
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="true"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedAdd = !openedAdd">open</button></span>
+						ng-click="openedAdd = !openedAdd"><i class="glyphicon glyphicon-calendar"></i></button></span>
 			</p>
 		</div>
 		<div class="form-group">
@@ -38,7 +38,7 @@
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="false"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedClose = !openedClose">open</button></span>
+						ng-click="openedClose = !openedClose"><i class="glyphicon glyphicon-calendar"></i></button></span>
 			</p>
 		</div>
 	</form>

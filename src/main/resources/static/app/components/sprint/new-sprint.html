@@ -6,7 +6,7 @@
 	<form novalidate ng-submit="newSprintCtrl.save()" class="simple-form">
 		<div class="form-group">
 			<label for="sprint">Number</label> <input type="text"
-				class="form-control" id="sprint" ng-model="newSprintCtrl.sprint.id"
+				class="form-control" id="sprint" ng-model="newSprintCtrl.sprint.id"  focus-me="true" 
 				required>
 		</div>
 		<div class="form-group">
@@ -18,7 +18,7 @@
 					datepicker-options="newSprintCtrl.dateOptions" ng-required="true"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedStart = !openedStart">open</button></span>
+						ng-click="openedStart = !openedStart"><i class="glyphicon glyphicon-calendar"></i></button></span>
 			</p>
 		</div>
 		<div class="form-group">
@@ -30,7 +30,7 @@
 					datepicker-options="newSprintCtrl.dateOptions" ng-required="false"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedEnd = !openedEnd">open</button></span>
+						ng-click="openedEnd = !openedEnd"><i class="glyphicon glyphicon-calendar"></i></button></span>
 			</p>
 		</div>
 	</form>
