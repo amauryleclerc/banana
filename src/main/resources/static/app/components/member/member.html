@@ -114,6 +114,15 @@
 
 			</tbody>
 		</table>
-
 	</form>
+			<table class="table table-bordered">
+			<tbody>
+				<tr >
+					<td ng-repeat="precence in memberCtrl.presences" ng-class="[{danger: !precence.isPresent}]" >{{$index+1}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+	
+	
 </div>

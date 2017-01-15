@@ -3,6 +3,7 @@ angular.module('sprintGraphApp').controller('MemberCtrl', [ 'MemberService', '$s
 	var vm = this;
 	this.member = {};
 	this.absences = [];
+	this.presences = [];
 	this.editAbsenceId = null;
 
 	function getMember() {
@@ -18,6 +19,12 @@ angular.module('sprintGraphApp').controller('MemberCtrl', [ 'MemberService', '$s
 	getMember();
 
 	function getAbsences(member) {
+		vm.presences =[];
+		memberService.getPresences(member).subscribe(function(presence){
+			$timeout(function() {
+					vm.presences.push(presence);
+				});
+		}, console.error);
 		memberService.getAbsences(member).subscribe(function(absences) {
 			$timeout(function() {
 				vm.absences = absences.map(function(absence){
