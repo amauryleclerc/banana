@@ -72,6 +72,18 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		}
 	}).shareReplay(1);
 
+    var titleObs = sprintObs.map(function(sprint) {
+        return {
+            text : sprint.id
+        }
+    }).shareReplay(1);
+
+     var subtitleObs = sprintObs.map(function(sprint) {
+            return {
+                text : 'Du ' + sprint.start + ' au ' + sprint.end
+            }
+     }).shareReplay(1);
+
 	function setSprint(sprint) {
 		sprintSubject.onNext(sprint);
 	}
@@ -100,6 +112,12 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		},
 		getXAxis : function() {
 			return xAxisObs;
+		},
+		getTitle : function() {
+		    return titleObs;
+		},
+		getSubTitle : function() {
+		    return subtitleObs;
 		}
 	};
 } ]);

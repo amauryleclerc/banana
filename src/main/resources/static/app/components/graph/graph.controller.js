@@ -36,6 +36,19 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
 			vm.chartConfig.xAxis = xAxis;
 		})
 	});
+	graphService.getTitle().subscribe(function(title) {
+    		$timeout(function() {
+    			console.log(title);
+    			vm.chartConfig.title = title;
+    		})
+    	});
+
+	graphService.getSubTitle().subscribe(function(subtitle) {
+    		$timeout(function() {
+    			console.log(subtitle);
+    			vm.chartConfig.subtitle = subtitle;
+    		})
+    	});
 
 	this.onSprintChange = function() {
 		vm.chartConfig.title.text = vm.sprint.id;
@@ -76,21 +89,16 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
                 }
         },
         series : [],
-        title: {
-            text: 'Sprint 28 de XXX',
-            style: { 'color': '#000000' }
-          },
-          credits: {
+        title: {},
+        credits: {
             enabled: false
-          },
-          loading: false,
-          subtitle: {
-            text: 'Du 9 Janvier 2017 au 27 Janvier 2017'
-          },
-          chart: {
-            width: 1680,
-            height: 960
-          }
+        },
+        loading: false,
+        subtitle: {},
+        chart: {
+          width: 1680,
+          height: 960
+      }
 	}
 
 } ]);
