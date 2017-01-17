@@ -11,22 +11,42 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		return sprintService.getStories(sprint);
 	})
 
-	var seriesObs = sprintObs.flatMap(function(sprint) {
-		return storiesObs.first().map(function(stories) {
-			sprint.stories = stories;
-			return sprint;
-		})
-	}).switchMap(function(sprint) {
-		return rx.Observable.range(0, daydiff(new Date(sprint.start), new Date(sprint.end)))//
-		.map(function(index) {
-			return new Date(sprint.start).getTime() + (index * 1000 * 60 * 60 * 24);
-		}).filter(function(date) {
-			return date <= Date.now();
-		}).map(function(date) {
-			return [ date, getComplexity(date, sprint.stories) ];
-		})//
-		.toArray()//
-		.map(function(list) {
+    var dateObs = sprintObs.flatMap(function(sprint) {
+                  		return storiesObs.first().map(function(stories) {
+                  			sprint.stories = stories;
+                  			return sprint;
+                  		})
+                  	}).switchMap(function(sprint) {
+                  		return rx.Observable.range(0, daydiff(new Date(sprint.start), new Date(sprint.end)))//
+                  		.map(function(index) {
+                  			return new Date(sprint.start).getTime() + (index * 1000 * 60 * 60 * 24);
+                  		}).filter(function(date) {
+                  			return date <= Date.now();
+                  		})//
+                  		.toArray()
+                  		.map(function(dates) {
+                  		    return [ sprint, dates];
+                  		})});
+
+	var complexitySeriesObs = dateObs
+	    .flatMap(function(sprintdate) {
+	        var sprint = sprintdate[0];
+	        return rx.Observable.from(sprintdate[1])
+	        .map(function(date) {
+                return [ date, getComplexity(date, sprint) ];
+            })
+            .toArray()});
+
+	var complexityBonusSeriesObs = dateObs
+	    .flatMap(function(sprintdate) {
+	        var sprint = sprintdate[0];
+	        return rx.Observable.from(sprintdate[1])
+	        .map(function(date) {
+                return [ date, getBonusComplexity(date, sprint) ];
+            })
+            .toArray()});
+
+     var seriesObs = rx.Observable.zip(complexitySeriesObs, complexityBonusSeriesObs, function(complexity, bonuscomplexity){
 			return [  {
                             name: 'Idéal',
                             data: [113,105,97,89,81,73,65,57,48,40,32,24,16,8,0],
@@ -43,7 +63,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
                             }
                          },
                          {
-                            data: list,
+                            data: bonuscomplexity,
                             id: '1',
                             name: 'Bonus',
                             type: 'line',
@@ -52,7 +72,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
                             color: '#e13730'
                          },
                          {
-                            data : list,
+                            data : complexity,
                             color: '#0000FF',
                             id: '2',
                             name: 'Engagé',
@@ -61,8 +81,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
                             lineWidth: 5,
                             color: '#41b2c7'
 			}];
-		})
-	}).shareReplay(1);
+		}).shareReplay(1);
 
 	var xAxisObs = sprintObs.map(function(sprint) {
 		return {
@@ -88,15 +107,27 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 		sprintSubject.onNext(sprint);
 	}
 
-	function getComplexity(date, stories) {
-		return stories.filter(function(story) {
-			return (story.closeDate == null || new Date(story.closeDate).getTime() > date);
+	function getComplexity(date, sprint) {
+	console.log(sprint);
+		return sprint.stories.filter(function(story) {
+		console.log(sprint.start + ' vs ' + story.addDate)
+			return (story.addDate > sprint.start && (story.closeDate == null || new Date(story.closeDate).getTime() > date));
 		}).map(function(story) {
 			return story.complexity;
 		}).reduce(function(acc, complexity) {
 			return acc + complexity;
 		}, 0);
 	}
+
+	function getBonusComplexity(date, sprint) {
+    		return sprint.stories.filter(function(story) {
+    			return (story.addDate <= sprint.start && (story.closeDate == null || new Date(story.closeDate).getTime() > date));
+    		}).map(function(story) {
+    			return story.complexity;
+    		}).reduce(function(acc, complexity) {
+    			return acc + complexity;
+    		}, 0);
+    	}
 
 	function daydiff(first, second) {
 		return Math.round((second - first) / (1000 * 60 * 60 * 24));
