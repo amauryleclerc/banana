@@ -12,6 +12,21 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 	})
 
     var dateObs = sprintObs.flatMap(function(sprint) {
+                                    		return storiesObs.first().map(function(stories) {
+                                    			sprint.stories = stories;
+                                    			return sprint;
+                                    		})
+                                    	}).switchMap(function(sprint) {
+                                    		return rx.Observable.range(0, daydiff(new Date(sprint.start), new Date(sprint.end)))//
+                                    		.map(function(index) {
+                                    			return new Date(sprint.start).getTime() + (index * 1000 * 60 * 60 * 24);
+                                    		})//
+                                    		.toArray()
+                                    		.map(function(dates) {
+                                    		    return [ sprint, dates];
+                                    		})});
+
+    var dateUntilNowObs = sprintObs.flatMap(function(sprint) {
                   		return storiesObs.first().map(function(stories) {
                   			sprint.stories = stories;
                   			return sprint;
@@ -28,7 +43,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
                   		    return [ sprint, dates];
                   		})});
 
-	var complexitySeriesObs = dateObs
+	var complexitySeriesObs = dateUntilNowObs
 	    .flatMap(function(sprintdate) {
 	        var sprint = sprintdate[0];
 	        return rx.Observable.from(sprintdate[1])
@@ -37,7 +52,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
             })
             .toArray()});
 
-	var complexityBonusSeriesObs = dateObs
+	var complexityBonusSeriesObs = dateUntilNowObs
 	    .flatMap(function(sprintdate) {
 	        var sprint = sprintdate[0];
 	        return rx.Observable.from(sprintdate[1])
@@ -46,10 +61,20 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
             })
             .toArray()});
 
-     var seriesObs = rx.Observable.zip(complexitySeriesObs, complexityBonusSeriesObs, function(complexity, bonuscomplexity){
+	var idealSeriesObs = dateObs
+	    .flatMap(function(sprintdate) {
+	        var sprint = sprintdate[0];
+	        return rx.Observable.from(sprintdate[1])
+	        .map(function(date) {
+                return [ date, getIdealComplexity(date, sprint) ];
+            })
+            .toArray()});
+
+
+     var seriesObs = rx.Observable.zip(complexitySeriesObs, complexityBonusSeriesObs, idealSeriesObs, function(complexity, bonuscomplexity, ideal){
 			return [  {
                             name: 'Idéal',
-                            data: [113,105,97,89,81,73,65,57,48,40,32,24,16,8,0],
+                            data: ideal,
                             id: '0',
                             type: 'line',
                             connectNulls: false,
@@ -99,7 +124,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 
      var subtitleObs = sprintObs.map(function(sprint) {
             return {
-                text : 'Du ' + sprint.start + ' au ' + sprint.end
+                text : 'Du ' + new Date(sprint.start) + ' au ' + new Date(sprint.end)
             }
      }).shareReplay(1);
 
@@ -108,10 +133,8 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 	}
 
 	function getComplexity(date, sprint) {
-	console.log(sprint);
 		return sprint.stories.filter(function(story) {
-		console.log(sprint.start + ' vs ' + story.addDate)
-			return (story.addDate > sprint.start && (story.closeDate == null || new Date(story.closeDate).getTime() > date));
+			return isCommitedStory(story, sprint) && isStoryClosed(story, date);
 		}).map(function(story) {
 			return story.complexity;
 		}).reduce(function(acc, complexity) {
@@ -120,14 +143,51 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 	}
 
 	function getBonusComplexity(date, sprint) {
-    		return sprint.stories.filter(function(story) {
-    			return (story.addDate <= sprint.start && (story.closeDate == null || new Date(story.closeDate).getTime() > date));
-    		}).map(function(story) {
-    			return story.complexity;
-    		}).reduce(function(acc, complexity) {
-    			return acc + complexity;
-    		}, 0);
-    	}
+        return sprint.stories.filter(function(story) {
+            return isStoryClosed(story, date);
+        }).map(function(story) {
+            return story.complexity;
+        }).reduce(function(acc, complexity) {
+            return acc + complexity;
+        }, 0);
+    }
+
+    function getIdealComplexity(date, sprint) {
+        var total = totalCommitedComplexity(sprint);
+        var days = daydiff(new Date(sprint.start).getTime(), new Date(sprint.end).getTime());
+        var complexityPerDay = total / days;
+        return total - complexityPerDay * daydiff(new Date(sprint.start).getTime(), date);
+    }
+
+    function totalCommitedComplexity(sprint) {
+     return sprint.stories.filter(function(story) {
+            return isCommitedStory(story, sprint);
+        }).map(function(story) {
+            return story.complexity;
+        }).reduce(function(acc, complexity) {
+            return acc + complexity;
+        }, 0);
+    }
+
+    function isStoryOpen(story, date) {
+        return story.closeDate == null;
+    }
+
+	function isCommitedStory(story, sprint) {
+	    var storyAddedTime = new Date(story.addDate).getTime();
+	    var sprintStartDate = new Date(sprint.start).getTime();
+	    return daydiff(storyAddedTime, sprintStartDate) >= 0;
+	}
+
+	function isBonusStory(story, sprint) {
+	    var storyAddedTime = new Date(story.addDate).getTime();
+	    var sprintStartDate = new Date(sprint.start).getTime();
+	    return daydiff(sprintStartDate, storyAddedTime) > 0;
+	}
+
+	function isStoryClosed(story, date) {
+	    return story.closeDate != null && daydiff(new Date(story.closeDate).getTime(), date) < 0;
+	}
 
 	function daydiff(first, second) {
 		return Math.round((second - first) / (1000 * 60 * 60 * 24));

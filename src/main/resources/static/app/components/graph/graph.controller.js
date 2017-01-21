@@ -96,8 +96,8 @@ angular.module('sprintGraphApp').controller('GraphCtrl', [ 'GraphService', 'Spri
         loading: false,
         subtitle: {},
         chart: {
-          width: 1680,
-          height: 960
+          width: 1024,
+          height: 768
       }
 	}
 
