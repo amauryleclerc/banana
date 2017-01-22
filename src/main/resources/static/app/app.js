@@ -41,7 +41,12 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		templateUrl : "app/components/member/member.html",
 		controller : 'MemberCtrl',
 		controllerAs : 'memberCtrl'
-	});
+	}).state('settings', {
+      		url : "/settings/:id",
+      		templateUrl : "app/components/settings/settings.html",
+      		controller : 'SettingsCtrl',
+      		controllerAs : 'settingsCtrl'
+      	});
 
 });
 
