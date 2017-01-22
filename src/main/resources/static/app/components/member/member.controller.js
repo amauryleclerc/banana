@@ -20,7 +20,7 @@ angular.module('sprintGraphApp').controller('MemberCtrl', [ 'MemberService', '$s
 
 	function getAbsences(member) {
 		vm.presences =[];
-		memberService.getPresences(member).subscribe(function(presence){
+		memberService.getPresencesInCurrentMonth(member).subscribe(function(presence){
 			$timeout(function() {
 					vm.presences.push(presence);
 				});

@@ -1,37 +1,24 @@
 <div class="container">
 	<h2>Sprint</h2>
 	<h3>Add sprint</h3>
-	<form novalidate class="simple-form">
 		<div class="form-group">
-			<label for="sprintNumber">Sprint Number</label> <input type="text"
-				class="form-control" id="sprintNumber"
-				ng-model="sprintCtrl.sprint.id" readonly>
-		</div>
-		<div class="form-group">
-			<label for="sprintStart">Sprint start</label>
+			<label>Sprint Number</label>
 			<p class="input-group">
-				<input type="text" id="sprintStart" class="form-control"
-					uib-datepicker-popup="dd/MM/yyyy"
-					ng-model="sprintCtrl.sprint.start" is-open="openedStart"
-					datepicker-options="sprintCtrl.dateOptions" ng-required="true"
-					close-text="Close" /> <span class="input-group-btn" readonly>
-				
-				</span>
+			{{sprintCtrl.sprint.id}}
 			</p>
 		</div>
 		<div class="form-group">
-			<label for="sprintEnd">Sprint end</label>
+			<label>Sprint start</label>
 			<p class="input-group">
-				<input type="text" id="sprintEnd" class="form-control"
-					uib-datepicker-popup="dd/MM/yyyy"
-					ng-model="sprintCtrl.sprint.end" is-open="openedEnd"
-					datepicker-options="sprintCtrl.dateOptions" ng-required="true"
-					close-text="Close" /> <span class="input-group-btn" readonly>
-
-				</span>
+				{{sprintCtrl.sprint.start | date : 'dd/MM/yyyy' }}
 			</p>
 		</div>
-	</form>
+		<div class="form-group">
+			<label>Sprint end</label>
+			<p class="input-group">
+				{{sprintCtrl.sprint.end | date : 'dd/MM/yyyy' }}
+			</p>
+		</div>
 	<h3>Stories</h3>
 	<form novalidate class="simple-form">
 		

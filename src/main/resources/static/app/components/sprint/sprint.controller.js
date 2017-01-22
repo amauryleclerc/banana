@@ -6,7 +6,9 @@ angular.module('sprintGraphApp').controller('SprintCtrl',
 			this.editStoryId = null;
 			this.storyComplexities = storyComplexities;
 			var vm = this;
-			
+		//	sprintService.getPresence(null, new Date(), new Date(2017,2,10)).subscribe(function(v){
+		//	    console.log(v);
+		//	})
 			function getStories() {
 				sprintService.getStories(vm.sprint).subscribe(function(stories) {
 					$timeout(function() {

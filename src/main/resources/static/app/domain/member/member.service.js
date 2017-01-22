@@ -5,6 +5,10 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
 		return new Date(year, month, 0).getDate();
 	}
 
+	function daydiff(first, second) {
+		return Math.round((second - first) / (1000 * 60 * 60 * 24));
+	}
+
 	function isPresent(date, absences){
 		return absences.filter(function(absence){
 			return (absence.start != null && absence.end != null)
@@ -54,23 +58,30 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
 		saveAbsence : function(absence) {
 			return absenceService.save(absence);
 		},
-		getPresences : function(member) {
+		getPresencesInCurrentMonth : function(){
 			var now = new Date();
-			return rx.Observable.range(0, daysInMonth(now.getMonth() + 1, now.getFullYear()))//
-			.map(function(index) {
-				return new Date(now.getFullYear(), now.getMonth(), index + 1);
-			})//
-			.toArray()//
-			.flatMap(function(listDate){
-				return 	getAbsences(member).flatMap(function(absences){
-					return rx.Observable.from(listDate).map(function(date){
-						return {
-							date:date,
-							isPresent:isPresent(date, absences)
-						}
-					})
-				});
-			})
+        			return rx.Observable.range(0, daysInMonth(now.getMonth() + 1, now.getFullYear()))//
+        			.map(function(index) {
+        				return new Date(now.getFullYear(), now.getMonth(), index + 1);
+        			})//
+        			.toArray()//
+        			.flatMap(function(listDate){
+        				return 	getAbsences(member).flatMap(function(absences){
+        					return rx.Observable.from(listDate).map(function(date){
+        						return {
+        							date:date,
+        							isPresent:isPresent(date, absences)
+        						}
+        					})
+        				});
+        			})
+		},
+		getPresences : function(member, start, end) {
+             var diff = daydiff(start, end);
+		     return rx.Observable.range(0,diff)
+		                .map(function(index) {
+                                       return new Date(now.getFullYear(), now.getMonth(), index + 1);
+                         })//
 
 		}
 	};
