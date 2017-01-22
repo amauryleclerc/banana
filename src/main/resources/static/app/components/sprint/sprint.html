@@ -1,19 +1,35 @@
 <div class="container">
-	<h2>Sprint</h2>
-	<h3>Add sprint</h3>
-	<div class="form-group">
-		<label>Sprint Number</label>
-		<p class="input-group">{{sprintCtrl.sprint.id}}</p>
-	</div>
-	<div class="form-group">
-		<label>Sprint start</label>
-		<p class="input-group">{{sprintCtrl.sprint.start | date :
-			'dd/MM/yyyy' }}</p>
-	</div>
-	<div class="form-group">
-		<label>Sprint end</label>
-		<p class="input-group">{{sprintCtrl.sprint.end | date :
-			'dd/MM/yyyy' }}</p>
+	<table class="table table-striped">
+		<caption>Sprint Identity Card</caption>
+		<tbody>
+			<tr>
+				<td>Sprint</td>
+				<td><span class="input-group">{{sprintCtrl.sprint.id}}</span></td>
+			</tr>
+			<tr>
+				<td>Dates</td>
+				<td> <span>From {{sprintCtrl.sprint.start | date :
+			'dd MM yyyy' }} To {{sprintCtrl.sprint.end | date :
+			'dd MM yyyy' }}</span></td>
+			</tr>
+			<tr>
+				<td>Working days</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td>Team capacity</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td>Esimated points</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td>Estimated velocity</td>
+				<td>...</td>
+			</tr>
+		</tbody>
+	</table>
 	</div>
 	<h3>Stories</h3>
 	<form novalidate class="simple-form">
