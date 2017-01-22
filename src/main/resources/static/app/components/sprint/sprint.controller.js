@@ -10,6 +10,8 @@ angular.module('sprintGraphApp').controller(
 					this.members = [];
 					this.dates = [];
 					this.capacity = 0;
+					this.nbDays = 0;
+					this.velocity = 0.95;
 					this.complexity = 0;
 					var vm = this;
 					
@@ -26,7 +28,7 @@ angular.module('sprintGraphApp').controller(
 									return story;
 								});
 								vm.complexity = stories.reduce(function(acc,value){
-									return acc + value;
+									return acc + value.complexity;
 								},0);
 							})
 						}, console.error);
@@ -46,9 +48,10 @@ angular.module('sprintGraphApp').controller(
 						}).filter(function(presence){
 							return presence.isPresent;
 						}).count()//
-						.subscribe(function(capacity) {
+						.subscribe(function(nbDays) {
 							$timeout(function() {
-								vm.capacity = capacity;
+								vm.nbDays = nbDays;
+								vm.capacity = nbDays*vm.velocity;
 							})
 						}, console.error);
 					}
