@@ -124,7 +124,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 
      var subtitleObs = sprintObs.map(function(sprint) {
             return {
-                text : 'Du ' + new Date(sprint.start) + ' au ' + new Date(sprint.end)
+                text : 'Du ' + moment(new Date(sprint.start)).format('Do MMM YYYY')+ ' au ' + moment(new Date(sprint.end)).format('Do MMM YYYY')
             }
      }).shareReplay(1);
 
@@ -154,7 +154,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 
     function getIdealComplexity(date, sprint) {
         var total = totalCommitedComplexity(sprint);
-        var days = daydiff(new Date(sprint.start).getTime(), new Date(sprint.end).getTime());
+        var days = daydiff(new Date(sprint.start).getTime(), new Date(sprint.end).getTime()) - 1;
         var complexityPerDay = total / days;
         return total - complexityPerDay * daydiff(new Date(sprint.start).getTime(), date);
     }
