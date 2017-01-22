@@ -23,7 +23,7 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
 			return false;
 		},true)
 	}
-	function	getAbsences(member) {
+	function getAbsences(member) {
 		return rx.Observable.just(member).map(function(s) {
 			return s.id;
 		}).flatMap(function(id) {
@@ -54,11 +54,16 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
 				id : member.id,
 			}, member).$promise)
 		},
+		remove : function(member){
+			return rx.Observable.fromPromise(memberResource.remove({
+				id : member.id,
+			}).$promise)
+		},
 		getAbsences : getAbsences,
 		saveAbsence : function(absence) {
 			return absenceService.save(absence);
 		},
-		getPresencesInCurrentMonth : function(){
+		getPresencesInCurrentMonth : function(member){
 			var now = new Date();
         			return rx.Observable.range(0, daysInMonth(now.getMonth() + 1, now.getFullYear()))//
         			.map(function(index) {
@@ -80,8 +85,19 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
              var diff = daydiff(start, end);
 		     return rx.Observable.range(0,diff)
 		                .map(function(index) {
-                                       return new Date(now.getFullYear(), now.getMonth(), index + 1);
-                         })//
+                                       return new Date(start.getFullYear(), start.getMonth(),  start.getDate()+index);
+                         })
+                         .toArray()//
+                         .flatMap(function(listDate){
+                        	 return getAbsences(member).flatMap(function(absences){
+        					return rx.Observable.from(listDate).map(function(date){
+        						return {
+        							date:date,
+        							isPresent:isPresent(date, absences)
+        						}
+        					})
+        				});
+        			})
 
 		}
 	};

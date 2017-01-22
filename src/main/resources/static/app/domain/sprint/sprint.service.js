@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', 'BASE_URL', function(sprintResource, rx, storyService, BASE_URL) {
+angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', 'MemberService', 'BASE_URL', function(sprintResource, rx, storyService, memberService,BASE_URL) {
 	var saveSprint = function(sprint) {
 		return rx.Observable.just(sprint).map(function(s) {
 			s.stories = s.stories.map(function(story) {
@@ -74,6 +74,19 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			return rx.Observable.fromPromise(sprintResource.remove({
 				sprintId : sprint.id,
 			}).$promise)
+		},
+		getPresence(sprint){
+			return memberService.getAll()//
+				.flatMap(function(members){
+					return rx.Observable.from(members);
+				}).flatMap(function(member){
+					return memberService.getPresences(member, sprint.start, sprint.end).toArray().map(function(presences){
+						return {
+							member:member,
+							presences:presences
+						}
+					})
+				})
 		}
 	};
 } ]);

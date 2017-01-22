@@ -1,32 +1,28 @@
 <div class="container">
 	<h2>Sprint</h2>
 	<h3>Add sprint</h3>
-		<div class="form-group">
-			<label>Sprint Number</label>
-			<p class="input-group">
-			{{sprintCtrl.sprint.id}}
-			</p>
-		</div>
-		<div class="form-group">
-			<label>Sprint start</label>
-			<p class="input-group">
-				{{sprintCtrl.sprint.start | date : 'dd/MM/yyyy' }}
-			</p>
-		</div>
-		<div class="form-group">
-			<label>Sprint end</label>
-			<p class="input-group">
-				{{sprintCtrl.sprint.end | date : 'dd/MM/yyyy' }}
-			</p>
-		</div>
+	<div class="form-group">
+		<label>Sprint Number</label>
+		<p class="input-group">{{sprintCtrl.sprint.id}}</p>
+	</div>
+	<div class="form-group">
+		<label>Sprint start</label>
+		<p class="input-group">{{sprintCtrl.sprint.start | date :
+			'dd/MM/yyyy' }}</p>
+	</div>
+	<div class="form-group">
+		<label>Sprint end</label>
+		<p class="input-group">{{sprintCtrl.sprint.end | date :
+			'dd/MM/yyyy' }}</p>
+	</div>
 	<h3>Stories</h3>
 	<form novalidate class="simple-form">
-		
+
 		<button type="button" class="btn btn-primary"
-		 ng-click="sprintCtrl.openNewStory()">
+			ng-click="sprintCtrl.openNewStory()">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
 		</button>
-		<table class="table table-hover" >
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -36,7 +32,7 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody >
+			<tbody>
 				<tr ng-repeat="story in sprintCtrl.stories">
 
 					<td>{{story.id}}</td>
@@ -73,17 +69,22 @@
 								is-open="openedAdd" datepicker-options="sprintCtrl.dateOptions"
 								ng-required="true" close-text="Close" /> <span
 								class="input-group-btn"><button type="button"
-									class="btn btn-default" ng-click="openedAdd = !openedAdd"><i class="glyphicon glyphicon-calendar"></i></button></span>
+									class="btn btn-default" ng-click="openedAdd = !openedAdd">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
 						</p> </span>
 					</td>
 					<td ng-If="story.id == sprintCtrl.editStoryId">
 						<p class="input-group">
 							<input type="text" id="sprintEnd" class="form-control"
 								uib-datepicker-popup="dd/MM/yyyy" ng-model="story.closeDate"
-								is-open="openedClose" datepicker-options="sprintCtrl.dateOptions"
-								ng-required="true" close-text="Close" /> <span
-								class="input-group-btn"><button type="button"
-									class="btn btn-default" ng-click="openedClose = !openedClose"><i class="glyphicon glyphicon-calendar"></i></button></span>
+								is-open="openedClose"
+								datepicker-options="sprintCtrl.dateOptions" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn"><button
+									type="button" class="btn btn-default"
+									ng-click="openedClose = !openedClose">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
 						</p> </span>
 					</td>
 					<td ng-If="story.id == sprintCtrl.editStoryId">
@@ -104,4 +105,23 @@
 		</table>
 
 	</form>
+	<div class="row">
+		<h3>Absences</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Member</th>
+					<th ng-repeat="date in sprintCtrl.dates">{{date | date :
+						'dd'}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="member in sprintCtrl.members">
+					<td>{{member.member.firstName}} {{member.member.lastName}}</td>
+					<td ng-repeat="precence in member.presences"
+						ng-class="[{danger: !precence.isPresent}]"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

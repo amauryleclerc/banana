@@ -1,90 +1,119 @@
 "use strict";
-angular.module('sprintGraphApp').controller('SprintCtrl',
-		[ 'SprintService', 'StoryService', 'storyComplexities', '$timeout', '$uibModal', 'rx', '$stateParams', '$state', function(sprintService, storyService, storyComplexities, $timeout, $uibModal, rx, $stateParams,$state) {
-			this.sprint ={};
-			this.stories = [];
-			this.editStoryId = null;
-			this.storyComplexities = storyComplexities;
-			var vm = this;
-		//	sprintService.getPresence(null, new Date(), new Date(2017,2,10)).subscribe(function(v){
-		//	    console.log(v);
-		//	})
-			function getStories() {
-				sprintService.getStories(vm.sprint).subscribe(function(stories) {
-					$timeout(function() {
-						vm.stories = stories.map(function(story) {
-							if (story.addDate) {
-								story.addDate = new Date(story.addDate);
-							}
-							if (story.closeDate) {
-								story.closeDate = new Date(story.closeDate);
-							}
-							return story;
+angular.module('sprintGraphApp').controller(
+		'SprintCtrl',
+		[ 'SprintService', 'StoryService', 'storyComplexities', '$timeout', '$uibModal', 'rx', '$stateParams', '$state',
+				function(sprintService, storyService, storyComplexities, $timeout, $uibModal, rx, $stateParams, $state) {
+					this.sprint = {};
+					this.stories = [];
+					this.editStoryId = null;
+					this.storyComplexities = storyComplexities;
+					this.members = [];
+					this.dates = [];
+					var vm = this;
+
+					function getStories() {
+						sprintService.getStories(vm.sprint).subscribe(function(stories) {
+							$timeout(function() {
+								vm.stories = stories.map(function(story) {
+									if (story.addDate) {
+										story.addDate = new Date(story.addDate);
+									}
+									if (story.closeDate) {
+										story.closeDate = new Date(story.closeDate);
+									}
+									return story;
+								});
+							})
+						}, console.error);
+					}
+					function getPrecences() {
+						vm.members = [];
+						sprintService.getPresence(vm.sprint).subscribe(function(member) {
+							$timeout(function() {
+								vm.members.push(member);
+							})
+						}, console.error);
+					}
+					function getDates() {
+						var start = vm.sprint.start;
+						var end = vm.sprint.end;
+						var diff = daydiff(start, end);
+						return rx.Observable.range(0, diff).map(function(index) {
+							return new Date(start.getFullYear(), start.getMonth(), start.getDate() + index);
+						}).toArray()//
+						.subscribe(function(dates) {
+							$timeout(function() {
+									vm.dates = dates;
+								});
+						}, console.error);
+					}
+					function getSprint() {
+						sprintService.get($stateParams.id).subscribe(function(sprint) {
+							$timeout(function() {
+								if (sprint.start) {
+									sprint.start = new Date(sprint.start);
+								}
+								if (sprint.end) {
+									sprint.end = new Date(sprint.end);
+								}
+								vm.sprint = sprint;
+								getStories();
+								getPrecences();
+								getDates();
+							})
+
+						}, console.error);
+					}
+					getSprint();
+					function daydiff(first, second) {
+						return Math.round((second - first) / (1000 * 60 * 60 * 24));
+					}
+					this.updateStory = function(story) {
+						storyService.update(story).subscribe(console.log, console.error, function() {
+							$timeout(function() {
+								vm.editStoryId = null;
+								getStories();
+							})
 						});
-					})
-				});
-			}
-			function getSprint() {
-				sprintService.get($stateParams.id).subscribe(function(sprint) {
-					$timeout(function() {
-						if (sprint.start) {
-							sprint.start = new Date(sprint.start);
-						}
-						if (sprint.end) {
-							sprint.end = new Date(sprint.end);
-						}
-						vm.sprint = sprint;
-						getStories();
-					})
-
-				}, console.error);
-			}
-			getSprint();
-
-			this.updateStory = function(story) {
-				storyService.update(story).subscribe(console.log, console.error, function() {
-					$timeout(function() {
+					}
+					this.cancelUpdateStory = function() {
 						vm.editStoryId = null;
 						getStories();
-					})
-				});
-			}
-			this.cancelUpdateStory = function(){
-				vm.editStoryId = null;
-				getStories();
-			}
-			this.removeStory = function(story) {
-				return sprintService.removeStory(vm.sprint, story)//
-				.subscribe(console.log, console.error, getStories)
-			}
-
-			this.dateOptions = {
-				startingDay : 1
-			};
-
-			this.openNewStory = function() {
-				var modalInstance = $uibModal.open({
-					animation : true,
-					ariaLabelledBy : 'modal-title',
-					size : 'bg',
-					ariaDescribedBy : 'modal-body',
-					templateUrl : 'app/components/story/new-story.html',
-					controller : 'NewStoryCtrl',
-					controllerAs : 'newStoryCtrl',
-					resolve : {
-						sprint : function() {
-							return vm.sprint;
-						}
 					}
-				});
-				rx.Observable.fromPromise(modalInstance.result)//
-				.flatMap(function(story) {
-					return sprintService.saveStory(vm.sprint, story);
-				}).subscribe(console.log, console.error, getStories)
+					this.removeStory = function(story) {
+						return sprintService.removeStory(vm.sprint, story)//
+						.subscribe(console.log, console.error, getStories)
+					}
 
-			}
-			
-			this.showStory = function(story){
-				$state.go('story',{id:story.id});
-			}
-		} ]);
+					this.dateOptions = {
+						startingDay : 1
+					};
+
+					this.openNewStory = function() {
+						var modalInstance = $uibModal.open({
+							animation : true,
+							ariaLabelledBy : 'modal-title',
+							size : 'bg',
+							ariaDescribedBy : 'modal-body',
+							templateUrl : 'app/components/story/new-story.html',
+							controller : 'NewStoryCtrl',
+							controllerAs : 'newStoryCtrl',
+							resolve : {
+								sprint : function() {
+									return vm.sprint;
+								}
+							}
+						});
+						rx.Observable.fromPromise(modalInstance.result)//
+						.flatMap(function(story) {
+							return sprintService.saveStory(vm.sprint, story);
+						}).subscribe(console.log, console.error, getStories)
+
+					}
+
+					this.showStory = function(story) {
+						$state.go('story', {
+							id : story.id
+						});
+					}
+				} ]);
