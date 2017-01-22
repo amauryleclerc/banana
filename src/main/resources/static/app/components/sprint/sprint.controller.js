@@ -9,8 +9,10 @@ angular.module('sprintGraphApp').controller(
 					this.storyComplexities = storyComplexities;
 					this.members = [];
 					this.dates = [];
+					this.capacity = 0;
+					this.complexity = 0;
 					var vm = this;
-
+					
 					function getStories() {
 						sprintService.getStories(vm.sprint).subscribe(function(stories) {
 							$timeout(function() {
@@ -23,14 +25,30 @@ angular.module('sprintGraphApp').controller(
 									}
 									return story;
 								});
+								vm.complexity = stories.reduce(function(acc,value){
+									return acc + value;
+								},0);
 							})
 						}, console.error);
 					}
-					function getPrecences() {
+					function getMembers() {
 						vm.members = [];
 						sprintService.getPresence(vm.sprint).subscribe(function(member) {
 							$timeout(function() {
 								vm.members.push(member);
+							})
+						}, console.error, getCapacity);
+					}
+					function getCapacity(){
+						rx.Observable.from(vm.members)//
+						.flatMap(function(member){
+							return rx.Observable.from(member.presences);
+						}).filter(function(presence){
+							return presence.isPresent;
+						}).count()//
+						.subscribe(function(capacity) {
+							$timeout(function() {
+								vm.capacity = capacity;
 							})
 						}, console.error);
 					}
@@ -58,7 +76,7 @@ angular.module('sprintGraphApp').controller(
 								}
 								vm.sprint = sprint;
 								getStories();
-								getPrecences();
+								getMembers();
 								getDates();
 							})
 
