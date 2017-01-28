@@ -7,6 +7,7 @@ angular.module('sprintGraphApp').controller('NewSprintCtrl', [ '$uibModalInstanc
 		stories : []
 	};
 
+
 	function getDate(plusDay) {
 		return new Date(new Date().getTime() + (60 * 60 * 24) * 1000 * plusDay);
 	}

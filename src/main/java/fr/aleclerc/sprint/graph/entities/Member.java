@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
@@ -17,13 +18,13 @@ public class Member {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
 	private UUID id;
-	
+	@NotNull
 	@Column
 	private String firstName;
-	
+	@NotNull
 	@Column
 	private String lastName;
-	
+	@NotNull
 	@Column
 	private String email;
 	

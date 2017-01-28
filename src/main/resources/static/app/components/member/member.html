@@ -32,7 +32,6 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Start</th>
 					<th>Start at noon</th>
 					<th>End</th>
@@ -42,7 +41,6 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="absence in memberCtrl.absences">
-					<td>{{absence.id}}</td>
 					<td ng-If="absence.id != memberCtrl.editAbsenceId">{{absence.start
 						| date : 'dd/MM/yyyy'}}</td>
 					<td ng-If="absence.id != memberCtrl.editAbsenceId">{{absence.startAfternoon}}</td>

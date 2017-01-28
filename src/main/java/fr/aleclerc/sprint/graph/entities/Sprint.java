@@ -2,17 +2,27 @@ package fr.aleclerc.sprint.graph.entities;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Sprint {
 	@Id
-	private String id;
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@GeneratedValue(generator = "uuid")
+	private UUID id;
+	@Column(unique=true) 
+	@NotNull
+	private String name;
 	@Column
 	private Instant start;
 	@Column
@@ -21,11 +31,18 @@ public class Sprint {
 	private List<Story> stories;
 	@ManyToOne
 	private Project project;
-	public String getId() {
+
+	public UUID getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Instant getStart() {
 		return start;

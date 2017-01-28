@@ -117,7 +117,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'Men
 
     var titleObs = sprintObs.map(function(sprint) {
         return {
-            text : sprint.id
+            text : sprint.name
         }
     }).shareReplay(1);
 
