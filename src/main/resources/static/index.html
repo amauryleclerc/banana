@@ -2,43 +2,27 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link href="./lib/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="./style.css" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
-	<title>sprint Graph</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="./lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="./style.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+<title>sprint Graph</title>
 </head>
 
 <body ng-app="sprintGraphApp">
 	<header>
+	
+		<menu></menu>
 
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" ui-sref="graph">Sprint Graph</a>
-			</div>
-			<div class="collapse navbar-collapse" uib-collapse="navCollapsed">
-				<ul class="nav navbar-nav">
-					<li><a ui-sref="members">Members</a></li>
-					<li><a ui-sref="sprints">Sprints</a></li>
-					<li><a ui-sref="stories">Stories</a></li>
-					<li><a ui-sref="graph">Graph</a></li>
-					<li><a ui-sref="settings">Settings</a></li>
-				</ul>
-			</div>
-		</nav>
 	</header>
 
-
-	<div class="container-fluid" ui-view></div>
-
+	<section>
+		<div class="container-fluid" ui-view></div>
+	</section>
 	<script type="text/javascript" src="./lib/angular.min.js"></script>
 	<script type="text/javascript" src="./lib/angular-resource.min.js "></script>
 	<script type="text/javascript" src="./lib/angular-ui-router.min.js"></script>
@@ -48,10 +32,14 @@
 	<script type="text/javascript" src="./lib/highcharts-ng.min.js"></script>
 	<script type="text/javascript" src="./lib/ngStorage.min.js"></script>
 	<script type="text/javascript" src="./lib/ui-bootstrap.min.js"></script>
-	<script type="text/javascript" src="./lib/ui-bootstrap-tpls-2.4.0.min.js"></script>
+	<script type="text/javascript"
+		src="./lib/ui-bootstrap-tpls-2.4.0.min.js"></script>
 	<script type="text/javascript" src="./lib/moment-with-locales.min.js"></script>
 
 	<script src="./app/app.js"></script>
+	<script src="./app/components/menu/menu.controller.js"></script>
+	<script src="./app/components/menu/menu.directive.js"></script>
+	<script src="./app/components/menu/menu.service.js"></script>
 	<script src="./app/components/sprint/sprint.controller.js"></script>
 	<script src="./app/components/sprint/sprints.controller.js"></script>
 	<script src="./app/components/sprint/new-sprint.controller.js"></script>

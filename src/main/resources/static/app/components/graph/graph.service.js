@@ -1,8 +1,7 @@
 "use strict";
-angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx', function(sprintService, rx) {
-	var sprintSubject = new rx.BehaviorSubject(null);
+angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'MenuService', 'rx', function(sprintService,menuService, rx) {
 
-	var sprintObs = sprintSubject.asObservable()//
+	var sprintObs = menuService.getSelectedSprint()//
 	.filter(function(sprint) {
 		return sprint != null && (typeof sprint != 'undefined');
 	}).shareReplay(1);
@@ -128,9 +127,6 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
             }
      }).shareReplay(1);
 
-	function setSprint(sprint) {
-		sprintSubject.onNext(sprint);
-	}
 
 	function getComplexity(date, sprint) {
 		return sprint.stories.filter(function(story) {
@@ -194,10 +190,6 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'rx'
 	}
 
 	return {
-		setSprint : setSprint,
-		getStrint : function() {
-			return sprintObs;
-		},
 		getSeries : function() {
 			return seriesObs;
 		},
