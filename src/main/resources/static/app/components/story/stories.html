@@ -9,6 +9,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Complexity</th>
+					<th>Business value</th>
+					<th>Type</th>
 					<th>Add date</th>
 					<th>Close date</th>
 					<th>Actions</th>
@@ -20,6 +22,10 @@
 					<td ng-If="story.id != storiesCtrl.editStoryId">{{story.name
 						}}</td>
 					<td ng-If="story.id != storiesCtrl.editStoryId">{{story.complexity
+						}}</td>
+					<td ng-If="story.id != storiesCtrl.editStoryId">{{story.businessValue
+						}}</td>
+					<td ng-If="story.id != storiesCtrl.editStoryId">{{story.type
 						}}</td>
 					<td ng-If="story.id != storiesCtrl.editStoryId">{{story.addDate
 						| date : 'dd/MM/yyyy' }}</td>
@@ -40,13 +46,20 @@
 						</button>
 					</td>
 
-					<td ng-If="story.id == storiesCtrl.editStoryId"><input type="text"
-				class="form-control" ng-model="story.name"  
-				></td>
+					<td ng-If="story.id == storiesCtrl.editStoryId"><input
+						type="text" class="form-control" ng-model="story.name"></td>
 
 					<td ng-If="story.id == storiesCtrl.editStoryId"><select
 						id="complexity" class="form-control" ng-model="story.complexity"
 						ng-options="complexity for complexity in storiesCtrl.storyComplexities">
+					</select></td>
+
+					<td ng-If="story.id == storiesCtrl.editStoryId"><input
+						type="number" class="form-control" id="bv"
+						ng-model="story.businessValue"></td>
+					<td ng-If="story.id == storiesCtrl.editStoryId"><select
+						id="type" class="form-control" ng-model="story.type"
+						ng-options="type for type in storiesCtrl.storyTypes">
 					</select></td>
 					<td ng-If="story.id == storiesCtrl.editStoryId">
 						<p class="input-group">

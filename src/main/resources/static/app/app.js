@@ -55,3 +55,4 @@ angular.module('sprintGraphApp').factory("BASE_URL", [ "$location", function($lo
 } ]);
 
 angular.module('sprintGraphApp').constant("storyComplexities", [0,0.5,1,2,3,5,8,13,20,40,100])
+angular.module('sprintGraphApp').constant("storyTypes", ["BUG_STORY","TECHNICAL_STORY","USER_STORY"])

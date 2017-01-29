@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -27,6 +29,11 @@ public class Story {
 	private Instant addDate;
 	@Column
 	private Instant closeDate;
+	@Column
+	private Float businessValue;
+	@Column
+    @Enumerated(EnumType.STRING)
+	private EStoryType type;
 	
 	public Story(){
 
@@ -70,6 +77,26 @@ public class Story {
 	}
 	public void setCloseDate(Instant closeDate) {
 		this.closeDate = closeDate;
+	}
+
+
+	public Float getBusinessValue() {
+		return businessValue;
+	}
+
+
+	public void setBusinessValue(Float businessValue) {
+		this.businessValue = businessValue;
+	}
+
+
+	public EStoryType getType() {
+		return type;
+	}
+
+
+	public void setType(EStoryType type) {
+		this.type = type;
 	}
 
 

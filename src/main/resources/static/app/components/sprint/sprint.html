@@ -31,115 +31,129 @@
 		</tbody>
 	</table>
 
-<h3>Stories</h3>
-<form novalidate class="simple-form">
+	<h3>Stories</h3>
+	<form novalidate class="simple-form">
 
-	<button type="button" class="btn btn-primary"
-		ng-click="sprintCtrl.openNewStory()">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
-	</button>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Complexity</th>
-				<th>Start date</th>
-				<th>Close date</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="story in sprintCtrl.stories">
+		<button type="button" class="btn btn-primary"
+			ng-click="sprintCtrl.openNewStory()">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
+		</button>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Complexity</th>
+					<th>Business value</th>
+					<th>Type</th>
+					<th>Start date</th>
+					<th>Close date</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="story in sprintCtrl.stories">
 
 
-				<td ng-If="story.id != sprintCtrl.editStoryId">{{story.name }}</td>
-				<td ng-If="story.id != sprintCtrl.editStoryId">{{story.complexity
-					}}</td>
-				<td ng-If="story.id != sprintCtrl.editStoryId">{{story.addDate
-					| date : 'dd/MM/yyyy' }}</td>
-				<td ng-If="story.id != sprintCtrl.editStoryId">{{story.closeDate
-					| date : 'dd/MM/yyyy'}}</td>
-				<td ng-If="story.id != sprintCtrl.editStoryId">
-					<button class="btn btn-info "
-						ng-click="sprintCtrl.editStoryId = story.id">
-						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					</button>
-					<button class="btn btn-danger "
-						ng-click="sprintCtrl.removeStory(story)">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-					<button class="btn btn-primary "
-						ng-click="sprintCtrl.showStory(story)">
-						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-					</button>
-				</td>
-				
-				<td ng-If="story.id == sprintCtrl.editStoryId"><input type="text"
-				class="form-control" ng-model="story.name" 
-				></td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.name }}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.complexity
+						}}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.businessValue
+						}}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.type
+						}}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.addDate
+						| date : 'dd/MM/yyyy' }}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.closeDate
+						| date : 'dd/MM/yyyy'}}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">
+						<button class="btn btn-info "
+							ng-click="sprintCtrl.editStoryId = story.id">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-danger "
+							ng-click="sprintCtrl.removeStory(story)">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-primary "
+							ng-click="sprintCtrl.showStory(story)">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+						</button>
+					</td>
 
-				<td ng-If="story.id == sprintCtrl.editStoryId"><select
-					id="complexity" class="form-control" ng-model="story.complexity"
-					ng-options="complexity for complexity in sprintCtrl.storyComplexities">
-				</select></td>
-				<td ng-If="story.id == sprintCtrl.editStoryId">
-					<p class="input-group">
-						<input type="text" id="sprintEnd" class="form-control"
-							uib-datepicker-popup="dd/MM/yyyy" ng-model="story.addDate"
-							is-open="openedAdd" datepicker-options="sprintCtrl.dateOptions"
-							ng-required="true" close-text="Close" /> <span
-							class="input-group-btn"><button type="button"
-								class="btn btn-default" ng-click="openedAdd = !openedAdd">
-								<i class="glyphicon glyphicon-calendar"></i>
-							</button></span>
-					</p> </span>
-				</td>
-				<td ng-If="story.id == sprintCtrl.editStoryId">
-					<p class="input-group">
-						<input type="text" id="sprintEnd" class="form-control"
-							uib-datepicker-popup="dd/MM/yyyy" ng-model="story.closeDate"
-							is-open="openedClose" datepicker-options="sprintCtrl.dateOptions"
-							ng-required="true" close-text="Close" /> <span
-							class="input-group-btn"><button type="button"
-								class="btn btn-default" ng-click="openedClose = !openedClose">
-								<i class="glyphicon glyphicon-calendar"></i>
-							</button></span>
-					</p> </span>
-				</td>
-				<td ng-If="story.id == sprintCtrl.editStoryId">
-					<button class="btn btn-primary "
-						ng-click="sprintCtrl.updateStory(story)">
-						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-					</button>
-					<button class="btn btn-default "
-						ng-click="sprintCtrl.cancelUpdateStory()">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
+					<td ng-If="story.id == sprintCtrl.editStoryId"><input
+						type="text" class="form-control" ng-model="story.name"></td>
 
-				</td>
+					<td ng-If="story.id == sprintCtrl.editStoryId"><select
+						id="complexity" class="form-control" ng-model="story.complexity"
+						ng-options="complexity for complexity in sprintCtrl.storyComplexities">
+					</select></td>
+					<td ng-If="story.id == sprintCtrl.editStoryId"><input
+						type="number" class="form-control" id="bv"
+						ng-model="story.businessValue"></td>
+					<td ng-If="story.id == sprintCtrl.editStoryId"><select
+						id="type" class="form-control" ng-model="story.type"
+						ng-options="type for type in sprintCtrl.storyTypes">
+					</select></td>
+					<td ng-If="story.id == sprintCtrl.editStoryId">
+						<p class="input-group">
+							<input type="text" id="sprintEnd" class="form-control"
+								uib-datepicker-popup="dd/MM/yyyy" ng-model="story.addDate"
+								is-open="openedAdd" datepicker-options="sprintCtrl.dateOptions"
+								ng-required="true" close-text="Close" /> <span
+								class="input-group-btn"><button type="button"
+									class="btn btn-default" ng-click="openedAdd = !openedAdd">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
+						</p> </span>
+					</td>
+					<td ng-If="story.id == sprintCtrl.editStoryId">
+						<p class="input-group">
+							<input type="text" id="sprintEnd" class="form-control"
+								uib-datepicker-popup="dd/MM/yyyy" ng-model="story.closeDate"
+								is-open="openedClose"
+								datepicker-options="sprintCtrl.dateOptions" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn"><button
+									type="button" class="btn btn-default"
+									ng-click="openedClose = !openedClose">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
+						</p> </span>
+					</td>
+					<td ng-If="story.id == sprintCtrl.editStoryId">
+						<button class="btn btn-primary "
+							ng-click="sprintCtrl.updateStory(story)">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-default "
+							ng-click="sprintCtrl.cancelUpdateStory()">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
 
-			</tr>
+					</td>
 
-		</tbody>
-	</table>
+				</tr>
 
-</form>
-<div class="row">
-	<h3>Absences</h3>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Member</th>
-				<th ng-repeat="date in sprintCtrl.dates">{{date | date : 'dd'}}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="member in sprintCtrl.members">
-				<td>{{member.member.firstName}} {{member.member.lastName}}</td>
-				<td ng-repeat="precence in member.presences"
-					ng-class="[{danger: !precence.isPresent}]"></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+			</tbody>
+		</table>
+
+	</form>
+	<div class="row">
+		<h3>Absences</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Member</th>
+					<th ng-repeat="date in sprintCtrl.dates">{{date | date :
+						'dd'}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="member in sprintCtrl.members">
+					<td>{{member.member.firstName}} {{member.member.lastName}}</td>
+					<td ng-repeat="precence in member.presences"
+						ng-class="[{danger: !precence.isPresent}]"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

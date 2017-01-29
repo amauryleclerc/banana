@@ -1,9 +1,11 @@
 "use strict";
 angular.module('sprintGraphApp').controller('NewStoryCtrl',
-		[ '$uibModalInstance', 'storyComplexities', 'StoryService', '$timeout', 'sprint', function($uibModalInstance, storyComplexities, storyService, $timeout, sprint) {
+		[ '$uibModalInstance', 'storyComplexities', 'storyTypes', 'StoryService', '$timeout', 'sprint', function($uibModalInstance, storyComplexities, storyTypes, storyService, $timeout, sprint) {
 			var vm = this;
 			this.story = {
 				complexity : 0,
+				businessValue : 0,
+				type : "USER_STORY"
 			};
 			this.showExistingStories = false;
 			this.existingStoriesAvailable = false;
@@ -29,8 +31,8 @@ angular.module('sprintGraphApp').controller('NewStoryCtrl',
 				this.showExistingStories = true;
 			}
 
-			this.storyComplexities = [];
 			this.storyComplexities = storyComplexities;
+			this.storyTypes = storyTypes;
 
 			this.save = function() {
 				$uibModalInstance.close(vm.story);

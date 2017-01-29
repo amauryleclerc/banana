@@ -1,12 +1,13 @@
 "use strict";
 angular.module('sprintGraphApp').controller(
 		'SprintCtrl',
-		[ 'SprintService', 'StoryService', 'storyComplexities', '$timeout', '$uibModal', 'rx', '$stateParams', '$state',
-				function(sprintService, storyService, storyComplexities, $timeout, $uibModal, rx, $stateParams, $state) {
+		[ 'SprintService', 'StoryService', 'storyComplexities', 'storyTypes','$timeout', '$uibModal', 'rx', '$stateParams', '$state',
+				function(sprintService, storyService, storyComplexities, storyTypes, $timeout, $uibModal, rx, $stateParams, $state) {
 					this.sprint = {};
 					this.stories = [];
 					this.editStoryId = null;
 					this.storyComplexities = storyComplexities;
+					this.storyTypes = storyTypes;
 					this.members = [];
 					this.dates = [];
 					this.capacity = 0;
