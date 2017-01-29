@@ -130,7 +130,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'Men
 
 	function getComplexity(date, sprint) {
 		return sprint.stories.filter(function(story) {
-			return isCommitedStory(story, sprint) && isStoryClosed(story, date);
+			return isCommitedStory(story, sprint) && !isStoryClosed(story, date);
 		}).map(function(story) {
 			return story.complexity;
 		}).reduce(function(acc, complexity) {
@@ -140,7 +140,7 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'Men
 
 	function getBonusComplexity(date, sprint) {
         return sprint.stories.filter(function(story) {
-            return isStoryClosed(story, date);
+            return !isStoryClosed(story, date) && ( isCommitedStory(story, sprint) || isBonusStory(story, sprint, date));
         }).map(function(story) {
             return story.complexity;
         }).reduce(function(acc, complexity) {
@@ -175,14 +175,14 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'Men
 	    return daydiff(storyAddedTime, sprintStartDate) >= 0;
 	}
 
-	function isBonusStory(story, sprint) {
+	function isBonusStory(story, sprint, date) {
 	    var storyAddedTime = new Date(story.addDate).getTime();
 	    var sprintStartDate = new Date(sprint.start).getTime();
-	    return daydiff(sprintStartDate, storyAddedTime) > 0;
+	    return daydiff(sprintStartDate, storyAddedTime) > 0 && (story.addDate == null || daydiff(new Date(story.addDate).getTime(), date) >= 0);
 	}
 
 	function isStoryClosed(story, date) {
-	    return story.closeDate != null && daydiff(new Date(story.closeDate).getTime(), date) < 0;
+	    return story.closeDate != null && daydiff(new Date(story.closeDate).getTime(), date) >= 0;
 	}
 
 	function daydiff(first, second) {
