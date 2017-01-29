@@ -38,9 +38,13 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			});
 		},
 		saveStory : function(sprint, story) {
-
-			return storyService.save(story)//
-			.concatMap(function(response) {
+			return rx.Observable.just(story).flatMap(function(s){
+				if(s.id !=null){
+					return rx.Observable.just(story);
+				}else{
+					return storyService.save(story);
+				}
+			}).concatMap(function(response) {
 				var uri = response._links.self.href;
 				return rx.Observable.fromPromise(sprintResource.saveStory({
 					sprintId : sprint.id

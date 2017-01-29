@@ -1,19 +1,28 @@
 <div></div>
 <div class="modal-header">
-	<h3 class="modal-title" id="modal-title">New story</h3>
+	<ul class="nav nav-tabs">
+		<li><button class="btn"
+				ng-class="newStoryCtrl.showExistingStories ? 'btn-default' : 'btn-primary'"
+				ng-click="newStoryCtrl.showExistingStories = false">New
+				Story</button></li>
+		<li ng-if="newStoryCtrl.existingStoriesAvailable"><button
+				class="btn"
+				ng-class="newStoryCtrl.showExistingStories ? 'btn-primary' : 'btn-default'"
+				ng-click="newStoryCtrl.showExistingStories = true">Existing
+				Story</button></li>
+	</ul>
 </div>
 <div class="modal-body" id="modal-body">
-	<form novalidate ng-submit="newStoryCtrl.save()" class="simple-form">
+	<form novalidate ng-submit="newStoryCtrl.save()" class="simple-form"
+		ng-if="!newStoryCtrl.showExistingStories">
 		<div class="form-group">
 			<label for="story">Name</label> <input type="text"
-				class="form-control" id="story" ng-model="newStoryCtrl.story.name"  focus-me="true" 
-				required>
+				class="form-control" id="story" ng-model="newStoryCtrl.story.name"
+				focus-me="true" required>
 		</div>
 		<div class="form-group">
-			<label for="complexity">Complexity</label> 
-			 <select
-				id="complexity" class="form-control"
-				ng-model="newStoryCtrl.story.complexity"
+			<label for="complexity">Complexity</label> <select id="complexity"
+				class="form-control" ng-model="newStoryCtrl.story.complexity"
 				ng-options="complexity for complexity in newStoryCtrl.storyComplexities">
 			</select>
 		</div>
@@ -26,7 +35,9 @@
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="true"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedAdd = !openedAdd"><i class="glyphicon glyphicon-calendar"></i></button></span>
+						ng-click="openedAdd = !openedAdd">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button></span>
 			</p>
 		</div>
 		<div class="form-group">
@@ -38,9 +49,24 @@
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="false"
 					close-text="Close" /> <span class="input-group-btn"><button
 						type="button" class="btn btn-default"
-						ng-click="openedClose = !openedClose"><i class="glyphicon glyphicon-calendar"></i></button></span>
+						ng-click="openedClose = !openedClose">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button></span>
 			</p>
 		</div>
+	</form>
+	<form novalidate ng-submit="newStoryCtrl.save()" class="simple-form"
+		ng-if="newStoryCtrl.showExistingStories">
+		<div class="form-group">
+			<label for="story">Name</label>
+			<div class="form-group">
+				<select id="story" class="form-control input"
+					ng-model="newStoryCtrl.story"
+					ng-options="story.name for story in newStoryCtrl.stories">
+				</select>
+			</div>
+		</div>
+
 	</form>
 </div>
 <div class="modal-footer">
