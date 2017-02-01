@@ -33,19 +33,52 @@
          brframe.height = height / 2;
          brframe.width = width / 2;
       }
+
+      function initFrames() {
+        document.getElementById('url-tl-frame').value = getUrl('tl-frame');
+        document.getElementById('url-tr-frame').value = getUrl('tr-frame');
+        document.getElementById('url-bl-frame').value = getUrl('bl-frame');
+        document.getElementById('url-br-frame').value = getUrl('br-frame');
+      }
+
+      function getUrl(frameId) {
+        return document.getElementById(frameId).src;
+      }
+
+      function changeURL(frameId, urlField) {
+        document.getElementById(frameId).src = urlField.value;
+      }
+
+      function onLoad() {
+        resizeFrames();
+        initFrames();
+      }
+
     </script>
 </head>
-<body onload="resizeFrames()">
+<body onload="onLoad()">
     <div class="tl-container">
+        <div style="float: left;">
+            <input type="url" id="url-tl-frame" onchange=changeURL('tl-frame',this) maxlength="350" size="50"></input>
+        </div>
         <iframe id="tl-frame" src="http://localhost:9000/#!/members"></iframe>
     </div>
     <div class="tr-container">
+        <div style="float: left;">
+            <input type="url" id="url-tr-frame" onchange=changeURL('tr-frame',this) maxlength="350" size="50"></input>
+        </div>
         <iframe id="tr-frame" src="http://localhost:9000/#!/graph"></iframe>
     </div>
     <div class="bl-container">
+        <div style="float: left;">
+            <input type="url" id="url-bl-frame" onchange=changeURL('bl-frame',this) maxlength="350" size="50"></input>
+        </div>
         <iframe id="bl-frame" src="http://localhost:9000/#!/stories"></iframe>
     </div>
     <div class="br-container">
+        <div style="float: left;">
+            <input type="url" id="url-br-frame" onchange=changeURL('br-frame',this) maxlength="350" size="50"></input>
+        </div>
         <iframe id="br-frame" src="http://localhost:9000/#!/sprints"></iframe>
     </div>
 </body>
