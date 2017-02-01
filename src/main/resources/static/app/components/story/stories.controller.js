@@ -5,6 +5,13 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 			this.editStoryId = null;
 			this.storyComplexities = storyComplexities;
 			var vm = this;
+            this.search = {
+                complexity : 0,
+                addDateStart    : null,
+                addDateEnd      : null,
+                closeDateStart  : null,
+                closeDateEnd    : null
+            };
 			function getStories() {
 				storyService.getAll().subscribe(function(stories) {
 					$timeout(function() {

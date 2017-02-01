@@ -18,9 +18,9 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="sprintEnd">Add date</label>
+			<label for="storyStart">Add date</label>
 			<p class="input-group">
-				<input type="text" id="sprintEnd" class="form-control"
+				<input type="text" id="storyStart" class="form-control"
 					uib-datepicker-popup="dd/MM/yyyy"
 					ng-model="newStoryCtrl.story.addDate" is-open="openedAdd"
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="true"
@@ -30,9 +30,9 @@
 			</p>
 		</div>
 		<div class="form-group">
-			<label for="sprintEnd">Close date</label>
+			<label for="storyEnd">Close date</label>
 			<p class="input-group">
-				<input type="text" id="sprintEnd" class="form-control"
+				<input type="text" id="storyEnd" class="form-control"
 					uib-datepicker-popup="dd/MM/yyyy"
 					ng-model="newStoryCtrl.story.closeDate" is-open="openedClose"
 					datepicker-options="newStoryCtrl.dateOptions" ng-required="false"

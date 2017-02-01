@@ -1,4 +1,35 @@
 <div class="container">
+
+	<!-- search for stories -->
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Add date</label>
+			<div class="col-sm-2">
+				<p class="form-control-static"><input type="text" id="storyAddDateFrom" class="form-control" ng-model="StoriesCtrl.search.addDateStart" uib-datepicker-popup="dd/MM/yyyy" close-text="Close" /></p>
+			</div>
+			<div class="col-sm-2">
+				<p class="form-control-static"><input type="text" id="storyAddDateTo" class="form-control" ng-model="StoriesCtrl.search.addDateEnd" uib-datepicker-popup="dd/MM/yyyy" close-text="Close" /></p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Close date</label>
+			<div class="col-sm-2">
+				<p class="form-control-static"><input type="text" id="storyCloseDateFrom" class="form-control" ng-model="StoriesCtrl.search.closeDateStart" uib-datepicker-popup="dd/MM/yyyy" close-text="Close" /></p>
+			</div>
+			<div class="col-sm-2">
+				<p class="form-control-static"><input type="text" id="storyCloseDateTo" class="form-control" ng-model="StoriesCtrl.search.closeDateEnd" uib-datepicker-popup="dd/MM/yyyy" close-text="Close" /></p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Complexity</label>
+			<select
+					id="storyComplexity" class="form-control"
+					ng-model="StoriesCtrl.search.complexity"
+					ng-options="complexity for complexity in storiesCtrl.storyComplexities">
+			</select>
+		</div>
+	</form>
+
 	<form novalidate class="simple-form">
 		<button type="button" class="btn btn-primary"
 			ng-click="storiesCtrl.newStory()">
