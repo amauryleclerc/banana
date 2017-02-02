@@ -37,8 +37,9 @@ angular.module('sprintGraphApp').controller(
 					function getMembers() {
 						vm.members = [];
 						sprintService.getPresence(vm.sprint).subscribe(function(member) {
+									vm.members.push(member);
 							$timeout(function() {
-								vm.members.push(member);
+						
 							})
 						}, console.error, getCapacity);
 					}
@@ -52,7 +53,7 @@ angular.module('sprintGraphApp').controller(
 						.subscribe(function(nbDays) {
 							$timeout(function() {
 								vm.nbDays = nbDays;
-								vm.capacity = nbDays*vm.velocity;
+								vm.capacity = Math.round(nbDays*vm.velocity);
 							})
 						}, console.error);
 					}
@@ -131,6 +132,11 @@ angular.module('sprintGraphApp').controller(
 							return sprintService.saveStory(vm.sprint, story);
 						}).subscribe(console.log, console.error, getStories)
 
+					}
+					this.showMember = function(member){
+						$state.go('member', {
+							id : member.id
+						});
 					}
 
 					this.showStory = function(story) {

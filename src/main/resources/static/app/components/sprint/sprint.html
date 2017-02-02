@@ -149,7 +149,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="member in sprintCtrl.members">
-					<td>{{member.member.firstName}} {{member.member.lastName}}</td>
+					<td ng-click="sprintCtrl.showMember(member.member)">{{member.member.firstName}} {{member.member.lastName}}</td>
 					<td ng-repeat="precence in member.presences"
 						ng-class="[{danger: !precence.isPresent}]"></td>
 				</tr>

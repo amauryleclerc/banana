@@ -1,12 +1,12 @@
 "use strict";
 angular.module('sprintGraphApp').controller('MenuCtrl', [ 'MenuService', 'SprintService','$timeout', 'rx', '$localStorage', function(menuService, sprintService,  $timeout, rx, $localStorage) {
 	var vm = this;
-
+	var alertVisibilityDuration = 3;//Second
 	this.sprintSelectable = true;
 	
 	this.sprints = [];
 	this.sprint = null;
-
+	this.alert = null;
 
 	function getSprints(){
 		sprintService.getAll().subscribe(function(resultat) {
@@ -43,6 +43,30 @@ angular.module('sprintGraphApp').controller('MenuCtrl', [ 'MenuService', 'Sprint
 			}
 		})
 	});
+	menuService.getAlert()//
+		.flatMap(function(alert){
+			return rx.Observable.interval(alertVisibilityDuration*1000)//
+			.map(function(index){
+				return {alert:alert,
+						action: "hide"
+						}
+			})//
+			.startWith({alert:alert,
+				action:"show"})
+			.take(2)//
+
+		}).subscribe(function(tuple){
+		$timeout(function() {
+			if(tuple.action == "show"){
+				vm.alert = tuple.alert;
+			}else{
+				if(vm.alert == tuple.alert){
+					vm.alert = null;
+				}
+			}
+
+		});
+	})
 	
 	
 	

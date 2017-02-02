@@ -28,3 +28,15 @@
 
 
 </nav>
+<div class="container" ng-if="menuCtrl.alert">
+	<div class="alert alert-danger" role="alert" ng-if="menuCtrl.alert.isError">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		{{menuCtrl.alert.msg}}
+	</div>
+		<div class="alert alert-success" role="alert" ng-if="!menuCtrl.alert.isError">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Success:</span>
+		{{menuCtrl.alert.msg}}
+	</div>
+</div>
