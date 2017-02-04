@@ -26,7 +26,14 @@ highchart{
     top     : 0;
     bottom  : 0;
 }
+.row{
+    overflow: hidden; 
+}
 
+[class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
 .tl-container {
     position    : absolute;
     top         : 0;

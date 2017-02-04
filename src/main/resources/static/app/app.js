@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng' , 'ngStorage']);
+angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng', 'ngStomp', 'ngStorage' ]);
 
 angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvider) {
 
@@ -42,11 +42,16 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		controller : 'MemberCtrl',
 		controllerAs : 'memberCtrl'
 	}).state('settings', {
-      		url : "/settings/:id",
-      		templateUrl : "app/components/settings/settings.html",
-      		controller : 'SettingsCtrl',
-      		controllerAs : 'settingsCtrl'
-      	});
+		url : "/settings/:id",
+		templateUrl : "app/components/settings/settings.html",
+		controller : 'SettingsCtrl',
+		controllerAs : 'settingsCtrl'
+	}).state('plush', {
+		url : "/plush",
+		templateUrl : "app/components/plush/plush.html",
+		controller : 'PlushCtrl',
+		controllerAs : 'plushCtrl'
+	});
 
 });
 
@@ -54,5 +59,5 @@ angular.module('sprintGraphApp').factory("BASE_URL", [ "$location", function($lo
 	return $location.host() + ":" + $location.port() + "/api";
 } ]);
 
-angular.module('sprintGraphApp').constant("storyComplexities", [0,0.5,1,2,3,5,8,13,20,40,100])
-angular.module('sprintGraphApp').constant("storyTypes", ["BUG_STORY","TECHNICAL_STORY","USER_STORY"])
+angular.module('sprintGraphApp').constant("storyComplexities", [ 0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100 ])
+angular.module('sprintGraphApp').constant("storyTypes", [ "BUG_STORY", "TECHNICAL_STORY", "USER_STORY" ])

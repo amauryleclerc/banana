@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="form-group">
+		<label>Your name</label> <input type="text" class="form-control"
+			ng-model="plushCtrl.memberName"
+			ng-change="plushCtrl.onMemberNameChange()">
+	</div>
+	<div class="row">
+		<div class="col-md-6 alert" ng-repeat="state in plushCtrl.plushs" 
+				ng-class="{'alert-info': !state.owner, 'alert-success': (state.owner != null && state.owner.id === plushCtrl.memberId), 'alert-danger':(state.owner != null && state.owner.id != plushCtrl.memberId)}"
+				role="alert">
+
+		
+				<h1>{{state.plush.name}}</h1>
+
+				<div ng-if="state.owner">
+					<h3>Owned by {{state.owner.name}}</h3>
+				</div>
+				<img  class="img-responsive" ng-src="{{state.plush.img}}">
+				<button ng-if="!state.owner" class="btn btn-primary btn-lg "
+					ng-click="plushCtrl.take(state.plush)">Take</button>
+				<button ng-if="(state.owner != null && state.owner.id === plushCtrl.memberId) ||  plushCtrl.memberId === 'admin'" class="btn btn-default  btn-lg"
+					ng-click="plushCtrl.release(state.plush)">Release</button>
+
+			
+	
+		</div>
+
+	</div>
+</div>
