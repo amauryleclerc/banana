@@ -56,8 +56,10 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 });
 
 angular.module('sprintGraphApp').factory("BASE_URL", [ "$location", function($location) {
-	return $location.host() + ":" + $location.port() + "/api";
+	return "http://"+$location.host() + ":" + $location.port() + "/api";
 } ]);
-
+angular.module('sprintGraphApp').factory("BASE_URL_WS", [ "$location", function($location) {
+	return "http://"+$location.host() + ":" + $location.port() + "/websocket";
+} ]);
 angular.module('sprintGraphApp').constant("storyComplexities", [ 0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100 ])
 angular.module('sprintGraphApp').constant("storyTypes", [ "BUG_STORY", "TECHNICAL_STORY", "USER_STORY" ])

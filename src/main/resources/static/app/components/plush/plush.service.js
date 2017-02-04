@@ -1,10 +1,10 @@
 "use strict";
-angular.module('sprintGraphApp').factory('PlushService', [ '$stomp', '$timeout', 'MenuService', function($stomp, $timeout,menuService) {
+angular.module('sprintGraphApp').factory('PlushService', [ '$stomp', '$timeout', 'MenuService', 'BASE_URL_WS', function($stomp, $timeout,menuService,BASE_URL_WS) {
 
 	var service = {
 		plushs : {}
 	};
-	$stomp.connect('http://localhost:9000/websocket')//
+	$stomp.connect(BASE_URL_WS)//
 	.then(function(frame) {
 		var t = $stomp.subscribe('/plush/states', function(data, headers, res) {
 			$timeout(function() {
