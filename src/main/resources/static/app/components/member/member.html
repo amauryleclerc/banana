@@ -67,7 +67,9 @@
 								datepicker-options="memberCtrl.dateOptions" ng-required="true"
 								close-text="Close" /> <span class="input-group-btn"><button
 									type="button" class="btn btn-default"
-									ng-click="openedStart = !openedStart"><i class="glyphicon glyphicon-calendar"></i></button></span>
+									ng-click="openedStart = !openedStart">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
 						</p>
 					</td>
 
@@ -80,14 +82,17 @@
 						</div>
 					</td>
 					<td ng-If="absence.id == memberCtrl.editAbsenceId">
-					<p class="input-group">
+						<p class="input-group">
 							<input type="text" id="absenceEnd" class="form-control"
 								uib-datepicker-popup="dd/MM/yyyy" ng-model="absence.end"
 								is-open="openedEnd" datepicker-options="memberCtrl.dateOptions"
 								ng-required="true" close-text="Close" /> <span
 								class="input-group-btn"><button type="button"
-									class="btn btn-default" ng-click="openedEnd = !openedEnd"><i class="glyphicon glyphicon-calendar"></i></button></span>
-						</p> </td>
+									class="btn btn-default" ng-click="openedEnd = !openedEnd">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
+						</p>
+					</td>
 					<td ng-If="absence.id == memberCtrl.editAbsenceId">
 						<div class="checkbox">
 							<label> <input type="checkbox"
@@ -112,14 +117,16 @@
 			</tbody>
 		</table>
 	</form>
-			<table class="table table-bordered">
-			<tbody>
-				<tr >
-					<td ng-repeat="precence in memberCtrl.presences" ng-class="[{danger: !precence.isPresent}]" >{{$index+1}}</td>
-				</tr>
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td colspan="2"  ng-repeat="day in memberCtrl.days">{{$index+1}}</td>
+			</tr>
+			<tr>
+			<td ng-repeat="precence in memberCtrl.presences" ng-class="[{danger: !precence.isPresent}]">
+			</td>
+			</tr>
+		</tbody>
+	</table>
 
-			</tbody>
-		</table>
-	
-	
 </div>

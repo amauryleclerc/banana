@@ -23,6 +23,45 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
 			return false;
 		},true)
 	}
+	
+	function isPresentOnMorning(date, absences){
+		return absences.filter(function(absence){
+			return (absence.start != null && absence.end != null)
+		}).filter(function(absence){
+			var startDate = new Date(absence.start);
+			startDate =	new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+			return (startDate.getTime() <= date.getTime());
+		}).filter(function(absence){
+			return ( new Date(absence.end).getTime() >= date.getTime());
+		}).filter(function(absence){
+			var startDate = new Date(absence.start);
+			startDate =	new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+			return !((startDate.getTime() == date.getTime()) && absence.startAfternoon) ;
+		})
+		.reduce(function(acc, absence){
+			return false;
+		},true)
+		
+	}
+	
+	function isPresentOnAfernoon(date, absences){
+		return absences.filter(function(absence){
+			return (absence.start != null && absence.end != null)
+		}).filter(function(absence){
+			var startDate = new Date(absence.start);
+			startDate =	new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+			return (startDate.getTime() <= date.getTime());
+		}).filter(function(absence){
+			return ( new Date(absence.end).getTime() >= date.getTime());
+		}).filter(function(absence){
+			var endDate = new Date(absence.end);
+			endDate =	new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+			return !((endDate.getTime() == date.getTime()) && absence.endAfternoon) ;
+		})
+		.reduce(function(acc, absence){
+			return false;
+		},true)
+	}
 	function getAbsences(member) {
 		return rx.Observable.just(member).map(function(s) {
 			return s.id;
@@ -73,10 +112,22 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
         			.flatMap(function(listDate){
         				return 	getAbsences(member).flatMap(function(absences){
         					return rx.Observable.from(listDate).map(function(date){
-        						return {
-        							date:date,
-        							isPresent:isPresent(date, absences)
+        						if(isPresent(date, absences)){
+        							return{
+            							date:date,
+            							isPresent:true,
+            							isPresentOnMoring:true,
+            							isPresentOnAfernoon:true
+            						}
+        						}else{
+        							return{
+            							date:date,
+            							isPresent:false,
+            							isPresentOnMoring:isPresentOnMorning(date, absences),
+            							isPresentOnAfernoon:isPresentOnAfernoon(date, absences)
+            						}
         						}
+        						
         					})
         				});
         			})
@@ -91,9 +142,20 @@ angular.module('sprintGraphApp').factory('MemberService', [ 'MemberResource', 'A
                          .flatMap(function(listDate){
                         	 return getAbsences(member).flatMap(function(absences){
         					return rx.Observable.from(listDate).map(function(date){
-        						return {
-        							date:date,
-        							isPresent:isPresent(date, absences)
+        						if(isPresent(date, absences)){
+        							return{
+            							date:date,
+            							isPresent:true,
+            							isPresentOnMoring:true,
+            							isPresentOnAfernoon:true
+            						}
+        						}else{
+        							return{
+            							date:date,
+            							isPresent:false,
+            							isPresentOnMoring:isPresentOnMorning(date, absences),
+            							isPresentOnAfernoon:isPresentOnAfernoon(date, absences)
+            						}
         						}
         					})
         				});

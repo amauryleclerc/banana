@@ -29,7 +29,9 @@ highchart{
 .row{
     overflow: hidden; 
 }
-
+.red{
+	background-color: red;
+}
 [class*="col-"]{
     margin-bottom: -99999px;
     padding-bottom: 99999px;

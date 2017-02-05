@@ -1,7 +1,7 @@
 "use strict";
 angular.module('sprintGraphApp').controller(
 		'SprintCtrl',
-		[ 'SprintService', 'StoryService', 'MenuService',  'storyComplexities', 'storyTypes','$timeout', '$uibModal', 'rx', '$stateParams', '$state',
+		[ 'SprintService', 'StoryService', 'MenuService', 'storyComplexities', 'storyTypes', '$timeout', '$uibModal', 'rx', '$stateParams', '$state',
 				function(sprintService, storyService, menuService, storyComplexities, storyTypes, $timeout, $uibModal, rx, $stateParams, $state) {
 					this.sprint = {};
 					this.stories = [];
@@ -15,7 +15,7 @@ angular.module('sprintGraphApp').controller(
 					this.velocity = 0.95;
 					this.complexity = 0;
 					var vm = this;
-					
+
 					function getStories() {
 						sprintService.getStories(vm.sprint).subscribe(function(stories) {
 							$timeout(function() {
@@ -28,32 +28,51 @@ angular.module('sprintGraphApp').controller(
 									}
 									return story;
 								});
-								vm.complexity = stories.reduce(function(acc,value){
+								vm.complexity = stories.reduce(function(acc, value) {
 									return acc + value.complexity;
-								},0);
+								}, 0);
 							})
 						}, console.error);
 					}
 					function getMembers() {
 						vm.members = [];
-						sprintService.getPresence(vm.sprint).subscribe(function(member) {
-									vm.members.push(member);
+						sprintService.getPresence(vm.sprint)//
+						.concatMap(function(member) {
+							return rx.Observable.from(member.presences)//
+							.concatMap(function(presence) {
+								return rx.Observable.from([ {
+									isPresent : presence.isPresentOnMoring,
+								}, {
+									isPresent : presence.isPresentOnAfernoon,
+								} ]);
+
+							})//
+							.toArray()//
+							.map(function(presences){
+								return{
+									member:member.member,
+									presences:presences
+								}
+							})
+						}).subscribe(function(member) {
+							console.log(member);
+							vm.members.push(member);
 							$timeout(function() {
-						
+
 							})
 						}, console.error, getCapacity);
 					}
-					function getCapacity(){
+					function getCapacity() {
 						rx.Observable.from(vm.members)//
-						.flatMap(function(member){
+						.flatMap(function(member) {
 							return rx.Observable.from(member.presences);
-						}).filter(function(presence){
+						}).filter(function(presence) {
 							return presence.isPresent;
 						}).count()//
 						.subscribe(function(nbDays) {
 							$timeout(function() {
-								vm.nbDays = nbDays;
-								vm.capacity = Math.round(nbDays*vm.velocity);
+								vm.nbDays = nbDays/2;
+								vm.capacity = Math.round(nbDays/2 * vm.velocity);
 							})
 						}, console.error);
 					}
@@ -66,8 +85,8 @@ angular.module('sprintGraphApp').controller(
 						}).toArray()//
 						.subscribe(function(dates) {
 							$timeout(function() {
-									vm.dates = dates;
-								});
+								vm.dates = dates;
+							});
 						}, console.error);
 					}
 					function getSprint() {
@@ -130,15 +149,15 @@ angular.module('sprintGraphApp').controller(
 						rx.Observable.fromPromise(modalInstance.result)//
 						.flatMap(function(story) {
 							return sprintService.saveStory(vm.sprint, story);
-						}).subscribe(function(story){
+						}).subscribe(function(story) {
 							console.log(story);
-							menuService.setSuccess(story.name+" added");
-						}, function(error){
+							menuService.setSuccess(story.name + " added");
+						}, function(error) {
 							menuService.setHttpError(error);
 						}, getStories)
 
 					}
-					this.showMember = function(member){
+					this.showMember = function(member) {
 						$state.go('member', {
 							id : member.id
 						});
