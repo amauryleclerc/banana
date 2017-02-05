@@ -5,6 +5,10 @@
 	<artifactId>sprint-graph</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<scm>
+		<developerConnection>scm:git:https://github.com/amauryleclerc/sprint-graph.git</developerConnection>
+	</scm>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -63,6 +67,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
 			</plugin>
 		</plugins>
 	</build>

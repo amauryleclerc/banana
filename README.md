@@ -10,6 +10,9 @@ http://localhost:9000/
 ## API
 http://localhost:9000/api
 
+## Release
+mvn -Dusername=your_scm_username release:prepare release:perform
+
 ## Deployment
 
 # Build the docker image
