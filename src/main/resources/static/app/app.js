@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng', 'ngStomp', 'ngStorage' ]);
+angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng', 'ngStomp', 'ngStorage',  'cfp.hotkeys' ]);
 
 angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvider) {
 
