@@ -55,8 +55,7 @@ angular.module('sprintGraphApp').controller('SprintsCtrl',
 				}).subscribe(function(sprint){
 					menuService.setSuccess(sprint.name+" added");
 				}, function(error){
-					menuService.setError(error.data.message);
-					console.error(error);
+					menuService.setHttpError(error);
 				}, getSprints)
 
 			}

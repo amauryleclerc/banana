@@ -11,7 +11,7 @@ angular.module('sprintGraphApp').controller('MenuCtrl',
 			this.isFullscreen = false;
 			
 			hotkeys.add({
-				combo : 'ctrl+up',
+				combo : 'f',
 				description : 'fullscreen',
 				callback : function() {
 					vm.isFullscreen = !vm.isFullscreen;

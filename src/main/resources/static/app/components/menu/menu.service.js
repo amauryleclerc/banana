@@ -31,6 +31,17 @@ angular.module('sprintGraphApp').factory('MenuService', [ '$rootScope', '$state'
 			alert.onNext({msg:msg,
 				isError:true});
 		},
+		setHttpError : function(error){
+			var msg ="Unknow error";
+			if(error.status === 409){//Conflic
+				msg = "Already exist";
+			}else if(error.data !=null && error.data.message != null){//Unknow status
+				msg = error.data.message;
+			}
+			
+			alert.onNext({msg:msg,
+				isError:true});
+		},
 		setSuccess :function(msg){
 			alert.onNext({msg:msg,
 				isError:false});

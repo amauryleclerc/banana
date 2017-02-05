@@ -131,10 +131,10 @@ angular.module('sprintGraphApp').controller(
 						.flatMap(function(story) {
 							return sprintService.saveStory(vm.sprint, story);
 						}).subscribe(function(story){
+							console.log(story);
 							menuService.setSuccess(story.name+" added");
 						}, function(error){
-							menuService.setError(error.data.message);
-							console.error(error);
+							menuService.setHttpError(error);
 						}, getStories)
 
 					}

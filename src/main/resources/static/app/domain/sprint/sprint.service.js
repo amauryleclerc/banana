@@ -44,17 +44,22 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			});
 		},
 		saveStory : function(sprint, story) {
-			return rx.Observable.just(story).flatMap(function(s){
+			return rx.Observable.just(story)//
+			.flatMap(function(s){
 				if(s.id !=null){
 					return rx.Observable.just(story);
 				}else{
 					return storyService.save(story);
 				}
-			}).concatMap(function(response) {
+			})//
+			.concatMap(function(response) {
 				var uri = response._links.self.href;
 				return rx.Observable.fromPromise(sprintResource.saveStory({
 					sprintId : sprint.id
-				},  uri ).$promise)
+				},  uri ).$promise)//
+				.map(function(s){
+					return response;
+				});
 			})
 		},
 		getStories : function(sprint) {
