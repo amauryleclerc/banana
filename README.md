@@ -11,7 +11,7 @@ http://localhost:9000/
 http://localhost:9000/api
 
 ## Release
-mvn -Dusername=your_scm_username release:prepare release:perform
+mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
 
 ## Deployment
 
