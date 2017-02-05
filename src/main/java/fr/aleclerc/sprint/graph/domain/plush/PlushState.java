@@ -1,4 +1,4 @@
-package fr.aleclerc.sprint.graph.plush;
+package fr.aleclerc.sprint.graph.domain.plush;
 
 public class PlushState {
 	private Plush plush;

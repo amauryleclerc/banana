@@ -1,4 +1,4 @@
-package fr.aleclerc.sprint.graph.plush;
+package fr.aleclerc.sprint.graph.services;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.aleclerc.sprint.graph.domain.plush.PlushConfig;
+import fr.aleclerc.sprint.graph.domain.plush.PlushState;
+import fr.aleclerc.sprint.graph.domain.plush.User;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;

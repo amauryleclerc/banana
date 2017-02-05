@@ -69,6 +69,20 @@ public class Sprint {
 		this.project = project;
 	}
 
+	public Float getBusinessValue() {
+		return (float) stories.stream()//
+				.filter(s -> s.getBusinessValue() != null)//
+				.mapToLong(s -> s.getBusinessValue().longValue())//
+				.sum();
+	}
+	
+	public Float getComplexity() {
+		return (float) stories.stream()//
+				.filter(s -> s.getComplexity() != null)//
+				.mapToLong(s -> s.getComplexity().longValue())//
+				.sum();
+	}
+
 	
 	
 }

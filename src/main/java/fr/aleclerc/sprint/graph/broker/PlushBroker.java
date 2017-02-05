@@ -1,4 +1,4 @@
-package fr.aleclerc.sprint.graph.plush;
+package fr.aleclerc.sprint.graph.broker;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +13,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
+import fr.aleclerc.sprint.graph.domain.plush.PlushState;
+import fr.aleclerc.sprint.graph.services.PlushService;
 import fr.aleclerc.sprint.graph.utils.RxUtils;
 
 @Controller

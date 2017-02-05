@@ -10,6 +10,8 @@
 					<th>Name</th>
 					<th>Start date</th>
 					<th>End date</th>
+					<th>Complexity</th>
+					<th>Business value</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -22,6 +24,10 @@
 						| date : 'dd/MM/yyyy' }}</td>
 					<td ng-If="sprint.id != sprintsCtrl.editSprintId">{{sprint.end
 						| date : 'dd/MM/yyyy'}}</td>
+					<td ng-If="sprint.id != sprintsCtrl.editSprintId">{{sprint.complexity
+						}}</td>
+					<td ng-If="sprint.id != sprintsCtrl.editSprintId">{{sprint.businessValue
+						}}</td>
 					<td ng-If="sprint.id != sprintsCtrl.editSprintId">
 						<button class="btn btn-info "
 							ng-click="sprintsCtrl.editSprintId = sprint.id">
@@ -64,6 +70,10 @@
 								</button></span>
 						</p>
 					</td>
+					<td ng-If="sprint.id == sprintsCtrl.editSprintId">{{sprint.complexity
+						}}</td>
+					<td ng-If="sprint.id == sprintsCtrl.editSprintId">{{sprint.businessValue
+						}}</td>
 					<td ng-If="sprint.id == sprintsCtrl.editSprintId">
 						<button class="btn btn-primary "
 							ng-click="sprintsCtrl.update(sprint)">
