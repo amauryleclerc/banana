@@ -6,8 +6,8 @@
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/amauryleclerc/sprint-graph.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+	    <tag>HEAD</tag>
+    </scm>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -74,7 +74,24 @@
 				<version>2.5.3</version>
 			</plugin>
 		</plugins>
+
+		<!-- allow deployment to ftp servers -->
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>2.10</version>
+			</extension>
+		</extensions>
 	</build>
 
+	<!-- deploy released artifacts to FTP -->
+	<distributionManagement>
+		<repository>
+			<id>server1</id>
+			<url>ftp://pedrocloud.freeboxos.fr/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+	</distributionManagement>
 
 </project>
