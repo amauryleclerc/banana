@@ -1,6 +1,6 @@
 "use strict";
 angular.module('sprintGraphApp').controller('NewStoryCtrl',
-		[ '$uibModalInstance', 'storyComplexities', 'storyTypes', 'StoryService', '$timeout', 'sprint', function($uibModalInstance, storyComplexities, storyTypes, storyService, $timeout, sprint) {
+		[ '$uibModalInstance', 'storyComplexities', 'storyTypes', 'StoryService', '$timeout','rx', 'sprint', function($uibModalInstance, storyComplexities, storyTypes, storyService, $timeout,rx, sprint) {
 			var vm = this;
 			this.story = {
 				complexity : 0,
@@ -9,10 +9,19 @@ angular.module('sprintGraphApp').controller('NewStoryCtrl',
 			};
 			this.showExistingStories = false;
 			this.existingStoriesAvailable = false;
+			this.onlyBacklogStories = true;
 			this.stories = [];
 			if (sprint != null) {
 				this.story.addDate = new Date(sprint.start)
-				storyService.getAll().subscribe(function(stories) {
+				storyService.getAll()//				
+				.flatMap(function(stories){
+					return rx.Observable.from(stories);
+				}).filter(function(story){
+					return (sprint.stories.filter(function(s){
+						return s.id == story.id;
+					}).length === 0);
+				}).toArray()//
+				.subscribe(function(stories) {
 					$timeout(function() {
 						vm.stories = stories.map(function(story) {
 							if (story.addDate) {

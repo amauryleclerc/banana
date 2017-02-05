@@ -1,7 +1,7 @@
 package fr.aleclerc.sprint.graph.entities;
 
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -28,7 +28,8 @@ public class Sprint {
 	@Column
 	private Instant end;
 	@ManyToMany
-	private List<Story> stories;
+	private Set<Story> stories;
+	
 	@ManyToOne
 	private Project project;
 
@@ -56,10 +57,10 @@ public class Sprint {
 	public void setEnd(Instant end) {
 		this.end = end;
 	}
-	public List<Story> getStories() {
+	public Set<Story> getStories() {
 		return stories;
 	}
-	public void setStories(List<Story> stories) {
+	public void setStories(Set<Story> stories) {
 		this.stories = stories;
 	}
 	public Project getProject() {
@@ -83,6 +84,15 @@ public class Sprint {
 				.sum();
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return id.equals(obj);
+	}
+
 	
 }

@@ -142,6 +142,7 @@ angular.module('sprintGraphApp').controller(
 							controllerAs : 'newStoryCtrl',
 							resolve : {
 								sprint : function() {
+									vm.sprint.stories = vm.stories;
 									return vm.sprint;
 								}
 							}
@@ -153,7 +154,9 @@ angular.module('sprintGraphApp').controller(
 							console.log(story);
 							menuService.setSuccess(story.name + " added");
 						}, function(error) {
-							menuService.setHttpError(error);
+							if(error != "cancel"){
+								menuService.setHttpError(error);
+							}
 						}, getStories)
 
 					}

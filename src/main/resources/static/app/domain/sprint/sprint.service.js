@@ -44,6 +44,7 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 			});
 		},
 		saveStory : function(sprint, story) {
+
 			return rx.Observable.just(story)//
 			.flatMap(function(s){
 				if(s.id !=null){

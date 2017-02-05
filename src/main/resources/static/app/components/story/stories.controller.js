@@ -69,7 +69,10 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 				}).subscribe(function(story){
 					menuService.setSuccess(story.name+" added");
 				}, function(error){
-					menuService.setHttpError(error);
+					if(error != "cancel"){
+						menuService.setHttpError(error);
+					}
+					
 				}, getStories)
 
 			}
