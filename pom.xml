@@ -2,11 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.aleclerc</groupId>
 	<artifactId>sprint-graph</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/amauryleclerc/sprint-graph.git</developerConnection>
-	  <tag>sprint-graph-1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<parent>
