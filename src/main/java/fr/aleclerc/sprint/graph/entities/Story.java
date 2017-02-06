@@ -1,7 +1,6 @@
 package fr.aleclerc.sprint.graph.entities;
 
 import java.time.Instant;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -35,8 +33,6 @@ public class Story {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private EStoryType type;
-	@ManyToMany(mappedBy = "stories")
-	private Set<Sprint> sprints;
 
 	public Story() {
 
@@ -98,13 +94,6 @@ public class Story {
 		this.type = type;
 	}
 
-	public Set<Sprint> getSprints() {
-		return sprints;
-	}
-
-	public void setSprints(Set<Sprint> sprints) {
-		this.sprints = sprints;
-	}
 
 	@Override
 	public String toString() {

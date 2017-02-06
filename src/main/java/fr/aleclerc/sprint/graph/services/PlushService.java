@@ -1,8 +1,7 @@
 package fr.aleclerc.sprint.graph.services;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +35,8 @@ public class PlushService {
 	@PostConstruct
 	private void init() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		URL url = this.getClass().getResource("/plush-config.json");
-		File file = new File(url.getPath());
-		PlushConfig config = mapper.readValue(file, PlushConfig.class);
+		InputStream input  = this.getClass().getResourceAsStream("/plush-config.json");
+		PlushConfig config = mapper.readValue(input, PlushConfig.class);
 
 		LOGGER.info("init Plush : {}", config);
 		
