@@ -89,7 +89,7 @@
 	<distributionManagement>
 		<repository>
 			<id>server1</id>
-			<url>ftp://pedrocloud.freeboxos.fr/</url>
+			<url>ftp://pedrocloud.freeboxos.fr/home/minion/</url>
 			<uniqueVersion>false</uniqueVersion>
 		</repository>
 	</distributionManagement>
