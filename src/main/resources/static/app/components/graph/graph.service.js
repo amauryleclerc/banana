@@ -117,13 +117,16 @@ angular.module('sprintGraphApp').factory('GraphService', [ 'SprintService', 'Men
 
     var titleObs = sprintObs.map(function(sprint) {
         return {
-            text : sprint.name
+            text : sprint.name,
+        	floating : true
         }
     }).shareReplay(1);
 
      var subtitleObs = sprintObs.map(function(sprint) {
             return {
-                text : 'Du ' + moment(new Date(sprint.start)).format('Do MMM YYYY')+ ' au ' + moment(new Date(sprint.end)).format('Do MMM YYYY')
+                text : 'Du ' + moment(new Date(sprint.start)).format('Do MMM YYYY')+ ' au ' + moment(new Date(sprint.end)).format('Do MMM YYYY'),
+            	floating : true,
+            	y:30
             }
      }).shareReplay(1);
 

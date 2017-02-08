@@ -9,12 +9,15 @@ angular.module('sprintGraphApp').controller('MenuCtrl',
 			this.sprint = null;
 			this.alert = null;
 			this.isFullscreen = false;
-			
+			if($localStorage.fullscreen != null){
+				this.isFullscreen = $localStorage.fullscreen;
+			}
 			hotkeys.add({
 				combo : 'f',
 				description : 'fullscreen',
 				callback : function() {
 					vm.isFullscreen = !vm.isFullscreen;
+					$localStorage.fullscreen=vm.isFullscreen;
 				}
 			});
 			
