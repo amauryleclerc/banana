@@ -55,7 +55,7 @@
 					</select></td>
 
 					<td ng-If="story.id == storiesCtrl.editStoryId"><input
-						type="number" class="form-control" id="bv"
+						type="number" class="form-control" id="bv" min="0"
 						ng-model="story.businessValue"></td>
 					<td ng-If="story.id == storiesCtrl.editStoryId"><select
 						id="type" class="form-control" ng-model="story.type"
