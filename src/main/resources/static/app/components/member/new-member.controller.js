@@ -12,4 +12,5 @@ angular.module('sprintGraphApp').controller('NewMemberCtrl', [ '$uibModalInstanc
 	this.dateOptions = {
 		startingDay : 1
 	};
+
 } ]);

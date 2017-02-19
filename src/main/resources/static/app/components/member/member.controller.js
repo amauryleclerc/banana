@@ -1,13 +1,13 @@
 "use strict";
 angular.module('sprintGraphApp').controller('MemberCtrl',
-		[ 'MemberService', '$stateParams', '$timeout', '$uibModal', 'rx', 'AbsenceService', function(memberService, $stateParams, $timeout, $uibModal, rx, absenceService) {
+		[ 'MemberService', 'MenuService', '$stateParams', '$timeout', '$uibModal', 'rx', 'AbsenceService', function(memberService, menuService, $stateParams, $timeout, $uibModal, rx, absenceService) {
 			var vm = this;
 			this.member = {};
 			this.absences = [];
 			this.days =[];
 			this.presences = [];
 			this.editAbsenceId = null;
-
+			this.isValid = true;
 			function getMember() {
 				memberService.get($stateParams.id).subscribe(function(member) {
 
@@ -91,13 +91,31 @@ angular.module('sprintGraphApp').controller('MemberCtrl',
 				absenceService.update(absence).subscribe(console.log, console.error, function() {
 					$timeout(function() {
 						vm.editAbsenceId = null;
+						vm.isValid = true;
 						getAbsences(vm.member);
 					})
 				});
 			}
 			this.cancelUpdateAbsence = function(absence) {
 				vm.editAbsenceId = null;
+				vm.isValid = true;
 				getAbsences(vm.member);
 			}
-
+			this.editAbsence = function(absence){
+				vm.editAbsenceId = absence.id;
+				console.log(absence);
+				vm.onDateChange(absence.start,absence.end);
+			}
+			
+			this.onDateChange = function(start,end){
+				var first = start.getTime();
+				var second = end.getTime();
+				vm.isValid = daydiff(first, second)>=0;
+				if(!vm.isValid){
+					menuService.setError("Start date need to be before end date");
+				}
+			}
+			function daydiff(first, second) {
+				return Math.round((second - first) / (1000 * 60 * 60 * 24));
+			}
 		} ]);

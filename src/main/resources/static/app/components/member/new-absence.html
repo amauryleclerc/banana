@@ -8,6 +8,7 @@
 			<label for="absenceEnd">Start</label>
 			<p class="input-group">
 				<input type="text" id="absenceEnd" class="form-control"
+						ng-change="newAbsenceCtrl.onDateChange()"
 					uib-datepicker-popup="dd/MM/yyyy"
 					ng-model="newAbsenceCtrl.absence.start" is-open="openedStart"
 					datepicker-options="newAbsenceCtrl.dateOptions" ng-required="true"
@@ -26,6 +27,7 @@
 			<label for="sprintEnd">End</label>
 			<p class="input-group">
 				<input type="text" id="sprintEnd" class="form-control"
+				ng-change="newAbsenceCtrl.onDateChange()"
 					uib-datepicker-popup="dd/MM/yyyy"
 					ng-model="newAbsenceCtrl.absence.end" is-open="openedEnd"
 					datepicker-options="newAbsenceCtrl.dateOptions" ng-required="true"
@@ -44,6 +46,7 @@
 </div>
 <div class="modal-footer">
 	<button type="submit" class="btn btn-primary "
+	ng-disabled="!newAbsenceCtrl.isValid"
 		ng-click="newAbsenceCtrl.save()">
 		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 	</button>
