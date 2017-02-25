@@ -3,6 +3,9 @@ angular.module('sprintGraphApp').factory('StoryResource', [ '$resource', 'BASE_U
 	return $resource( BASE_URL + '/stories/:id', {}, {
 		update:{
 			method : 'PATCH'
+		},
+		search:{
+		    method : 'GET'
 		}
 	});
 } ]);

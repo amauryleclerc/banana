@@ -25,6 +25,12 @@ angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx'
 			return rx.Observable.fromPromise(storyResource.remove({
 				id : story.id,
 			}).$promise)
+		},
+		search:function(addDateStart, addDateEnd, closeDateStart, closeDateEnd) {
+			return rx.Observable.fromPromise(storyResource.search(
+			    {addDateStart: addDateStart, addDateEnd: addDateEnd, closeDateStart: closeDateStart, closeDateEnd: closeDateEnd}).$promise).map(function(result) {
+				return result._embedded.stories;
+			});;
 		}
 	};
 } ]);
