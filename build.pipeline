@@ -11,8 +11,15 @@ node {
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
+      stash includes: 'target/sprint-graph*.jar', name: 'mes artifacts'
+      archive 'target/sprint-graph*.jar'
    }
    stage('Deploy') {
-      archive 'target/*.jar'
+        unstash 'mes artifacts'
+        if (isUnix()) {
+           sh "'${mvnHome}/bin/mvn' deploy"
+        } else {
+           bat(/"${mvnHome}\bin\mvn" deploy/)
+        }
    }
 }
