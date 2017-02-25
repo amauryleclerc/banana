@@ -15,10 +15,13 @@ public class StoryValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Story s = (Story) obj;
-		if(s.getBusinessValue() ==null){
+		if(s== null){
+			errors.reject("story","story.empty");
+		}
+		if(s!= null && s.getBusinessValue() ==null){
 			errors.rejectValue("businessValue", "businessValue.empty");
 		}
-		if(s.getBusinessValue()<0){
+		if(s!= null &&  s.getBusinessValue()!=null &&  s.getBusinessValue()<0){
 			errors.rejectValue("businessValue", "businessValue.empty", "The business value cannot be negative");
 		}
 	}
