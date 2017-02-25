@@ -2,12 +2,10 @@
 angular.module('sprintGraphApp').controller('MenuCtrl',
 		[ 'MenuService', 'SprintService', '$timeout', 'rx', '$localStorage', 'hotkeys', function(menuService, sprintService, $timeout, rx, $localStorage, hotkeys) {
 			var vm = this;
-			var alertVisibilityDuration = 3;// Second
 			this.sprintSelectable = true;
 
 			this.sprints = [];
 			this.sprint = null;
-			this.alert = null;
 			this.isFullscreen = false;
 			if($localStorage.fullscreen != null){
 				this.isFullscreen = $localStorage.fullscreen;
@@ -56,33 +54,7 @@ angular.module('sprintGraphApp').controller('MenuCtrl',
 					}
 				})
 			});
-			menuService.getAlert()//
-			.flatMap(function(alert) {
-				return rx.Observable.interval(alertVisibilityDuration * 1000)//
-				.map(function(index) {
-					return {
-						alert : alert,
-						action : "hide"
-					}
-				})//
-				.startWith({
-					alert : alert,
-					action : "show"
-				}).take(2)//
-
-			}).subscribe(function(tuple) {
-				$timeout(function() {
-					if (tuple.action == "show") {
-						vm.alert = tuple.alert;
-					} else {
-						if (vm.alert == tuple.alert) {
-							vm.alert = null;
-						}
-					}
-
-				});
-			})
-
+	
 			this.onSprintChange = function() {
 				menuService.setSelectedSprint(vm.sprint);
 				$localStorage.sprintId = vm.sprint.id;

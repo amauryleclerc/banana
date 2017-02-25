@@ -1,6 +1,6 @@
 "use strict";
 angular.module('sprintGraphApp').controller('SprintsCtrl',
-		[ 'SprintService', 'MenuService','$timeout', '$uibModal', 'rx', '$state', function(sprintService, menuService, $timeout, $uibModal, rx, $state) {
+		[ 'SprintService', 'NotificationService','$timeout', '$uibModal', 'rx', '$state', function(sprintService, notificationService, $timeout, $uibModal, rx, $state) {
 			this.sprints = [];
 			this.editSprintId = null;
 			var vm = this;
@@ -53,10 +53,10 @@ angular.module('sprintGraphApp').controller('SprintsCtrl',
 				.flatMap(function(sprint) {
 					return sprintService.save(sprint);
 				}).subscribe(function(sprint){
-					menuService.setSuccess(sprint.name+" added");
+					notificationService.setSuccess(sprint.name+" added");
 				}, function(error){
 					if(error != "cancel"){
-						menuService.setHttpError(error);
+						notificationService.setHttpError(error);
 					}
 				}, getSprints)
 

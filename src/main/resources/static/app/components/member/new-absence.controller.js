@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').controller('NewAbsenceCtrl', [ '$uibModalInstance', 'MenuService','member',  function($uibModalInstance,menuService, member) {
+angular.module('sprintGraphApp').controller('NewAbsenceCtrl', [ '$uibModalInstance', 'NotificationService','member',  function($uibModalInstance,notificationService, member) {
 	var vm = this;
 	this.isValid = true;
 	this.absence = {
@@ -29,7 +29,7 @@ angular.module('sprintGraphApp').controller('NewAbsenceCtrl', [ '$uibModalInstan
 		var second = vm.absence.end.getTime();
 		vm.isValid = daydiff(first, second)>=0;
 		if(!vm.isValid){
-			menuService.setError("Start date need to be before end date");
+			notificationService.setError("Start date need to be before end date");
 		}
 	}
 	function daydiff(first, second) {

@@ -1,8 +1,8 @@
 "use strict";
 angular.module('sprintGraphApp').controller(
 		'SprintCtrl',
-		[ 'SprintService', 'StoryService', 'MenuService', 'storyComplexities', 'storyTypes', '$timeout', '$uibModal', 'rx', '$stateParams', '$state',
-				function(sprintService, storyService, menuService, storyComplexities, storyTypes, $timeout, $uibModal, rx, $stateParams, $state) {
+		[ 'SprintService', 'StoryService', 'NotificationService', 'storyComplexities', 'storyTypes', '$timeout', '$uibModal', 'rx', '$stateParams', '$state',
+				function(sprintService, storyService, notificationService, storyComplexities, storyTypes, $timeout, $uibModal, rx, $stateParams, $state) {
 					this.sprint = {};
 					this.stories = [];
 					this.editStoryId = null;
@@ -152,10 +152,10 @@ angular.module('sprintGraphApp').controller(
 							return sprintService.saveStory(vm.sprint, story);
 						}).subscribe(function(story) {
 							console.log(story);
-							menuService.setSuccess(story.name + " added");
+							notificationService.setSuccess(story.name + " added");
 						}, function(error) {
 							if(error != "cancel"){
-								menuService.setHttpError(error);
+								notificationService.setHttpError(error);
 							}
 						}, getStories)
 

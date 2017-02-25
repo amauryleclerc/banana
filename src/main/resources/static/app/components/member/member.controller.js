@@ -1,6 +1,6 @@
 "use strict";
 angular.module('sprintGraphApp').controller('MemberCtrl',
-		[ 'MemberService', 'MenuService', '$stateParams', '$timeout', '$uibModal', 'rx', 'AbsenceService', function(memberService, menuService, $stateParams, $timeout, $uibModal, rx, absenceService) {
+		[ 'MemberService', 'NotificationService', '$stateParams', '$timeout', '$uibModal', 'rx', 'AbsenceService', function(memberService, notificationService, $stateParams, $timeout, $uibModal, rx, absenceService) {
 			var vm = this;
 			this.member = {};
 			this.absences = [];
@@ -112,7 +112,7 @@ angular.module('sprintGraphApp').controller('MemberCtrl',
 				var second = end.getTime();
 				vm.isValid = daydiff(first, second)>=0;
 				if(!vm.isValid){
-					menuService.setError("Start date need to be before end date");
+					notificationService.setError("Start date need to be before end date");
 				}
 			}
 			function daydiff(first, second) {

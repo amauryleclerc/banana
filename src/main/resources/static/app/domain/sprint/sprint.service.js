@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', 'MemberService', 'MenuService', 'BASE_URL', function(sprintResource, rx, storyService, memberService, menuService, BASE_URL) {
+angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'rx', 'StoryService', 'MemberService', 'NotificationService', 'BASE_URL', function(sprintResource, rx, storyService, memberService, notificationService, BASE_URL) {
 	var saveSprint = function(sprint) {
 		return rx.Observable.just(sprint).map(function(s) {
 			s.stories = s.stories.map(function(story) {
@@ -29,10 +29,10 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 		get:function(id){
 			return rx.Observable.fromPromise(sprintResource.get({sprintId:id}).$promise)//
 			.doOnError(function(e){
-				menuService.setError("Sprint not found");
+				notificationService.setError("Sprint not found");
 			})//
 			.doOnNext(function(s){
-				menuService.setSuccess("Sprint "+s.name+" found !")
+				notificationService.setSuccess("Sprint "+s.name+" found !")
 			});
 		},
 		save : function(sprint) {
