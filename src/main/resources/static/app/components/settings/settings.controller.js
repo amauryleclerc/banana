@@ -1,6 +1,7 @@
 "use strict";
-angular.module('sprintGraphApp').controller('SettingsCtrl', [ 'SettingsService', '$stateParams', '$timeout','$uibModal', 'rx', 'AbsenceService', function(settingsService, $stateParams, $timeout,$uibModal,rx,absenceService) {
+angular.module('sprintGraphApp').controller('SettingsCtrl', [ '$translate', function($translate) {
 	var vm = this;
-
-
+	this.changeLanguage = function(langKey) {
+		$translate.use(langKey);
+	};
 } ]);

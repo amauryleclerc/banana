@@ -110,7 +110,7 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 				.flatMap(function(story) {
 					return storyService.save(story);
 				}).subscribe(function(story){
-					notificationService.setSuccess(story.name+" added");
+					notificationService.setSuccess("added",{item:story.name});
 				}, function(error){
 					if(error != "cancel"){
 						notificationService.setHttpError(error);

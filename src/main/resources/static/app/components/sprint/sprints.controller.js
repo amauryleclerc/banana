@@ -53,7 +53,7 @@ angular.module('sprintGraphApp').controller('SprintsCtrl',
 				.flatMap(function(sprint) {
 					return sprintService.save(sprint);
 				}).subscribe(function(sprint){
-					notificationService.setSuccess(sprint.name+" added");
+					notificationService.setSuccess("added",{item:sprint.name});
 				}, function(error){
 					if(error != "cancel"){
 						notificationService.setHttpError(error);

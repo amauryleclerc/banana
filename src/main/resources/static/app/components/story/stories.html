@@ -2,20 +2,19 @@
 	<form novalidate class="simple-form">
 		<button type="button" class="btn btn-primary"
 			ng-click="storiesCtrl.newStory()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Story
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			<span translate>story</span>
 		</button>
-
-
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Complexity</th>
-					<th>Business value</th>
-					<th>Type</th>
-					<th>Add date</th>
-					<th>Close date</th>
-					<th>Actions</th>
+					<th translate>name</th>
+					<th translate>complexity</th>
+					<th translate>businessvalue</th>
+					<th translate>type</th>
+					<th translate>adddate</th>
+					<th translate>close</th>
+					<th translate>actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,23 +103,24 @@
 
 			</tbody>
 		</table>
+
 	</form>
 
 	<div class="search">
 		<form class="form-horizontal">
 			<div class="form-group">
 				<span class="col-sm-1">&nbsp;</span>
-				<label class="col-sm-8 text-capitalize">Story created</label>
+				<label class="col-sm-8 text-capitalize" translate>storycreated</label>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-1 text-right text-capitalize">From</label>
+				<label class="col-sm-1 text-right text-capitalize" translate>from</label>
 				<div class="col-sm-3">
 					<input type="text" id="addDateStart" class="form-control"
 						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateStart"
 						   is-open="addDateStartDPOpened" datepicker-options="storiesCtrl.dateOptions"
 						   ng-required="true" close-text="addDateStart" ng-click="addDateStartDPOpened = !addDateStartDPOpened"/>
 				</div>
-				<label class="col-sm-1 text-right text-capitalize">To</label>
+				<label class="col-sm-1 text-right text-capitalize" translate>to</label>
 				<div class="col-sm-3">
 					<input type="text" id="addDateEnd" class="form-control"
 						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateEnd"
@@ -131,17 +131,17 @@
 
 			<div class="form-group">
 				<span class="col-sm-1">&nbsp;</span>
-				<label class="col-sm-8 text-capitalize">Story closed</label>
+				<label class="col-sm-8 text-capitalize" translate>storyclosed</label>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-1 text-right text-capitalize">From</label>
+				<label class="col-sm-1 text-right text-capitalize" translate>from</label>
 				<div class="col-sm-3">
 					<input type="text" id="closeDateStart" class="form-control"
 						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateStart"
 						   is-open="closeDateStartDPOpened" datepicker-options="storiesCtrl.dateOptions"
 						   ng-required="true" close-text="closeDateStart" ng-click="closeDateStartDPOpened = !closeDateStartDPOpened"/>
 				</div>
-				<label class="col-sm-1 text-right text-capitalize">To</label>
+				<label class="col-sm-1 text-right text-capitalize" translate>to</label>
 				<div class="col-sm-3">
 					<input type="text" id="closeDateEnd" class="form-control"
 						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateEnd"
@@ -149,13 +149,14 @@
 						   ng-required="true" close-text="closeDateEnd" ng-click="closeDateEndDPOpened = !closeDateEndDPOpened"/>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary"
-					ng-click="storiesCtrl.searchStories()">
-				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search
+			<button type="button" class="btn btn-primary" ng-click="storiesCtrl.searchStories()">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				<span class="text-capitalize" translate>search</span>
 			</button>
 			<button type="button" class="btn btn-primary"
 					ng-click="storiesCtrl.resetSearchStories()">
-				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Reset
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				<span class="text-capitalize" translate>reset</span>
 			</button>
 		</form>
 	</div>

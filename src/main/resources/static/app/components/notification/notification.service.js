@@ -1,12 +1,18 @@
 "use strict";
-angular.module('sprintGraphApp').factory('NotificationService', [  'rx', function( rx) {
+angular.module('sprintGraphApp').factory('NotificationService', [  'rx', '$translate', function( rx, $translate) {
 
 	var alert = new rx.Subject();
 
 
 	return {
 		setError : function(msg){
-			alert.onNext({msg:msg,
+			var transMsg = $translate.instant(msg);
+			alert.onNext({msg:transMsg,
+				isError:true});
+		},
+		setError : function(msg,param){
+			var transMsg = $translate.instant(msg,param);
+			alert.onNext({msg:transMsg,
 				isError:true});
 		},
 		setHttpError : function(error){
@@ -21,7 +27,13 @@ angular.module('sprintGraphApp').factory('NotificationService', [  'rx', functio
 				isError:true});
 		},
 		setSuccess :function(msg){
-			alert.onNext({msg:msg,
+			var transMsg = $translate.instant(msg);
+			alert.onNext({msg:transMsg,
+				isError:false});
+		},
+		setSuccess :function(msg,param){
+			var transMsg = $translate.instant(msg,param);
+			alert.onNext({msg:transMsg,
 				isError:false});
 		},
 		getAlert : function(){

@@ -1,26 +1,25 @@
 <div></div>
 <div class="modal-header">
-	<h3 class="modal-title" id="modal-title">New member</h3>
+	<h3 class="modal-title" id="modal-title" translate>newmember</h3>
 	<notification></notification>
 </div>
 <div class="modal-body" id="modal-body">
 	<form novalidate ng-submit="newMemberCtrl.save()" class="simple-form">
 		<div class="form-group">
-			<label>First name</label> <input type="text" class="form-control"
+			<label translate>firstname</label> <input type="text" class="form-control"
 				ng-model="newMemberCtrl.member.firstName" focus-me="true">
 		</div>
 		<div class="form-group">
-			<label>Last name</label> <input type="text" class="form-control"
+			<label translate>lastname</label> <input type="text" class="form-control"
 				ng-model="newMemberCtrl.member.lastName">
 		</div>
 		<div class="form-group">
-			<label>Email</label> <input type="text" class="form-control"
+			<label translate>email</label> <input type="text" class="form-control"
 				ng-model="newMemberCtrl.member.email">
 		</div>
 		<div class="checkbox">
 			<label> <input type="checkbox"
-				ng-model="newMemberCtrl.member.useGravatar"> Use gravatar
-			</label>
+				ng-model="newMemberCtrl.member.useGravatar" translate>usegravatar</label>
 		</div>
 	</form>
 </div>

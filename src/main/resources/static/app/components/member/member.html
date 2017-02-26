@@ -1,42 +1,42 @@
 <div class="container">
 	<div>
 		<div class="form-group">
-			<label>ID </label>
+			<label translate>id</label>
 			<p>{{memberCtrl.member.id}}</p>
 		</div>
 		<div class="form-group">
-			<label>First name</label>
+			<label translate>firstname</label>
 			<p>{{memberCtrl.member.firstName}}</p>
 		</div>
 		<div class="form-group">
-			<label>Last name</label>
+			<label translate>lastname</label>
 			<p>{{memberCtrl.member.lastName}}</p>
 		</div>
 		<div class="form-group">
-			<label>Email</label>
+			<label translate>email</label>
 			<p>{{memberCtrl.member.email}}</p>
 		</div>
 		<div class="form-group">
-			<label>Use gravatar</label>
+			<label translate>usegravatar</label>
 			<p>{{memberCtrl.member.useGravatar}}</p>
 		</div>
 	</div>
 </div>
 <div class="container">
-	<h2>Absences</h2>
+	<h2 translate>absences</h2>
 	<form novalidate class="simple-form">
 		<button type="button" class="btn btn-primary"
 			ng-click="memberCtrl.newAbsence()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Absence
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span translate>absence</span>
 		</button>
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Start</th>
-					<th>Start at noon</th>
-					<th>End</th>
-					<th>End at noon</th>
-					<th>Actions</th>
+					<th translate>start</th>
+					<th translate>startatnoon</th>
+					<th translate>end</th>
+					<th translate>endatnoon</th>
+					<th translate>actions</th>
 				</tr>
 			</thead>
 			<tbody>
