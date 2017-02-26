@@ -29,10 +29,10 @@ angular.module('sprintGraphApp').factory('SprintService', [ 'SprintResource', 'r
 		get:function(id){
 			return rx.Observable.fromPromise(sprintResource.get({sprintId:id}).$promise)//
 			.doOnError(function(e){
-				notificationService.setError("Sprint not found");
+				notificationService.setError("sprintnotfound");
 			})//
 			.doOnNext(function(s){
-				notificationService.setSuccess("Sprint "+s.name+" found !")
+				notificationService.setSuccess("found",{item:"Sprint "+s.name})
 			});
 		},
 		save : function(sprint) {

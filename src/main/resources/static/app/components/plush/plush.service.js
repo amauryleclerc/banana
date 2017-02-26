@@ -9,7 +9,7 @@ angular.module('sprintGraphApp').factory('PlushService', [ '$stomp', '$timeout',
 		var t = $stomp.subscribe('/plush/states', function(data, headers, res) {
 			$timeout(function() {
 				if(Object.keys(service.plushs).length != 0 && data.length >0){
-					notificationService.setSuccess(data[0].plush.name+" Updated")
+					notificationService.setSuccess("updated",{item:data[0].plush.name})
 				}
 				data.forEach(function(state) {
 					service.plushs[state.plush.id] = state;

@@ -152,7 +152,7 @@ angular.module('sprintGraphApp').controller(
 							return sprintService.saveStory(vm.sprint, story);
 						}).subscribe(function(story) {
 							console.log(story);
-							notificationService.setSuccess(story.name + " added");
+							notificationService.setSuccess("added",{item:story.name});
 						}, function(error) {
 							if(error != "cancel"){
 								notificationService.setHttpError(error);

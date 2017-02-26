@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng', 'ngStomp', 'ngStorage',  'cfp.hotkeys' ]);
+angular.module('sprintGraphApp', [ 'ngResource', 'ui.bootstrap', 'ui.router', 'rx', 'highcharts-ng', 'ngStomp', 'ngStorage', 'cfp.hotkeys', 'pascalprecht.translate' ]);
 
 angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvider) {
 
@@ -42,7 +42,7 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		controller : 'MemberCtrl',
 		controllerAs : 'memberCtrl'
 	}).state('settings', {
-		url : "/settings/:id",
+		url : "/settings",
 		templateUrl : "app/components/settings/settings.html",
 		controller : 'SettingsCtrl',
 		controllerAs : 'settingsCtrl'
@@ -54,12 +54,26 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 	});
 
 });
+angular.module('sprintGraphApp').config([ '$translateProvider', function($translateProvider) {
+	$translateProvider.useSanitizeValueStrategy('escaped')//
+	.useStaticFilesLoader({
+		prefix : 'i18n/locale-',
+		suffix : '.json'
+	})//
+	.registerAvailableLanguageKeys([ 'en', 'fr' ], {
+		'en_*' : 'en',
+		'fr_*' : 'fr',
+		'*' : 'en'
+	})//
+	.determinePreferredLanguage()//
+	.fallbackLanguage('en');
+} ]);
 
 angular.module('sprintGraphApp').factory("BASE_URL", [ "$location", function($location) {
-	return "http://"+$location.host() + ":" + $location.port() + "/api";
+	return "http://" + $location.host() + ":" + $location.port() + "/api";
 } ]);
 angular.module('sprintGraphApp').factory("BASE_URL_WS", [ "$location", function($location) {
-	return "http://"+$location.host() + ":" + $location.port() + "/websocket";
+	return "http://" + $location.host() + ":" + $location.port() + "/websocket";
 } ]);
 angular.module('sprintGraphApp').constant("storyComplexities", [ 0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100 ])
 angular.module('sprintGraphApp').constant("storyTypes", [ "BUG_STORY", "TECHNICAL_STORY", "USER_STORY" ])

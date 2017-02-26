@@ -1,57 +1,58 @@
 <div class="container">
 	<table class="table table-striped">
-		<caption>Sprint Identity Card</caption>
+		<caption translate>sprintidentitycard</caption>
 		<tbody>
 			<tr>
-				<td>Sprint</td>
+				<td translate>sprint</td>
 				<td><span class="input-group">{{sprintCtrl.sprint.name}}</span></td>
 			</tr>
 			<tr>
-				<td>Dates</td>
-				<td><span>From {{sprintCtrl.sprint.start | date : 'dd
-						MMMM yyyy' }} To {{sprintCtrl.sprint.end | date : 'dd MMMM yyyy'
-						}}</span></td>
+				<td translate>Dates</td>
+				<td><span translate>from</span> {{sprintCtrl.sprint.start |
+					date : 'dd MMMM yyyy' }} <span translate>to</span>
+					{{sprintCtrl.sprint.end | date : 'dd MMMM yyyy' }}</span></td>
 			</tr>
 			<tr>
-				<td>Working days</td>
-				<td>{{sprintCtrl.nbDays }} days</td>
+				<td translate>workingdays</td>
+				<td>{{sprintCtrl.nbDays }} <span translate>days</span></td>
 			</tr>
 			<tr>
-				<td>Team capacity</td>
-				<td>{{sprintCtrl.capacity }} points</td>
+				<td translate>teamcapacity</td>
+				<td>{{sprintCtrl.capacity }} <span translate>points</span></td>
 			</tr>
 			<tr>
-				<td>Estimated points</td>
-				<td>{{sprintCtrl.sprint.complexity }} points</td>
+				<td translate>estimatedpoints</td>
+				<td>{{sprintCtrl.sprint.complexity }} } <span translate>points</span></td>
 			</tr>
 			<tr>
-				<td>Business value</td>
-				<td>{{sprintCtrl.sprint.businessValue }} points</td>
+				<td translate>businessvalue</td>
+				<td>{{sprintCtrl.sprint.businessValue }} } <span translate>points</span></td>
 			</tr>
 			<tr>
-				<td>Estimated velocity</td>
-				<td>{{sprintCtrl.velocity }} points/days (not calculate yet)</td>
+				<td translate>estimatedvelocity</td>
+				<td>{{sprintCtrl.velocity }}<span translate>pointsperday</span>
+					<span translate>notcalculateyet</span></td>
 			</tr>
 		</tbody>
 	</table>
 
-	<h3>Stories</h3>
+	<h3 translate>stories</h3>
 	<form novalidate class="simple-form">
 
 		<button type="button" class="btn btn-primary"
 			ng-click="sprintCtrl.openNewStory()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span translate>story</span>
 		</button>
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Complexity</th>
-					<th>Business value</th>
-					<th>Type</th>
-					<th>Start date</th>
-					<th>Close date</th>
-					<th>Actions</th>
+					<th translate>name</th>
+					<th translate>complexity</th>
+					<th translate>businessvalue</th>
+					<th translate>type</th>
+					<th translate>start</th>
+					<th translate>close</th>
+					<th translate>actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,8 +64,7 @@
 						}}</td>
 					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.businessValue
 						}}</td>
-					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.type
-						}}</td>
+					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.type }}</td>
 					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.addDate
 						| date : 'dd/MM/yyyy' }}</td>
 					<td ng-If="story.id != sprintCtrl.editStoryId">{{story.closeDate
@@ -142,18 +142,20 @@
 
 	</form>
 	<div class="row">
-		<h3>Absences</h3>
+		<h3 translate>absences</h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Member</th>
-					<th colspan="2" ng-repeat="date in sprintCtrl.dates">{{date | date :
-						'dd'}}</th>
+					<th translate>member</th>
+					<th colspan="2" ng-repeat="date in sprintCtrl.dates">{{date |
+						date : 'dd'}}</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="member in sprintCtrl.members">
-					<td><button ng-click="sprintCtrl.showMember(member.member)" class="btn btn-link">{{member.member.firstName}} {{member.member.lastName}}</button></td>
+					<td><button ng-click="sprintCtrl.showMember(member.member)"
+							class="btn btn-link">{{member.member.firstName}}
+							{{member.member.lastName}}</button></td>
 					<td ng-repeat="precence in member.presences"
 						ng-class="[{danger: !precence.isPresent}]"></td>
 				</tr>
