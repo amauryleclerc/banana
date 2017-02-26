@@ -48,10 +48,11 @@ input {
 }
 
 .search {
-    width       : 80%;
+    margin      : 3px 0px 3px 0px;
+    width       : 100%;
     padding     : 5px;
-    background  : #eee;
-    border      : 1px solid black;
+    background  : #EFF;
+    border      : 1px solid grey;
     border-radius:5px;
 }
 

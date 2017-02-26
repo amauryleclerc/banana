@@ -4,6 +4,8 @@
 			ng-click="storiesCtrl.newStory()">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Story
 		</button>
+
+
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -63,7 +65,7 @@
 					</select></td>
 					<td ng-If="story.id == storiesCtrl.editStoryId">
 						<p class="input-group">
-							<input type="text" id="sprintEnd" class="form-control"
+							<input type="text" id="sprintStart" class="form-control"
 								uib-datepicker-popup="dd/MM/yyyy" ng-model="story.addDate"
 								is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
 								ng-required="true" close-text="Close" /> <span
@@ -102,73 +104,59 @@
 
 			</tbody>
 		</table>
+	</form>
 
-		<div class = "search">
-			<table class="table">
-				<tbody>
-					<tr>
-						<td>
-							<span>Add date from :</span>
-							<input type="text" id="addDateStart" class="form-control"
-								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateStart"
-								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
-								   ng-required="true" close-text="addDateStart" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default">
-									<i class="glyphicon glyphicon-calendar"></i>
-								</button>
-							</span>
-						</td>
-						<td>
-							<span>Add date To :</span>
-							<input type="text" id="addDateEnd" class="form-control"
-								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateEnd"
-								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
-								   ng-required="true" close-text="addDateEnd" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default">
-									<i class="glyphicon glyphicon-calendar"></i>
-								</button>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span>Close date from :</span>
-							<input type="text" id="closeDateStart" class="form-control"
-								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateStart"
-								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
-								   ng-required="true" close-text="closeDateStart"/>
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default">
-									<i class="glyphicon glyphicon-calendar"></i>
-								</button>
-							</span>
-						</td>
-						<td>
-							<span>Close date To :</span>
-							<input type="text" id="closeDateEnd" class="form-control"
-								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateEnd"
-								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
-								   ng-required="true" close-text="closeDateEnd" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default">
-									<i class="glyphicon glyphicon-calendar"></i>
-								</button>
-							</span>
-						</td>
-					</tr>
-				</tbody>
-		</table>
+	<div class="search">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<span class="col-sm-1">&nbsp;</span>
+				<label class="col-sm-8 text-capitalize">Story created</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 text-right text-capitalize">From</label>
+				<div class="col-sm-3">
+					<input type="text" id="addDateStart" class="form-control"
+						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateStart"
+						   is-open="addDateStartDPOpened" datepicker-options="storiesCtrl.dateOptions"
+						   ng-required="true" close-text="addDateStart" ng-click="addDateStartDPOpened = !addDateStartDPOpened"/>
+				</div>
+				<label class="col-sm-1 text-right text-capitalize">To</label>
+				<div class="col-sm-3">
+					<input type="text" id="addDateEnd" class="form-control"
+						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateEnd"
+						   is-open="addDateEndDPOpened" datepicker-options="storiesCtrl.dateOptions"
+						   ng-required="true" close-text="addDateEnd" ng-click="addDateEndDPOpened = !addDateEndDPOpened"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<span class="col-sm-1">&nbsp;</span>
+				<label class="col-sm-8 text-capitalize">Story closed</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 text-right text-capitalize">From</label>
+				<div class="col-sm-3">
+					<input type="text" id="closeDateStart" class="form-control"
+						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateStart"
+						   is-open="closeDateStartDPOpened" datepicker-options="storiesCtrl.dateOptions"
+						   ng-required="true" close-text="closeDateStart" ng-click="closeDateStartDPOpened = !closeDateStartDPOpened"/>
+				</div>
+				<label class="col-sm-1 text-right text-capitalize">To</label>
+				<div class="col-sm-3">
+					<input type="text" id="closeDateEnd" class="form-control"
+						   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateEnd"
+						   is-open="closeDateEndDPOpened" datepicker-options="storiesCtrl.dateOptions"
+						   ng-required="true" close-text="closeDateEnd" ng-click="closeDateEndDPOpened = !closeDateEndDPOpened"/>
+				</div>
+			</div>
 			<button type="button" class="btn btn-primary"
-				ng-click="storiesCtrl.searchStories()">
+					ng-click="storiesCtrl.searchStories()">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search
 			</button>
 			<button type="button" class="btn btn-primary"
 					ng-click="storiesCtrl.resetSearchStories()">
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Reset
 			</button>
-		</div>
-
-	</form>
+		</form>
+	</div>
 </div>
