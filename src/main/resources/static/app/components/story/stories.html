@@ -103,5 +103,68 @@
 			</tbody>
 		</table>
 
+		<div class = "search">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<span>Add date from :</span>
+							<input type="text" id="addDateStart" class="form-control"
+								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateStart"
+								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
+								   ng-required="true" close-text="addDateStart" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</td>
+						<td>
+							<span>Add date To :</span>
+							<input type="text" id="addDateEnd" class="form-control"
+								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.addDateEnd"
+								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
+								   ng-required="true" close-text="addDateEnd" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>Close date from :</span>
+							<input type="text" id="closeDateStart" class="form-control"
+								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateStart"
+								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
+								   ng-required="true" close-text="closeDateStart"/>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</td>
+						<td>
+							<span>Add date To :</span>
+							<input type="text" id="closeDateEnd" class="form-control"
+								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateEnd"
+								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
+								   ng-required="true" close-text="closeDateEnd" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+		</table>
+			<button type="button" class="btn btn-primary"
+				ng-click="storiesCtrl.searchStories()">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+			</button>
+		</div>
+
 	</form>
 </div>

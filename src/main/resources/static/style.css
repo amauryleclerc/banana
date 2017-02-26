@@ -26,53 +26,18 @@ highchart{
     top     : 0;
     bottom  : 0;
 }
+
 .row{
     overflow: hidden; 
 }
+
 .red{
 	background-color: red;
 }
+
 [class*="col-"]{
     margin-bottom: -99999px;
     padding-bottom: 99999px;
-}
-.tl-container {
-    position    : absolute;
-    top         : 0;
-    left        : 0;
-    right       : 50%;
-    bottom      : 50%;
-    background  : black;
-    border      : solid #000;
-    border-width: 0 10px 10px 0;
-}
-.tr-container {
-    position    : absolute;
-    top         : 0;
-    left        : 50%;
-    right       : 0;
-    bottom      : 50%;
-    background  : black;
-    border      : solid #000;
-    border-width: 0 0 10px 0;
-}
-.bl-container {
-    position    : absolute;
-    top         : 50%;
-    left        : 0;
-    right       : 50%;
-    bottom      : 0;
-    background  : black;
-    border      : solid #000;
-    border-width: 0 10px 0 0;
-}
-.br-container {
-    position    : absolute;
-    top         : 50%;
-    left        : 50%;
-    right       : 0;
-    bottom      : 0;
-    background  : black;
 }
 
 input {
@@ -80,4 +45,16 @@ input {
     background  : black;
     color       : white;
     size        : 100;
+}
+
+.search {
+    width       : 80%;
+    padding     : 5px;
+    background  : #eee;
+    border      : 1px solid black;
+    border-radius:5px;
+}
+
+table.table td {
+    height      : 20px;
 }

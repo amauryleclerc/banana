@@ -5,6 +5,7 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 			this.editStoryId = null;
 			this.storyComplexities = storyComplexities;
 			this.storyTypes = storyTypes;
+			this.example = { addDateStart : null, addDateEnd : null, closeDateStart : null, closeDateEnd : null};
 			var vm = this;
 			function getStories() {
 				storyService.getAll().subscribe(function(stories) {
@@ -23,8 +24,23 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 
 				});
 			}
-			getStories() 
-	
+			getStories()
+
+	        this.searchStories = function() {
+	            storyService.search(example.addDateStart, example.addDateEnd, example.closeDateStart, example.closeDateEnd).subscribe(function(stories) {
+                    $timeout(function() {
+                        vm.stories = stories.map(function(story) {
+                            if (story.addDate) {
+                                story.addDate = new Date(story.addDate);
+                            }
+                            if (story.closeDate) {
+                                story.closeDate = new Date(story.closeDate);
+                            }
+                            return story;
+                        });
+                    })
+                });
+	        }
 		
 			this.update = function(story) {
 				storyService.update(story).subscribe(console.log, console.error, function() {
