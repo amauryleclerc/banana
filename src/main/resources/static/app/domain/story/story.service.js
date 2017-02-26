@@ -1,5 +1,5 @@
 "use strict";
-angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx', function(storyResource, rx) {
+angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'StorySearchResource', 'rx', function(storyResource, storySearchResource, rx) {
 	return {
 		get:function(id){
 			return rx.Observable.fromPromise(storyResource.get({id:id}).$promise);
@@ -26,9 +26,14 @@ angular.module('sprintGraphApp').factory('StoryService', [ 'StoryResource', 'rx'
 				id : story.id,
 			}).$promise)
 		},
-		search:function(addDateStart, addDateEnd, closeDateStart, closeDateEnd) {
-			return rx.Observable.fromPromise(storyResource.search(
-			    {addDateStart: addDateStart, addDateEnd: addDateEnd, closeDateStart: closeDateStart, closeDateEnd: closeDateEnd}).$promise).map(function(result) {
+		search:function(searchMethod, addDateStart, addDateEnd, closeDateStart, closeDateEnd) {
+			return rx.Observable.fromPromise(storySearchResource.search(
+			    {   searchMethod: searchMethod,
+			        addDateFrom: addDateStart,
+			        addDateTo: addDateEnd,
+			        closeDateFrom: closeDateStart,
+			        closeDateTo: closeDateEnd}
+			        ).$promise).map(function(result) {
 				return result._embedded.stories;
 			});;
 		}

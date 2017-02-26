@@ -26,12 +26,35 @@ angular.module('sprintGraphApp').controller('StoriesCtrl',
 			}
 			getStories()
 
-	        this.searchStories = function() {
-	            console.log("searchStories");
-	            console.log("addDate: from " + vm.example.addDateStart + " to " + vm.example.addDateEnd);
-	            console.log("closeDate: from " + vm.example.closeDateStart + " to " + vm.example.closeDateEnd);
+            this.resetSearchStories = function() {
+                vm.example.addDateStart = null;
+                vm.example.addDateEnd = null;
+                vm.example.closeDateStart = null;
+                vm.example.closeDateEnd = null;
+                getStories();
+            }
 
-	            storyService.search(vm.example.addDateStart, vm.example.addDateEnd, vm.example.closeDateStart, vm.example.closeDateEnd).subscribe(function(stories) {
+	        this.searchStories = function() {
+
+                if (vm.example.addDateStart && vm.example.addDateEnd == null) {
+                    vm.example.addDateEnd = new Date();
+                }
+                if (vm.example.closeDateStart && vm.example.closeDateEnd == null) {
+                    vm.example.closeDateEnd = new Date();
+                }
+
+                var searchMethod = null;
+                if (vm.example.addDateStart != null && vm.example.addDateEnd != null && vm.example.closeDateStart != null && vm.example.closeDateEnd != null) {
+                    searchMethod = "findByAddDateBetweenAndCloseDateBetween";
+                }
+                else if (vm.example.addDateStart != null && vm.example.addDateEnd != null) {
+                    searchMethod = "findByAddDateBetween";
+                }
+                else if (vm.example.closeDateStart != null && vm.example.closeDateEnd != null) {
+                    searchMethod = "findByCloseDateBetween";
+                }
+
+	            storyService.search(searchMethod, vm.example.addDateStart, vm.example.addDateEnd, vm.example.closeDateStart, vm.example.closeDateEnd).subscribe(function(stories) {
                     $timeout(function() {
                         vm.stories = stories.map(function(story) {
                             if (story.addDate) {

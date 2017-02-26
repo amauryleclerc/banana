@@ -2,7 +2,7 @@
 	<form novalidate class="simple-form">
 		<button type="button" class="btn btn-primary"
 			ng-click="storiesCtrl.newStory()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Story
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Story
 		</button>
 		<table class="table table-hover">
 			<thead>
@@ -146,7 +146,7 @@
 							</span>
 						</td>
 						<td>
-							<span>Add date To :</span>
+							<span>Close date To :</span>
 							<input type="text" id="closeDateEnd" class="form-control"
 								   uib-datepicker-popup="dd/MM/yyyy" ng-model="storiesCtrl.example.closeDateEnd"
 								   is-open="openedAdd" datepicker-options="storiesCtrl.dateOptions"
@@ -162,7 +162,11 @@
 		</table>
 			<button type="button" class="btn btn-primary"
 				ng-click="storiesCtrl.searchStories()">
-				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search
+			</button>
+			<button type="button" class="btn btn-primary"
+					ng-click="storiesCtrl.resetSearchStories()">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Reset
 			</button>
 		</div>
 
