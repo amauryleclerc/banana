@@ -1,0 +1,94 @@
+<div class="container">
+	<form novalidate class="simple-form">
+		<button type="button" class="btn btn-primary"
+			ng-click="releasesCtrl.newRelease()">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span translate>release</span>
+		</button>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate>name</th>
+					<th translate>start</th>
+					<th translate>end</th>
+					<th translate>complexity</th>
+					<th translate>businessvalue</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="release in releasesCtrl.releases">
+
+					<td ng-If="release.id != releasesCtrl.editReleaseId">{{release.name
+						}}</td>
+					<td ng-If="release.id != releasesCtrl.editReleaseId">{{release.start
+						| date : 'dd/MM/yyyy' }}</td>
+					<td ng-If="release.id != releasesCtrl.editReleaseId">{{release.end
+						| date : 'dd/MM/yyyy'}}</td>
+					<td ng-If="release.id != releasesCtrl.editReleaseId">{{release.complexity
+						}}</td>
+					<td ng-If="release.id != releasesCtrl.editReleaseId">{{release.businessValue
+						}}</td>
+					<td ng-If="release.id != releasesCtrl.editReleaseId">
+						<button class="btn btn-info"
+							ng-click="releasesCtrl.editReleaseId = release.id">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-danger"
+							ng-click="releasesCtrl.remove(release)">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-primary"
+							ng-click="releasesCtrl.showSprint(release)">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+						</button>
+					</td>
+
+					<td ng-If="release.id == releasesCtrl.editReleaseId"><input
+						type="text" class="form-control" ng-model="release.name"></td>
+					<td ng-If="release.id == releasesCtrl.editReleaseId">
+						<p class="input-group">
+							<input type="text" id="releaseStart" class="form-control"
+								uib-datepicker-popup="dd/MM/yyyy" ng-model="release.start"
+								is-open="openedStart"
+								datepicker-options="releasesCtrl.dateOptions" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn"><button
+									type="button" class="btn btn-default"
+									ng-click="openedStart = !openedStart">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
+						</p>
+					</td>
+					<td ng-If="release.id == releasesCtrl.editReleaseId">
+						<p class="input-group">
+							<input type="text" id="releaseEnd" class="form-control"
+								uib-datepicker-popup="dd/MM/yyyy" ng-model="release.end"
+								is-open="openedEnd" datepicker-options="releasesCtrl.dateOptions"
+								ng-required="true" close-text="Close" /> <span
+								class="input-group-btn"><button type="button"
+									class="btn btn-default" ng-click="openedEnd = !openedEnd">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button></span>
+						</p>
+					</td>
+					<td ng-If="release.id == releasesCtrl.editSprintId">{{release.complexity
+						}}</td>
+					<td ng-If="release.id == releasesCtrl.editSprintId">{{release.businessValue
+						}}</td>
+					<td ng-If="release.id == releasesCtrl.editSprintId">
+						<button class="btn btn-primary "
+							ng-click="releasesCtrl.update(release)">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-default "
+							ng-click="releasesCtrl.cancelUpdate()">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+
+					</td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+	</form>
+</div>
