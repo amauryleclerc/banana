@@ -21,6 +21,11 @@ angular.module('sprintGraphApp').config(function($stateProvider, $urlRouterProvi
 		templateUrl : "app/components/sprint/sprint.html",
 		controller : 'SprintCtrl',
 		controllerAs : 'sprintCtrl'
+    }).state('release', {
+        url : "/release/:id",
+        templateUrl : "app/components/release/release.html",
+        controller : 'ReleaseCtrl',
+        controllerAs : 'releaseCtrl'
 	}).state('stories', {
 		url : "/stories",
 		templateUrl : "app/components/story/stories.html",
