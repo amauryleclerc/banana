@@ -15,6 +15,8 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+//import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
@@ -31,6 +33,7 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
 		config.enableSimpleBroker(TOPIC_PREFIX);
+		
 		//config.setApplicationDestinationPrefixes(CLIENT_SEND_PREFIX);
 	}
 

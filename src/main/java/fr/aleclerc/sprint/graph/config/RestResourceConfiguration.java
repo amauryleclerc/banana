@@ -12,6 +12,7 @@ import fr.aleclerc.sprint.graph.entities.Sprint;
 import fr.aleclerc.sprint.graph.entities.Story;
 import fr.aleclerc.sprint.graph.validator.AbsenceValidator;
 import fr.aleclerc.sprint.graph.validator.StoryValidator;
+
 @Configuration
 public class RestResourceConfiguration  extends RepositoryRestConfigurerAdapter {
 
