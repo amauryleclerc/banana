@@ -1,6 +1,7 @@
 package fr.aleclerc.sprint.graph.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class Sprint {
 	@Column
 	private Instant end;
 	@ManyToMany
-	private Set<Story> stories;
+	private Set<Story> stories = new HashSet<>();
 	
 	@ManyToOne
 	private Project project;
