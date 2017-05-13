@@ -10,6 +10,9 @@ http://localhost:9000/
 ## API
 http://localhost:9000/api
 
+## API Documentation
+http://localhost:9000/api/swagger-ui.html
+
 ## Release
 mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
 
