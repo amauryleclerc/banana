@@ -84,7 +84,24 @@ public class Sprint {
 				.mapToLong(s -> s.getComplexity().longValue())//
 				.sum();
 	}
-
+	
+	public Float getEngagedComplexity() {
+		return (float) stories.stream()//
+				.filter(s -> s.getComplexity() != null)//
+				.filter(s -> s.getAddDate() != null)//
+				.filter(s -> s.getAddDate().equals(this.start))//
+				.mapToLong(s -> s.getComplexity().longValue())//
+				.sum();
+	}
+	
+	public Float getClosedComplexity() {
+		return (float) stories.stream()//
+				.filter(s -> s.getComplexity() != null)//
+				.filter(s -> s.getCloseDate() != null)//
+				.filter(s -> s.getCloseDate().equals(this.end) || s.getCloseDate().isBefore(this.end) )//
+				.mapToLong(s -> s.getComplexity().longValue())//
+				.sum();
+	}
 	@Override
 	public int hashCode() {
 		return id.hashCode();
