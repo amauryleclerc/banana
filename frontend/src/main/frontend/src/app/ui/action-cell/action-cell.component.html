@@ -1,0 +1,16 @@
+<div *ngIf="isEditing">
+  <button class="btn btn-info" (click)="save()">
+    <i class="fa fa-check" aria-hidden="true"></i>
+  </button>
+  <button class="btn btn-default" (click)="cancel()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+</div>
+<div *ngIf="!isEditing">
+  <button class="btn btn-primary" (click)="edit()">
+       <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
+  <button class="btn btn-info" (click)="more()">
+       <i class="fa fa-file-text-o " aria-hidden="true"></i>
+  </button>
+</div>

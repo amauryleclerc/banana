@@ -1,0 +1,10 @@
+<div class="input-group" *ngIf="isEditing">
+  <input class="form-control" placeholder="dd/mm/yyyy" name="dp" [(ngModel)]="model"  ngbDatepicker
+    #datePickerInput="ngbDatepicker" (ngModelChange)="onChange($event)">
+  <div class="input-group-addon" (click)="toggle()">
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+  </div>
+</div>
+<div *ngIf="!isEditing">
+  {{date | date : 'dd/MM/yyyy' }}
+</div>

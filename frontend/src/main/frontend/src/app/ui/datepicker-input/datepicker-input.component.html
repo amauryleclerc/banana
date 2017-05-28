@@ -1,0 +1,6 @@
+<div class="input-group">
+  <input class="form-control" placeholder="dd/mm/yyyy" name="closeDate" [(ngModel)]="model"  (ngModelChange)="onChange($event)" ngbDatepicker #datePickerInput="ngbDatepicker">
+  <div class="input-group-addon" (click)="toggle()">
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+  </div>
+</div>

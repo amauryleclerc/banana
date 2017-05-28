@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <h1>Sprint {{sprint.name}}</h1>
+  <div>
+    <div class="form-group">
+      <h2 translate>start</h2>
+      <p> {{sprint.start | date : 'dd/MM/yyyy'}}</p>
+    </div>
+    <div class="form-group">
+      <h2 translate>end</h2>
+      <p>{{sprint.end | date : 'dd/MM/yyyy'}}</p>
+    </div>
+
+    <div class="form-group">
+      <h2 translate>complexity</h2>
+      <p>{{sprint.complexity}}</p>
+    </div>
+    <div class="form-group">
+      <h2 translate>engagedComplexity</h2>
+      <p>{{sprint.engagedComplexity}}</p>
+    </div>
+    <div class="form-group">
+      <h2 translate>closedComplexity</h2>
+      <p>{{sprint.closedComplexity}}</p>
+    </div>
+    <div class="form-group">
+      <h2 translate>businessValue</h2>
+      <p>{{sprint.businessValue}}</p>
+    </div>
+  </div>
+  <h2>Stories
+    <button type="button" class="btn btn-primary" (click)="add()">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+		</button>
+  </h2>
+  <table class="table table-hover">
+    <thead>
+      <tr class="row">
+        <th class="col-sm-2" translate>name</th>
+        <th class="col-sm-1" translate>complexity</th>
+        <th class="col-sm-1" translate>bv</th>
+        <th class="col-sm-2" translate>type</th>
+        <th class="col-sm-2" translate>adddate</th>
+        <th class="col-sm-2" translate>close</th>
+        <th class="col-sm-2" translate>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let story of stories" class="row">
+        <td class="col-sm-2">
+          <textfield-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.name"></textfield-cell>
+        </td>
+        <td class="col-sm-1">
+          <combobox-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.complexity" [values]="complexities"></combobox-cell>
+        </td>
+        <td class="col-sm-1">
+          <textfield-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.businessValue"></textfield-cell>
+        </td>
+        <td class="col-sm-2">
+          <combobox-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.type" [values]="types"></combobox-cell>
+        </td>
+        <td class="col-sm-2">
+          <datepicker-cell [id]="story.id" [selectedId]="selectedId" [(date)]="story.addDate"></datepicker-cell>
+        </td>
+        <td class="col-sm-2">
+          <datepicker-cell [id]="story.id" [selectedId]="selectedId" [(date)]="story.closeDate"></datepicker-cell>
+        </td>
+        <td class="col-sm-2">
+          <action-cell [id]="story.id" [(selectedId)]="selectedId" [value]="story" (onSave)="save($event)" (onCancel)="cancel($event)"
+            (onSelectMore)="selectMore($event)"></action-cell>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

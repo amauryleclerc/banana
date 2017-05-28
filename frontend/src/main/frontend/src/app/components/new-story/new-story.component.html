@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h1 class="modal-title">New Story</h1>
+</div>
+<div class="modal-body" id="modal-body">
+  <form novalidate (ngSubmit)="save()" class="simple-form">
+    <div class="form-group">
+      <label for="story" translate>name</label> <input type="text" class="form-control" id="story" name="name" [(ngModel)]="story.name"
+        focus-me="true" required>
+    </div>
+    <div class="form-group">
+      <label for="complexity" translate>complexity</label> <select id="complexity" class="form-control" name="complexity"
+        [(ngModel)]="story.complexity">
+            <option *ngFor="let complexity of complexities" [ngValue]="complexity">{{complexity}}</option>
+			</select>
+    </div>
+    <div class="form-group">
+      <label for="bv" translate>businessvalue</label> <input type="number" class="form-control" id="bv" min="0" name="businessValue"
+        [(ngModel)]="story.businessValue">
+    </div>
+
+    <div class="form-group">
+      <label for="type" translate>type</label> <select id="type" class="form-control" name="type" [(ngModel)]="story.type">
+        <option *ngFor="let type of types" [ngValue]="type">{{type}}</option>
+			</select>
+    </div>
+
+    <div class="form-group">
+      <label for="sprintStart" translate>adddate</label>
+      <datepicker-input [(date)]="story.addDate" ></datepicker-input>
+    </div>
+    <div class="form-group">
+      <label for="sprintEnd" translate>close</label>
+      <datepicker-input [(date)]="story.closeDate" ></datepicker-input>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary" (click)="save()">
+    	<i class="fa fa-check" aria-hidden="true"></i>
+	</button>
+  <button class="btn btn-default" (click)="cancel()">
+    	<i class="fa fa-remove" aria-hidden="true"></i>
+	</button>
+</div>

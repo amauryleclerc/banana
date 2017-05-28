@@ -1,8 +1,8 @@
-# Sprint Graph
+# Banana
 
 ## Run
 mvn spring-boot:run 
-or java -jar sprint-graph-X.X.X.jar
+or java -jar banana-X.X.X.jar
 
 ## Web
 http://localhost:9000/
@@ -19,10 +19,10 @@ mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-D
 ## Deployment
 
 # Build the docker image
-docker build -t amauryleclerc/sprint-graph .
+docker build -t amauryleclerc/banana .
 
 # Deploy the image within your container
-docker run -p 9000:9000 amauryleclerc/sprint-graph
+docker run -p 9000:9000 amauryleclerc/banana
 
 # Undeploy
 docker stop <ID>

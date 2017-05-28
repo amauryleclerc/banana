@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h1 class="modal-title">New Sprint</h1>
+</div>
+<div class="modal-body" id="modal-body">
+  <form novalidate (ngSubmit)="save()" class="simple-form">
+    <div class="form-group">
+      <label for="sprint" translate>name</label> <input type="text" class="form-control" id="sprint" name="name" [(ngModel)]="sprint.name"
+        focus-me="true" required>
+    </div>
+    <div class="form-group">
+      <label for="sprintStart" translate>start</label>
+      <datepicker-input [(date)]="sprint.start"></datepicker-input>
+    </div>
+    <div class="form-group">
+      <label for="sprintEnd" translate>close</label>
+      <datepicker-input [(date)]="sprint.end"></datepicker-input>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary" (click)="save()">
+    	<i class="fa fa-check" aria-hidden="true"></i>
+	</button>
+  <button class="btn btn-default" (click)="cancel()">
+    	<i class="fa fa-remove" aria-hidden="true"></i>
+	</button>
+</div>

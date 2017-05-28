@@ -1,0 +1,8 @@
+<div class="input-group" *ngIf="isEditing">
+  <select [(ngModel)]="text" class="custom-select" (ngModelChange)="text=$event;textChange.emit($event);">
+    <option *ngFor="let value of values" [ngValue]="value">{{value}}</option>
+  </select>
+</div>
+<div *ngIf="!isEditing">
+  {{text}}
+</div>

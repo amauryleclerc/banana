@@ -1,0 +1,6 @@
+<div class="input-group" *ngIf="isEditing" >
+  <input type="text" class="form-control" [ngModel]="text" (ngModelChange)="text=$event;textChange.emit($event);" />
+</div>
+<div *ngIf="!isEditing">
+  {{text}}
+</div>
