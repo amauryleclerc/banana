@@ -17,7 +17,6 @@ export class ContextService {
         return this.sprintSelected.asObservable()//
             .filter(sprint => sprint !== null)//
             .distinctUntilChanged();
-         //   return Observable.empty();
     }
 
     public setSelectedSprint(sprint: Sprint) {

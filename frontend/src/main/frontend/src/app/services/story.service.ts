@@ -7,10 +7,9 @@ import { Observable} from 'rxjs/Rx';
 @Injectable()
 export class StoryService extends AbstractRestClientService<Story>  {
 
-  public static readonly URL = 'http://localhost:9000/api/stories';
   public static readonly EMBEDDED_NAME = 'stories';
   constructor(http: Http) {
-    super(http, StoryService.URL, StoryService.EMBEDDED_NAME);
+    super(http, StoryService.EMBEDDED_NAME);
   }
   public getAllByPage(): Observable<Story> {
     return this._getAllByPage().map(o => Story.create(o));

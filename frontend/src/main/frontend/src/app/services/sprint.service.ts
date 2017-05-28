@@ -9,13 +9,12 @@ import { AbstractRestClientService } from './abstract-rest-client.service';
 @Injectable()
 export class SprintService extends AbstractRestClientService<Sprint>  {
 
-  public static readonly URL = 'http://localhost:9000/api/sprints';
   public static readonly EMBEDDED_NAME = 'sprints';
 
   private currentSprint: Sprint;
 
   constructor(private http: Http, private storyService: StoryService) {
-    super(http, SprintService.URL, SprintService.EMBEDDED_NAME);
+    super(http,  SprintService.EMBEDDED_NAME);
   }
 
 
@@ -27,7 +26,7 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
   }
 
   getStories(sprintId: string): Observable<Story> {
-    return this.http.get(SprintService.URL + '/' + sprintId + '/stories')//
+    return this.http.get(super.getUrl() + '/' + sprintId + '/stories')//
       .filter(res => res.status === 200)//
       .map(res => res.json()._embedded.stories)//
       .flatMap(list => Observable.from(list))
@@ -45,7 +44,7 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
           return this.storyService.save(s);
         }
       })//
-      .flatMap(s => this.http.post(SprintService.URL + '/' + sprintId + '/stories', s._links.self.href, {
+      .flatMap(s => this.http.post(super.getUrl() + '/' + sprintId + '/stories', s._links.self.href, {
         headers: headers
       }).map(res => Story.create(s)));
   }

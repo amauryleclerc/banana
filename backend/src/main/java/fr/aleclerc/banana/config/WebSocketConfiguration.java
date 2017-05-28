@@ -15,7 +15,6 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -37,7 +36,7 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 	
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint(ENDPOINT_PREFIX).setAllowedOrigins("*");
+		registry.addEndpoint(ENDPOINT_PREFIX);
 	}
 
 	@Override

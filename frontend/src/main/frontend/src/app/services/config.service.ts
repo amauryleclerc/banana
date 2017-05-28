@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {StompConfig, StompConfigService} from '@stomp/ng2-stompjs';
+import { Observable } from 'rxjs/Observable';
+import { StompConfig, StompConfigService } from '@stomp/ng2-stompjs';
 
 @Injectable()
 export class ConfigService extends StompConfigService {
 
-  /** Constructor */
   constructor() {
     super();
   }
@@ -13,13 +12,10 @@ export class ConfigService extends StompConfigService {
   public get(): Observable<StompConfig> {
     const conf: StompConfig = {
       // Which server?
-      url: "ws://localhost:9000/websocket",
+      url: this.getUrl(),
 
       // Headers
-      // Typical keys: login, passcode, host
       headers: {
-      //  login: 'guest',
-     //   passcode: 'guest'
       },
 
       // How often to heartbeat?
@@ -37,5 +33,9 @@ export class ConfigService extends StompConfigService {
     };
 
     return Observable.of(conf);
+  }
+
+  public getUrl(): string {
+    return 'ws://' + window.location.host + '/websocket';
   }
 }

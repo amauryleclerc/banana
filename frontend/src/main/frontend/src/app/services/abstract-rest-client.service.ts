@@ -1,12 +1,13 @@
 import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { Observable, Subject } from 'rxjs/Rx';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 export abstract class AbstractRestClientService<T> {
 
   public static readonly PAGE_SIZE = '20';
   bottomSubject: Subject<boolean> = new Subject();
 
-  constructor(private httpClient: Http, private url: string, private embeddedName: string) {
+  constructor(private httpClient: Http, private embeddedName: string) {
 
   }
 
@@ -34,11 +35,15 @@ export abstract class AbstractRestClientService<T> {
   }
 
   protected _getOne(id: string): Observable<T> {
-    return this.httpClient.get(this.url + '/' + id).flatMap(this.handleResponse);
+    return this.httpClient.get(this.getUrl() + '/' + id).flatMap(this.handleResponse);
+  }
+
+  public getUrl(): string {
+    return 'http://' + window.location.host + '/api/' + this.embeddedName;
   }
 
   public save(item: T): Observable<T> {
-    return this.httpClient.post(this.url, item)//
+    return this.httpClient.post(this.getUrl(), item)//
       .flatMap(this.handleResponse);
   }
 
@@ -48,7 +53,7 @@ export abstract class AbstractRestClientService<T> {
     params.set('page', page.toString());
     params.set('size', AbstractRestClientService.PAGE_SIZE);
     params.set('sort', 'name');
-    return http.get(this.url, { search: params });
+    return http.get(this.getUrl(), { search: params });
   }
 
   protected handleResponse(res: Response): Observable<T> {
