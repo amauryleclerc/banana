@@ -15,8 +15,8 @@ import { NewStoryComponent } from '../new-story/new-story.component';
 })
 export class SprintComponent implements OnInit {
 
-  private sprint: Sprint;
-  private stories: Story[];
+  sprint: Sprint;
+  stories: Story[];
   constructor(
     private route: ActivatedRoute,
     private router: Router,

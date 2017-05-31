@@ -11,7 +11,7 @@ export class ComboboxCellComponent implements OnInit {
   @Input()  values: any[];
   @Output() textChange: EventEmitter<any> = new EventEmitter();
 
-  private isEditing: boolean;
+  isEditing: boolean;
   
   constructor() { }
 

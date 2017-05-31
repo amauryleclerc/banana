@@ -3,13 +3,17 @@ import { NgbDatepicker, NgbDateStruct, NgbDateParserFormatter, NgbInputDatepicke
 import { NgbDateMomentParserFormatter} from '../../services/date.service';
 import * as moment from 'moment';
 
+export function NgbDateMomentParserFormatterFactory(): NgbDateParserFormatter {
+  return new NgbDateMomentParserFormatter('DD/MM/YYYY'); 
+}
+
 @Component({
   selector: 'datepicker-cell',
   templateUrl: './datepicker-cell.component.html',
   styleUrls: ['./datepicker-cell.component.css'],
   providers: [{
     provide: NgbDateParserFormatter,
-    useFactory: () => { return new NgbDateMomentParserFormatter('DD/MM/YYYY'); }
+    useFactory: NgbDateMomentParserFormatterFactory
   }]
 })
 export class DatepickerCellComponent implements OnInit {
@@ -20,12 +24,12 @@ export class DatepickerCellComponent implements OnInit {
   @Input() date: Date;
   @Output() dateChange: EventEmitter<Date> = new EventEmitter();
 
-  private model: NgbDateStruct;
+  model: NgbDateStruct;
 
   @ViewChild('datePickerInput')
-  private datePickerInput: NgbInputDatepicker;
+  datePickerInput: NgbInputDatepicker;
 
-  private isEditing: boolean;
+  isEditing: boolean;
 
   constructor() {
     DatepickerCellComponent.listeners.push(this);
@@ -50,14 +54,14 @@ export class DatepickerCellComponent implements OnInit {
     this.dateChange.emit(this.date);
   }
 
-  private toggle(){
+  toggle(){
     this.datePickerInput.toggle();
      DatepickerCellComponent.listeners//
       .filter(l => l !== this)//
       .forEach(l => l.close());
   }
 
-  public close() {
+  close() {
     if (this.datePickerInput != null){
         this.datePickerInput.close();
     }

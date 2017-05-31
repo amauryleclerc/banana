@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   public sprint: Sprint = null;
   public sprints: Sprint[] = new Array<Sprint>();
-
+  public isCollapsed:boolean = false;
   constructor(private sprintService: SprintService, private contextService: ContextService) {
 
   }

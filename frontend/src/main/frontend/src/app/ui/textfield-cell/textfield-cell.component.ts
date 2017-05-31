@@ -11,7 +11,7 @@ export class TextfieldCellComponent implements OnInit {
   @Input()  text: any;
   @Output() textChange: EventEmitter<any> = new EventEmitter();
 
-  private isEditing: boolean;
+  isEditing: boolean;
   
   constructor() { }
 

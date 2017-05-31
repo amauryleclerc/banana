@@ -3,13 +3,16 @@ import { NgbDatepicker, NgbDateStruct, NgbDateParserFormatter, NgbInputDatepicke
 import { NgbDateMomentParserFormatter } from '../../services/date.service';
 import * as moment from 'moment';
 
+export function NgbDateMomentParserFormatterFactory(): NgbDateParserFormatter {
+  return new NgbDateMomentParserFormatter('DD/MM/YYYY'); 
+}
 @Component({
   selector: 'datepicker-input',
   templateUrl: './datepicker-input.component.html',
   styleUrls: ['./datepicker-input.component.css'],
   providers: [{
     provide: NgbDateParserFormatter,
-    useFactory: () => { return new NgbDateMomentParserFormatter('DD/MM/YYYY'); }
+    useFactory: NgbDateMomentParserFormatterFactory
   }]
 })
 export class DatepickerInputComponent implements OnInit {
@@ -19,10 +22,10 @@ export class DatepickerInputComponent implements OnInit {
   @Input() date: Date;
   @Output() dateChange: EventEmitter<Date> = new EventEmitter();
 
-  private model: NgbDateStruct;
+  model: NgbDateStruct;
 
   @ViewChild('datePickerInput')
-  private datePickerInput: NgbInputDatepicker;
+  datePickerInput: NgbInputDatepicker;
 
   constructor() {
     DatepickerInputComponent.listeners.push(this);
@@ -36,20 +39,20 @@ export class DatepickerInputComponent implements OnInit {
     }
   }
 
-  private onChange(date: NgbDateStruct) {
+  onChange(date: NgbDateStruct) {
     this.date = new Date(date.year, date.month - 1, date.day);
     this.date.setHours(0, 0, 0, 0);
     this.dateChange.emit(this.date);
   }
 
-  private toggle(){
+  toggle(){
     this.datePickerInput.toggle();
      DatepickerInputComponent.listeners//
       .filter(l => l !== this)//
       .forEach(l => l.close());
   }
 
-  public close() {
+  close() {
     this.datePickerInput.close();
   }
 }

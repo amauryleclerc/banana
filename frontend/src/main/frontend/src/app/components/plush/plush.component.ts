@@ -12,9 +12,9 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class PlushComponent implements OnInit {
 
-  private memberName: string = '';
-  private memberId: string = '';
-  private plushs: Array<PlushState> = new Array();
+  memberName: string = '';
+  memberId: string = '';
+  plushs: Array<PlushState> = new Array();
   constructor(private plushService: PlushService, private localStorageService: LocalStorageService) {
     this.memberName = localStorageService.get<string>('memberName');
     this.memberId = localStorageService.get<string>('memberId');
@@ -34,7 +34,7 @@ export class PlushComponent implements OnInit {
     }
   }
 
-  private onMemberNameChange(): void {
+  onMemberNameChange(): void {
     if (this.memberName != null && this.memberName !== '') {
       this.memberId = this.memberName.trim().toLowerCase();
       this.localStorageService.set('memberName', this.memberName);
@@ -42,13 +42,13 @@ export class PlushComponent implements OnInit {
     }
   }
 
-  private take(plush: Plush): void {
+  take(plush: Plush): void {
     if (this.memberId !== null && this.memberId !== '') {
       this.plushService.take(new PlushState(plush, new User(this.memberId, this.memberName)));
     }
   }
 
-  private release(plush: Plush): void {
+  release(plush: Plush): void {
     if (this.memberId !== null && this.memberId !== '') {
       this.plushService.release(new PlushState(plush, new User(this.memberId, this.memberName)));
     }

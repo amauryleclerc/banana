@@ -15,7 +15,7 @@ export class ActionCellComponent implements OnInit {
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
   @Output() selectedIdChange: EventEmitter<any> = new EventEmitter();
 
-  private isEditing: boolean;
+  isEditing: boolean;
   private copy: any;
 
   constructor() {

@@ -10,8 +10,8 @@ import { GraphService } from '../../services/graph.service';
 })
 export class GraphComponent implements OnInit {
 
-  private options: any;
-  private chart: any;
+  options: any;
+  chart: any;
   constructor(private graphService: GraphService) {
     this.options = {
       options: {
