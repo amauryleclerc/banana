@@ -46,6 +46,7 @@ export class GraphService {
       this.sprintService.getStories(sprint.id)//
         .toArray()//
         .flatMap(stories => sprint.getDates()//
+          .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
           .map(date => new Point(date.getTime(), this.getComplexity(date, stories, sprint), new Label(this.getClosedStory(date, stories))))//
         ).toArray()
     )
@@ -56,6 +57,7 @@ export class GraphService {
       this.sprintService.getStories(sprint.id)//
         .toArray()//
         .flatMap(stories => sprint.getDates()//
+          .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
           .map(date => [date.getTime(), this.getBonusComplexity(date, stories, sprint)])//
         ).toArray()
     )

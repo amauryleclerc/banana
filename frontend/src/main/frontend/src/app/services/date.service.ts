@@ -40,6 +40,11 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
 
 export abstract class DateUtils {
 
+    public static getToday(): Date {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return today;
+    }
     public static dayDiff(start: Date, end: Date): number {
         if (start === null || end === null) {
             return 0;

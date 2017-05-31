@@ -51,3 +51,5 @@ Thumbs.db
 
 frontend/src/main/frontend/node
 /bin/
+
+.vscode/
