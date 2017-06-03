@@ -1,11 +1,20 @@
 # Banana
 
-## Run
-mvn spring-boot:run 
-or java -jar banana-X.X.X.jar
+## Run in dev mode
+cd backend
+mvn spring-boot:run
 
-## Web
-http://localhost:9000/
+in another console
+cd frontend/src/main/frontend
+npm start
+
+go to http://localhost:4200/
+
+## Run in prod mode
+mvn clean install
+java -jar backend/target/banana-X.X.X.jar
+
+go to http://localhost:9000/
 
 ## API
 http://localhost:9000/api

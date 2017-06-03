@@ -4,7 +4,7 @@ import { Story } from '../models/story';
 import { ContextService } from './context.service';
 import { SprintService } from './sprint.service';
 import { DateUtils } from './date.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class GraphService {
@@ -12,7 +12,9 @@ export class GraphService {
 
   private currentSprint: Sprint;
 
+  private reloadSub: Subject<boolean>;
   constructor(private contextService: ContextService, private sprintService: SprintService) {
+    this.reloadSub = new BehaviorSubject(true);
   }
 
   public getTitle(): Observable<string> {
@@ -26,9 +28,12 @@ export class GraphService {
   }
 
   public getSprint(): Observable<Sprint> {
-    return this.contextService.getSelectedSprint();
+    return Observable.combineLatest(this.contextService.getSelectedSprint(), this.reloadSub, (s, r) => s);
   }
 
+  public reload() {
+    this.reloadSub.next(true);
+  }
 
   public getXAxis(): Observable<any> {
     return this.getSprint()//
@@ -95,7 +100,7 @@ export class GraphService {
 
   private getClosedStory(date: Date, stories: Array<Story>): string {
     return stories.filter(story => story.closeDate != null
-      ).filter((story) => {
+    ).filter((story) => {
       return Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000;
     }).map((story) => {
       return story.name;

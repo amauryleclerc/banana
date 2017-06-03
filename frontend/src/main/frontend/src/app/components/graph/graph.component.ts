@@ -93,7 +93,7 @@ export class GraphComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.graphService.reload();
   }
 
   saveInstance(chartInstance) {
