@@ -1,5 +1,6 @@
 package fr.aleclerc.banana.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,7 +36,8 @@ public class PlushService {
 	@PostConstruct
 	private void init() throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		InputStream input  = this.getClass().getResourceAsStream("/plush-config.json");
+		InputStream input  = this.getClass().getClassLoader().getResourceAsStream("plush-config.json");
+
 		PlushConfig config = mapper.readValue(input, PlushConfig.class);
 
 		LOGGER.info("init Plush : {}", config);

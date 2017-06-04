@@ -1,5 +1,12 @@
 # Banana
 
+## Run in prod mode
+mvn clean install
+cd dist/target/banana-dist-1.0.0-SNAPSHOT-bin/bin
+./run-banana.sh or ./run-banana.bat
+
+go to http://localhost:9000/
+
 ## Run in dev mode
 cd backend
 mvn spring-boot:run
@@ -9,12 +16,6 @@ cd frontend/src/main/frontend
 npm start
 
 go to http://localhost:4200/
-
-## Run in prod mode
-mvn clean install
-java -jar backend/target/banana-X.X.X.jar
-
-go to http://localhost:9000/
 
 ## API
 http://localhost:9000/api
