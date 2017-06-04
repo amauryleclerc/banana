@@ -1,6 +1,6 @@
 import { Links } from './links';
 import { DateUtils } from '../services/date.service';
-
+import { Sprint } from './sprint';
 export class Story {
 
     static create(object?: any): Story {
@@ -34,7 +34,23 @@ export class Story {
         }
     }
 
-
-
 }
+export class StoryInSprint {
+
+    static create(object?: any): StoryInSprint {
+        if (object != null) {
+            return new StoryInSprint(Story.create(object.story),
+                Sprint.create(object.sprint),
+                object.isInScope);
+        }
+        return new StoryInSprint(Story.create(), null, true);
+    }
+
+    constructor(public story: Story,
+        public sprint: Sprint,
+        public isInScope: boolean) {
+
+    }
+}
+
 

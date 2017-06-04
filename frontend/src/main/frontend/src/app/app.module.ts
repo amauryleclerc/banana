@@ -21,6 +21,7 @@ import { SprintsComponent } from './components/sprints/sprints.component';
 import { NewSprintComponent } from './components/new-sprint/new-sprint.component';
 import { SprintService } from './services/sprint.service';
 import { StoryService } from './services/story.service';
+import { StoryInSprintService } from './services/story-in-sprint.service';
 import { ContextService } from './services/context.service';
 import { ConfigService } from './services/config.service';
 import { PlushService } from './services/plush.service';
@@ -94,6 +95,7 @@ export function highchartsFactory() {
   providers: [SprintService, //
     PlushService, //
     StoryService, //
+    StoryInSprintService,
     ContextService, //
     {
       provide: HighchartsStatic,

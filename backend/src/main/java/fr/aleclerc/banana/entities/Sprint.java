@@ -1,5 +1,6 @@
 package fr.aleclerc.banana.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,12 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Sprint {
+public class Sprint implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6932159372480368455L;
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
@@ -28,8 +34,8 @@ public class Sprint {
 	private Instant start;
 	@Column
 	private Instant end;
-	@ManyToMany
-	private Set<Story> stories = new HashSet<>();
+	@OneToMany(mappedBy="sprint")
+	private Set<StoryInSprint> stories = new HashSet<>();
 	
 	@ManyToOne
 	private Project project;
@@ -58,10 +64,10 @@ public class Sprint {
 	public void setEnd(Instant end) {
 		this.end = end;
 	}
-	public Set<Story> getStories() {
+	public Set<StoryInSprint> getStories() {
 		return stories;
 	}
-	public void setStories(Set<Story> stories) {
+	public void setStories(Set<StoryInSprint> stories) {
 		this.stories = stories;
 	}
 	public Project getProject() {
@@ -73,6 +79,7 @@ public class Sprint {
 
 	public Float getBusinessValue() {
 		return (float) stories.stream()//
+				.map(s -> s.getStory())
 				.filter(s -> s.getBusinessValue() != null)//
 				.mapToLong(s -> s.getBusinessValue().longValue())//
 				.sum();
@@ -80,6 +87,7 @@ public class Sprint {
 	
 	public Float getComplexity() {
 		return (float) stories.stream()//
+				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
 				.mapToLong(s -> s.getComplexity().longValue())//
 				.sum();
@@ -87,6 +95,7 @@ public class Sprint {
 	
 	public Float getEngagedComplexity() {
 		return (float) stories.stream()//
+				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
 				.filter(s -> s.getAddDate() != null)//
 				.filter(s -> s.getAddDate().equals(this.start))//
@@ -96,6 +105,7 @@ public class Sprint {
 	
 	public Float getClosedComplexity() {
 		return (float) stories.stream()//
+				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
 				.filter(s -> s.getCloseDate() != null)//
 				.filter(s -> s.getCloseDate().equals(this.end) || s.getCloseDate().isBefore(this.end) )//

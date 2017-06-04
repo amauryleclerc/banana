@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Sprint } from '../models/sprint';
-import { Story } from '../models/story';
+import { Story, StoryInSprint } from '../models/story';
 import { StoryService } from './story.service';
 import { Observable } from 'rxjs/Rx';
 import { AbstractRestClientService } from './abstract-rest-client.service';
@@ -28,9 +28,10 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
   getStories(sprintId: string): Observable<Story> {
     return this.http.get(super.getUrl() + '/' + sprintId + '/stories')//
       .filter(res => res.status === 200)//
-      .map(res => res.json()._embedded.stories)//
+      .map(res => res.json()._embedded.storyInSprint)//
       .flatMap(list => Observable.from(list))
-      .map(o => Story.create(o));
+      .map(o => StoryInSprint.create(o))
+      .map(s => s.story);
   }
 
   addStory(sprintId: string, story: Story): Observable<Story> {

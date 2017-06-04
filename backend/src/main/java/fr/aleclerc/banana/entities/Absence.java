@@ -1,5 +1,6 @@
 package fr.aleclerc.banana.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -11,7 +12,11 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 @Entity
-public class Absence {
+public class Absence implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5232049451532658258L;
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")

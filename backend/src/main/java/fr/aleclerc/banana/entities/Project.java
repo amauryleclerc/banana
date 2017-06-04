@@ -1,5 +1,6 @@
 package fr.aleclerc.banana.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +14,12 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Project {
+public class Project implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4162649771462060263L;
+
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")

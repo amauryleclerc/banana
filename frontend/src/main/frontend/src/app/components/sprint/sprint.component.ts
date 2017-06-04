@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sprint } from '../../models/sprint';
-import { Story } from '../../models/story';
+import { Story, StoryInSprint } from '../../models/story';
 import { SprintService } from '../../services/sprint.service';
 import { StoryService } from '../../services/story.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -46,6 +46,7 @@ export class SprintComponent implements OnInit {
       e => this.sprintService.setCurrentSprint(null), //
       () => this.sprintService.setCurrentSprint(null));
   }
+
 
 
   private save(story: Story) {

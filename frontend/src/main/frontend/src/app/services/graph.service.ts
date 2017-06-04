@@ -144,7 +144,7 @@ export class Point {
 export class Label {
   public enabled: any = false;
   constructor(public format: string) {
-    if (format != '') {
+    if (format !== '') {
       this.enabled = true;
     }
   }

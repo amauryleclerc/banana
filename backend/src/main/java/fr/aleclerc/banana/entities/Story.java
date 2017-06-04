@@ -1,6 +1,9 @@
 package fr.aleclerc.banana.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -9,12 +12,17 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Story {
+public class Story  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8548390530749817919L;
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
@@ -34,6 +42,9 @@ public class Story {
 	@Enumerated(EnumType.STRING)
 	private EStoryType type;
 
+	@OneToMany(mappedBy="story")
+	private Set<StoryInSprint> sprints = new HashSet<>();
+	
 	public Story() {
 
 	}
@@ -94,6 +105,13 @@ public class Story {
 		this.type = type;
 	}
 
+	public Set<StoryInSprint> getSprints() {
+		return sprints;
+	}
+
+	public void setSprints(Set<StoryInSprint> sprints) {
+		this.sprints = sprints;
+	}
 
 	@Override
 	public String toString() {

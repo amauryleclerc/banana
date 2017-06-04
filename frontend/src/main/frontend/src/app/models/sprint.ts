@@ -1,6 +1,7 @@
 import { Links } from './links';
 import { Observable, Subject } from 'rxjs/Rx';
 import { DateUtils } from '../services/date.service';
+import { StoryInSprint } from './story';
 export class Sprint {
 
 

@@ -1,32 +1,41 @@
 <div class="container-fluid">
   <h1>Sprint {{sprint.name}}</h1>
-  <div>
-    <div class="form-group">
-      <h2 translate>start</h2>
-      <p> {{sprint.start | date : 'dd/MM/yyyy'}}</p>
-    </div>
-    <div class="form-group">
-      <h2 translate>end</h2>
-      <p>{{sprint.end | date : 'dd/MM/yyyy'}}</p>
-    </div>
-
-    <div class="form-group">
-      <h2 translate>complexity</h2>
-      <p>{{sprint.complexity}}</p>
-    </div>
-    <div class="form-group">
-      <h2 translate>engagedComplexity</h2>
-      <p>{{sprint.engagedComplexity}}</p>
-    </div>
-    <div class="form-group">
-      <h2 translate>closedComplexity</h2>
-      <p>{{sprint.closedComplexity}}</p>
-    </div>
-    <div class="form-group">
-      <h2 translate>businessValue</h2>
-      <p>{{sprint.businessValue}}</p>
-    </div>
-  </div>
+</div>
+<div class="container">
+  <table class="table table-striped">
+    <tbody>
+      <tr class="row">
+        <td class="col-sm-2" translate>start</td>
+        <td>{{sprint.start | date : 'dd/MM/yyyy'}}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>end</td>
+        <td>{{sprint.end | date : 'dd/MM/yyyy'}}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>complexity</td>
+        <td>{{sprint.complexity}}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>engagedComplexity</td>
+        <td>{{sprint.engagedComplexity}}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>closedComplexity</td>
+        <td>{{sprint.closedComplexity }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>closedComplexity</td>
+        <td>{{sprint.closedComplexity }}</td>
+      </tr>
+      <tr class="row">
+        <td class="col-sm-2" translate>businessvalue</td>
+        <td>{{sprint.businessValue }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container-fluid">
   <h2>Stories
     <button type="button" class="btn btn-primary" (click)="add()">
 			<i class="fa fa-plus" aria-hidden="true"></i>
