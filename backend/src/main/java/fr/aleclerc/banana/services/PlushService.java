@@ -44,10 +44,6 @@ public class PlushService {
 		
 		config.getPlushs()//
 		.stream()//
-		.map(p ->{
-			p.setImg("http://127.0.0.1:9000/"+p.getImg());
-			return p;
-		})//
 		.forEach(p -> {
 			PlushState state = new PlushState();
 			state.setPlush(p);

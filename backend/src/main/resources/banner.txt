@@ -1,7 +1,4 @@
-
-
-                                                                                                            
-                                                                                                            
+                                                                                                                                                                                                                    
 BBBBBBBBBBBBBBBBB                                                                                           
 B::::::::::::::::B                                                                                          
 B::::::BBBBBB:::::B                                                                                         
@@ -20,8 +17,4 @@ B::::::::::::::::B   a::::::::::aa:::a n::::n    n::::n a::::::::::aa:::a n::::n
 BBBBBBBBBBBBBBBBB     aaaaaaaaaa  aaaa nnnnnn    nnnnnn  aaaaaaaaaa  aaaa nnnnnn    nnnnnn  aaaaaaaaaa  aaaa
                                                                                                             
                                                                                                             
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
+                                                                                             

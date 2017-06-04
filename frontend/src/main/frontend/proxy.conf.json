@@ -4,7 +4,12 @@
     "secure": false,
     "logLevel": "debug"
   },
-   "/websocket/*": {
+  "/img": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/websocket/*": {
     "target": "http://localhost:9000/",
     "ws": true,
     "logLevel": "debug"
