@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isFullScreen" >
   <div class="form-group">
     <label translate>yourname</label> <input type="text" class="form-control" maxlength="50" [(ngModel)]="memberName" (ngModelChange)="onMemberNameChange()">
   </div>

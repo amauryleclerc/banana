@@ -4,6 +4,7 @@ import { PlushState } from '../../models/plush-state';
 import { Plush } from '../../models/plush';
 import { User } from '../../models/user';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { ContextService } from '../../services/context.service';
 
 @Component({
   selector: 'app-plush',
@@ -12,10 +13,13 @@ import { LocalStorageService } from 'angular-2-local-storage';
 })
 export class PlushComponent implements OnInit {
 
-  memberName: string = '';
-  memberId: string = '';
+  memberName: String = '';
+  memberId: String = '';
   plushs: Array<PlushState> = new Array();
-  constructor(private plushService: PlushService, private localStorageService: LocalStorageService) {
+  isFullScreen: Boolean = false;
+  constructor(private plushService: PlushService,
+    private localStorageService: LocalStorageService,
+    private contextService: ContextService) {
     this.memberName = localStorageService.get<string>('memberName');
     this.memberId = localStorageService.get<string>('memberId');
   }
@@ -23,6 +27,7 @@ export class PlushComponent implements OnInit {
 
   ngOnInit() {
     this.plushService.getPlushs().subscribe(plush => this.addOrReplace(plush), e => console.error(e));
+    this.contextService.getFullScreenMode().subscribe(v => this.isFullScreen = v, e =>  console.error(e));
   }
 
   private addOrReplace(plush: PlushState): void {
@@ -44,13 +49,13 @@ export class PlushComponent implements OnInit {
 
   take(plush: Plush): void {
     if (this.memberId !== null && this.memberId !== '') {
-      this.plushService.take(new PlushState(plush, new User(this.memberId, this.memberName)));
+      this.plushService.take(new PlushState(plush, new User(this.memberId.toString(), this.memberName.toString())));
     }
   }
 
   release(plush: Plush): void {
     if (this.memberId !== null && this.memberId !== '') {
-      this.plushService.release(new PlushState(plush, new User(this.memberId, this.memberName)));
+      this.plushService.release(new PlushState(plush, new User(this.memberId.toString(), this.memberName.toString())));
     }
   }
 }

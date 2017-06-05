@@ -31,6 +31,7 @@ import { StompConfigService, StompService } from "@stomp/ng2-stompjs";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 declare var require: any;
 
@@ -78,8 +79,9 @@ export function highchartsFactory() {
     HttpModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes, { useHash: true }),
+    HotkeyModule.forRoot(),
     ChartModule,
-   LocalStorageModule.withConfig({
+    LocalStorageModule.withConfig({
       prefix: 'banana',
       storageType: 'localStorage'
     }),

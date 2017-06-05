@@ -6,16 +6,20 @@ import { SprintService } from './sprint.service';
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router, NavigationEnd } from '@angular/router';
+import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
 @Injectable()
 export class ContextService {
 
     private sprintSelected: Subject<string> = new BehaviorSubject(null);
+    private fullScreenMode: Subject<Boolean> = new BehaviorSubject(false);
+    private isFullScreen: Boolean = false;
     private viewSelected: Observable<string>;
 
     constructor(private localStorageService: LocalStorageService,
         private sprintService: SprintService,
-        private router: Router) {
+        private router: Router,
+        private hotkeysService: HotkeysService) {
         const selectedSprintId = this.localStorageService.get<string>('selectedSprintId');
         if (selectedSprintId != null) {
             this.sprintSelected.next(selectedSprintId);
@@ -31,6 +35,12 @@ export class ContextService {
                 }
                 return url;
             }).shareReplay(1);
+
+        this.hotkeysService.add(new Hotkey('ctrl+shift+f', evt => {
+            this.isFullScreen = !this.isFullScreen;
+            this.fullScreenMode.next(this.isFullScreen);
+            return false;
+        }));
     }
 
     public getSelectedSprintId(): Observable<string> {
@@ -48,6 +58,10 @@ export class ContextService {
 
     public getViewSelected(): Observable<string> {
         return this.viewSelected;
+    }
+
+    public getFullScreenMode(): Observable<Boolean> {
+        return this.fullScreenMode;
     }
 
 }
