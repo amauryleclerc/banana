@@ -15,7 +15,6 @@ public class StoryInSprintId  implements Serializable{
 	private UUID story;
 	
 	public StoryInSprintId(){
-		
 	}
 
 	public StoryInSprintId(UUID sprint, UUID story){
@@ -30,6 +29,15 @@ public class StoryInSprintId  implements Serializable{
 
 	public UUID getStory() {
 		return story;
+	}
+
+	
+	public void setSprint(UUID sprint) {
+		this.sprint = sprint;
+	}
+
+	public void setStory(UUID story) {
+		this.story = story;
 	}
 
 	@Override

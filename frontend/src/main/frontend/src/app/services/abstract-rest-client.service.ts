@@ -7,8 +7,10 @@ export abstract class AbstractRestClientService<T> {
   public static readonly PAGE_SIZE = '20';
   bottomSubject: Subject<boolean> = new Subject();
 
-  constructor(private httpClient: Http, private embeddedName: string) {
-
+  constructor(private httpClient: Http, private contextPath: string, private embeddedName?: string) {
+    if (this.embeddedName == null) {
+      this.embeddedName = this.contextPath;
+    }
   }
 
   protected _getAllByPage(): Observable<T> {
@@ -39,10 +41,10 @@ export abstract class AbstractRestClientService<T> {
   }
 
   public getUrl(): string {
-    return 'http://' + window.location.host + '/api/' + this.embeddedName;
+    return 'http://' + window.location.host + '/api/' + this.contextPath;
   }
 
-  public save(item: T): Observable<T> {
+  protected _save(item: T): Observable<T> {
     return this.httpClient.post(this.getUrl(), item)//
       .flatMap(this.handleResponse);
   }

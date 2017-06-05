@@ -37,18 +37,24 @@ export class Story {
 }
 export class StoryInSprint {
 
-    static create(object?: any): StoryInSprint {
-        if (object != null) {
-            return new StoryInSprint(Story.create(object.story),
-                Sprint.create(object.sprint),
-                object.isInScope);
+    static createArray(array: Array<any>): Array<StoryInSprint> {
+        if (array != null) {
+            return array.map(o => StoryInSprint.create(o));
         }
-        return new StoryInSprint(Story.create(), null, true);
+        return new Array();
     }
 
-    constructor(public story: Story,
-        public sprint: Sprint,
-        public isInScope: boolean) {
+    static create(object?: any): StoryInSprint {
+        if (object != null) {
+            return new StoryInSprint(
+                object.isInScope,
+                Story.create(object.story));
+        }
+        return new StoryInSprint(true, null);
+    }
+
+    constructor(
+        public isInScope: boolean, public story: Story) {
 
     }
 }

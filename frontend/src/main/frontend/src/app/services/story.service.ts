@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Story } from '../models/story';
 import { AbstractRestClientService } from './abstract-rest-client.service';
-import { Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class StoryService extends AbstractRestClientService<Story>  {
@@ -19,5 +19,9 @@ export class StoryService extends AbstractRestClientService<Story>  {
   }
   public getOne(id: string): Observable<Story> {
     return this._getOne(id).map(o => Story.create(o));
+  }
+
+  public save(story: Story): Observable<Story> {
+    return this._save(story);
   }
 }

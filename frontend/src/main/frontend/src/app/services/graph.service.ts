@@ -28,7 +28,8 @@ export class GraphService {
   }
 
   public getSprint(): Observable<Sprint> {
-    return Observable.combineLatest(this.contextService.getSelectedSprint(), this.reloadSub, (s, r) => s);
+    return Observable.combineLatest(this.contextService.getSelectedSprint(), this.reloadSub, (s, r) => s)//
+      .switchMap(s => this.sprintService.getOne(s.id));
   }
 
   public reload() {
@@ -47,25 +48,21 @@ export class GraphService {
   }
 
   public getComplexities(): Observable<Array<Point>> {
-    return this.getSprint().switchMap(sprint =>
-      this.sprintService.getStories(sprint.id)//
-        .toArray()//
-        .flatMap(stories => sprint.getDates()//
-          .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
-          .map(date => new Point(date.getTime(), this.getComplexity(date, stories, sprint), new Label(this.getClosedStory(date, stories))))//
-        ).toArray()
-    )
+    return this.getSprint().switchMap(sprint => sprint.getDates()//
+      .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
+      .map(date => {
+        return new Point(date.getTime(), this.getComplexity(date, sprint.stories.map(s => s.story), sprint),
+          new Label(this.getClosedStory(date, sprint.stories.map(s => s.story))));
+      }).toArray());
+
   }
 
   public getBonusComplexities(): Observable<Array<Array<number>>> {
-    return this.getSprint().switchMap(sprint =>
-      this.sprintService.getStories(sprint.id)//
-        .toArray()//
-        .flatMap(stories => sprint.getDates()//
-          .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
-          .map(date => [date.getTime(), this.getBonusComplexity(date, stories, sprint)])//
-        ).toArray()
-    )
+    return this.getSprint().switchMap(sprint => sprint.getDates()//
+      .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
+      .map(date => [date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint)])//
+    ).toArray();
+
   }
   public getIdealComplexities(): Observable<Array<Array<number>>> {
     return this.getSprint().switchMap(sprint =>
@@ -99,6 +96,7 @@ export class GraphService {
   }
 
   private getClosedStory(date: Date, stories: Array<Story>): string {
+
     return stories.filter(story => story.closeDate != null
     ).filter((story) => {
       return Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000;

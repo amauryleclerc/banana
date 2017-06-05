@@ -9,6 +9,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 @Entity
 @IdClass(StoryInSprintId.class)
 public class StoryInSprint implements Serializable {

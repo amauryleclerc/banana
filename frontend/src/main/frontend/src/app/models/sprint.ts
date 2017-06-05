@@ -7,6 +7,9 @@ export class Sprint {
 
     static create(object?: any): Sprint {
         if (object != null) {
+            if (typeof object._embedded === 'undefined') {
+                object._embedded = {};
+            }
             return new Sprint(object.id,
                 object.name,
                 DateUtils.getDateIfPresent(object.start),
@@ -15,9 +18,10 @@ export class Sprint {
                 object.complexity,
                 object.engagedComplexity,
                 object.closedComplexity,
+                StoryInSprint.createArray(object._embedded.stories),
                 object._links);
         }
-        return new Sprint(null, null, new Date(), null, 0, 0, 0, 0, null);
+        return new Sprint(null, null, new Date(), null, 0, 0, 0, 0, new Array(), null);
     }
 
 
@@ -29,6 +33,7 @@ export class Sprint {
         public complexity: number,
         public engagedComplexity: number,
         public closedComplexity: number,
+        public stories: Array<StoryInSprint>,
         public _links: Links) {
         if (this.start != null) {
             this.start.setHours(0, 0, 0, 0);

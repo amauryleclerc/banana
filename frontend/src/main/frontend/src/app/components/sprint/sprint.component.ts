@@ -3,6 +3,7 @@ import { Sprint } from '../../models/sprint';
 import { Story, StoryInSprint } from '../../models/story';
 import { SprintService } from '../../services/sprint.service';
 import { StoryService } from '../../services/story.service';
+import { StoryInSprintService } from '../../services/story-in-sprint.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { NgbModal, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -16,58 +17,59 @@ import { NewStoryComponent } from '../new-story/new-story.component';
 export class SprintComponent implements OnInit {
 
   sprint: Sprint;
-  stories: Story[];
+  complexities: number[];
+  types: string[];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private modalService: NgbModal,
     private sprintService: SprintService,
-    private storyService: StoryService) {
+    private storyService: StoryService,
+    private storyInSprintService: StoryInSprintService) {
     this.sprint = Sprint.create();
-    this.stories = new Array<Story>();
+    this.complexities = [0, 0.5, 1, 2, 3, 5, 8, 13];
+    this.types = ['USER_STORY', 'BUG_STORY', 'TECHNICAL_STORY'];
   }
 
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.sprintService.getOne(params['id']))//
-      .do((sprint: Sprint) => this.sprint = sprint)//
-      .do(sprint => this.stories = new Array<Story>())//
-      .switchMap(sprint => this.sprintService.getStories(sprint.id))
-      .do(s => console.log(s))
-      .subscribe((story: Story) => this.stories.push(story));
+      .subscribe((sprint: Sprint) => this.sprint = sprint, e => console.error(e))//
   }
 
   add() {
     this.sprintService.setCurrentSprint(this.sprint);
     const ref: NgbModalRef = this.modalService.open(NewStoryComponent);
     Observable.fromPromise(ref.result)//
-      .flatMap(s => this.sprintService.addStory(this.sprint.id, s))//
-      .subscribe((story: Story) => this.stories.unshift(story), //
+      .flatMap(s => this.storyService.save(s))//
+      .map(s => new StoryInSprint(true, s))
+      .flatMap(s => this.storyInSprintService.save(s, this.sprint))//
+      .subscribe((story: StoryInSprint) => this.sprint.stories.unshift(story), //
       e => this.sprintService.setCurrentSprint(null), //
       () => this.sprintService.setCurrentSprint(null));
   }
 
 
 
-  private save(story: Story) {
-    this.storyService.save(story)//
+  private save(storyInSprint: StoryInSprint) {
+    this.storyService.save(storyInSprint.story)//
       .subscribe((s) => {
-        this.replace(s);
+        this.replace(new StoryInSprint(storyInSprint.isInScope, s));
       });
   }
 
-  private cancel(story: Story) {
-    this.replace(story);
+  private cancel(storyInSprint: StoryInSprint) {
+    this.replace(storyInSprint);
   }
 
-  private selectMore(story: Story) {
-    this.router.navigate(['/story', story.id]);
+  private selectMore(storyInSprint: StoryInSprint) {
+    this.router.navigate(['/story', storyInSprint.story.id]);
   }
 
-  private replace(story: Story) {
-    const index = this.stories.findIndex(s => s.id === story.id);
+  private replace(storyInSprint: StoryInSprint) {
+    const index = this.sprint.stories.findIndex(s => s.story.id === storyInSprint.story.id);
     if (index !== -1) {
-      this.stories[index] = story;
+      this.sprint.stories[index] = storyInSprint;
     }
   }
 

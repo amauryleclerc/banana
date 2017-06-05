@@ -54,27 +54,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let story of stories" class="row">
+      <tr *ngFor="let storyInSprint of sprint.stories"  class="row">
         <td class="col-sm-2">
-          <textfield-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.name"></textfield-cell>
+          <textfield-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.name"></textfield-cell>
         </td>
         <td class="col-sm-1">
-          <combobox-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.complexity" [values]="complexities"></combobox-cell>
+          <combobox-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.complexity" [values]="complexities"></combobox-cell>
         </td>
         <td class="col-sm-1">
-          <textfield-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.businessValue"></textfield-cell>
+          <textfield-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.businessValue"></textfield-cell>
         </td>
         <td class="col-sm-2">
-          <combobox-cell [id]="story.id" [selectedId]="selectedId" [(text)]="story.type" [values]="types"></combobox-cell>
+          <combobox-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.type" [values]="types"></combobox-cell>
         </td>
         <td class="col-sm-2">
-          <datepicker-cell [id]="story.id" [selectedId]="selectedId" [(date)]="story.addDate"></datepicker-cell>
+          <datepicker-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(date)]="storyInSprint.story.addDate"></datepicker-cell>
         </td>
         <td class="col-sm-2">
-          <datepicker-cell [id]="story.id" [selectedId]="selectedId" [(date)]="story.closeDate"></datepicker-cell>
+          <datepicker-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(date)]="storyInSprint.story.closeDate"></datepicker-cell>
         </td>
         <td class="col-sm-2">
-          <action-cell [id]="story.id" [(selectedId)]="selectedId" [value]="story" (onSave)="save($event)" (onCancel)="cancel($event)"
+          <action-cell [id]="storyInSprint.story.id" [(selectedId)]="selectedId" [value]="storyInSprint" (onSave)="save($event)" (onCancel)="cancel($event)"
             (onSelectMore)="selectMore($event)"></action-cell>
         </td>
       </tr>

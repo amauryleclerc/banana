@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { StoryInSprint } from '../models/story';
+import { Sprint } from '../models/sprint';
+import { StoryService } from './story.service';
 import { AbstractRestClientService } from './abstract-rest-client.service';
-import { Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class StoryInSprintService extends AbstractRestClientService<StoryInSprint>  {
 
   public static readonly EMBEDDED_NAME = 'storiesInSprint';
-  constructor(http: Http) {
-    super(http, StoryInSprintService.EMBEDDED_NAME);
+  public static readonly CONTEXT_PATH = 'stories-in-sprint';
+  constructor(private http: Http, private storyService: StoryService) {
+    super(http, StoryInSprintService.CONTEXT_PATH, StoryInSprintService.EMBEDDED_NAME);
   }
   public getAllByPage(): Observable<StoryInSprint> {
     return this._getAllByPage().map(o => StoryInSprint.create(o));
@@ -20,4 +23,21 @@ export class StoryInSprintService extends AbstractRestClientService<StoryInSprin
   public getOne(id: string): Observable<StoryInSprint> {
     return this._getOne(id).map(o => StoryInSprint.create(o));
   }
+
+  public save(storyInSprint: StoryInSprint, sprint: Sprint): Observable<StoryInSprint> {
+    const object: any = {
+      story: storyInSprint.story._links.self.href,
+      sprint: sprint._links.self.href,
+      isInScope: storyInSprint.isInScope
+    };
+    return this.http.post(this.getUrl(), object)//
+      .flatMap(res => this.handleResponse(res))
+      .flatMap(s => this.storyService.getOne(storyInSprint.story.id)//
+        .map(story => {
+          s.story = story;
+          return s;
+        }));
+
+  }
+
 }
