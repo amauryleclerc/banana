@@ -28,8 +28,8 @@ export class GraphService {
   }
 
   public getSprint(): Observable<Sprint> {
-    return Observable.combineLatest(this.contextService.getSelectedSprint(), this.reloadSub, (s, r) => s)//
-      .switchMap(s => this.sprintService.getOne(s.id));
+    return Observable.combineLatest(this.contextService.getSelectedSprintId(), this.reloadSub, (id, r) => id)//
+      .switchMap(id => this.sprintService.getOne(id));
   }
 
   public reload() {
@@ -60,29 +60,29 @@ export class GraphService {
   public getBonusComplexities(): Observable<Array<Point>> {
     return this.getSprint().switchMap(sprint => sprint.getDates()//
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
-       .map(date => {
+      .map(date => {
         return new Point(date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint),
           new Label(''));
       }).toArray());
   }
 
-  public getIdealComplexities(): Observable<Array<Array<number>>> {
+  public getIdealComplexities(): Observable<Array<Point>> {
     return this.getSprint().switchMap(sprint =>
       sprint.getComplexityPerDay()//
         .flatMap(complexityPerDay => sprint.getDates()//
           .reduce((acc, date) => {
             if (acc.length === 0) {
-              acc.push([date.getTime(), sprint.engagedComplexity]);
+              acc.push(new Point(date.getTime(), sprint.engagedComplexity, null));
               return acc;
             }
-            const lastComplexity = acc[acc.length - 1][1];
+            const lastComplexity = acc[acc.length - 1].y;
             if (DateUtils.isWeekend(date)) {
-              acc.push([date.getTime(), lastComplexity]);
+              acc.push(new Point(date.getTime(), lastComplexity, null));
             } else {
-              acc.push([date.getTime(), lastComplexity - complexityPerDay]);
+              acc.push(new Point(date.getTime(), lastComplexity - complexityPerDay, null));
             }
             return acc;
-          }, new Array<Array<number>>())//
+          }, new Array<Point>())//
         )
     )
   }
@@ -105,7 +105,7 @@ export class GraphService {
     }).map((story) => {
       return story.name;
     }).reduce((acc, name) => {
-      return acc + ' ' + name ;
+      return acc + ' ' + name;
     }, '');
   }
 
