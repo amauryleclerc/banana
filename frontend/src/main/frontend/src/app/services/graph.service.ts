@@ -57,13 +57,15 @@ export class GraphService {
 
   }
 
-  public getBonusComplexities(): Observable<Array<Array<number>>> {
+  public getBonusComplexities(): Observable<Array<Point>> {
     return this.getSprint().switchMap(sprint => sprint.getDates()//
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
-      .map(date => [date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint)])//
-    ).toArray();
-
+       .map(date => {
+        return new Point(date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint),
+          new Label(''));
+      }).toArray());
   }
+
   public getIdealComplexities(): Observable<Array<Array<number>>> {
     return this.getSprint().switchMap(sprint =>
       sprint.getComplexityPerDay()//
@@ -102,8 +104,8 @@ export class GraphService {
       return Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000;
     }).map((story) => {
       return story.name;
-    }).reduce((acc, complexity) => {
-      return acc + ' ' + complexity;
+    }).reduce((acc, name) => {
+      return acc + ' ' + name ;
     }, '');
   }
 

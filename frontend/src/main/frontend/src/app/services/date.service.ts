@@ -12,7 +12,7 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
         if (date === null) {
             return '';
         }
-        let d = moment({
+        const d = moment({
             year: date.year,
             month: date.month - 1,
             date: date.day
@@ -24,7 +24,7 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
         if (!value) {
             return null;
         }
-        let d = moment(value, this.momentFormat);
+        const d = moment(value, this.momentFormat);
         console.log({
             year: d.year(),
             month: d.month() + 1,

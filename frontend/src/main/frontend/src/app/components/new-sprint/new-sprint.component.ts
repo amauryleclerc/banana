@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Sprint } from '../../models/sprint';
-
+import { DateUtils } from '../../services/date.service';
 @Component({
   selector: 'app-new-sprint',
   templateUrl: './new-sprint.component.html',
@@ -13,6 +13,7 @@ export class NewSprintComponent implements OnInit {
 
   constructor(private activeModal: NgbActiveModal) {
     this.sprint = Sprint.create();
+    this.sprint.end = new Date(DateUtils.getToday().getTime() + 1814400000); // 3 Weeks
   }
 
   ngOnInit() {
