@@ -1,6 +1,8 @@
 # Banana
 
-## Run in prod mode
+## Run
+
+### Run in prod mode
 mvn clean install
 
 cd dist/target/banana-dist-1.0.0-SNAPSHOT-bin/bin
@@ -9,7 +11,7 @@ cd dist/target/banana-dist-1.0.0-SNAPSHOT-bin/bin
 
 go to http://localhost:9000/
 
-## Run in dev mode
+### Run in dev mode
 cd backend
 
 mvn spring-boot:run
@@ -22,24 +24,27 @@ npm start
 
 go to http://localhost:4200/
 
-## API
+### API
 http://localhost:9000/api
 
-## API Documentation
+### API Documentation
 http://localhost:9000/swagger-ui.html
 
-## Release
-mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
+### Options
+ctrl+maj+f for activate fullscreen mode
 
 ## Deployment
 
-# Build the docker image
+### Release
+mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
+
+### Build the docker image
 docker build -t amauryleclerc/banana .
 
-# Deploy the image within your container
+### Deploy the image within your container
 docker run -p 9000:9000 amauryleclerc/banana
 
-# Undeploy
+### Undeploy
 docker stop <ID>
 
 ## CI
