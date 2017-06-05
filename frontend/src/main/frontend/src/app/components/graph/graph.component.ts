@@ -107,7 +107,6 @@ export class GraphComponent implements OnInit {
     }, e => console.error(e));
 
     this.graphService.getComplexities().subscribe(complexities => {
-      console.log(complexities[0]);
       this.getSeries('Engagé').update({ data: complexities });
     }, e => console.error(e));
 

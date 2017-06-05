@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   sprint: Sprint = null;
   sprints: Sprint[] = new Array<Sprint>();
   isCollapsed: Boolean = false;
+  showSprints: Boolean = false;
   constructor(private sprintService: SprintService, private contextService: ContextService) {
 
   }
@@ -26,6 +27,12 @@ export class MenuComponent implements OnInit {
         .do(s => this.sprint = s)
         .map(s => true)
     ).subscribe(v => { }, e => console.error(e));
+
+    this.contextService.getViewSelected()//
+      .map(v => v === 'graph')
+      .distinctUntilChanged()
+      .subscribe(v => this.showSprints = v, e => console.log(e));
+
 
   }
 

@@ -11,6 +11,7 @@ body, app-root {
     height        : 100%;
     flex-direction: column;
 }
+
 section {
   flex: 1;
   position: relative;
