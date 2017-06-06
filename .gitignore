@@ -50,6 +50,6 @@ testem.log
 Thumbs.db
 
 frontend/src/main/frontend/node
-bin/
+/bin/
 node_modules/
 .vscode/
