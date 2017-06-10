@@ -36,8 +36,11 @@ export class ContextService {
                 return url;
             }).shareReplay(1);
 
+        this.isFullScreen = this.localStorageService.get<Boolean>('isFullScreen');
+        this.fullScreenMode.next(this.isFullScreen);
         this.hotkeysService.add(new Hotkey('ctrl+shift+f', evt => {
             this.isFullScreen = !this.isFullScreen;
+            this.localStorageService.set('isFullScreen', this.isFullScreen);
             this.fullScreenMode.next(this.isFullScreen);
             return false;
         }));

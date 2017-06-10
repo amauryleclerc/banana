@@ -17,17 +17,21 @@ export class PlushComponent implements OnInit {
   memberId: String = '';
   plushs: Array<PlushState> = new Array();
   isFullScreen: Boolean = false;
+  isValid: Boolean = false;
   constructor(private plushService: PlushService,
     private localStorageService: LocalStorageService,
     private contextService: ContextService) {
     this.memberName = localStorageService.get<string>('memberName');
     this.memberId = localStorageService.get<string>('memberId');
+    if (this.memberName != null && this.memberName !== '') {
+      this.isValid = true;
+    }
   }
 
 
   ngOnInit() {
     this.plushService.getPlushs().subscribe(plush => this.addOrReplace(plush), e => console.error(e));
-    this.contextService.getFullScreenMode().subscribe(v => this.isFullScreen = v, e =>  console.error(e));
+    this.contextService.getFullScreenMode().subscribe(v => this.isFullScreen = v, e => console.error(e));
   }
 
   private addOrReplace(plush: PlushState): void {
@@ -44,6 +48,11 @@ export class PlushComponent implements OnInit {
       this.memberId = this.memberName.trim().toLowerCase();
       this.localStorageService.set('memberName', this.memberName);
       this.localStorageService.set('memberId', this.memberId);
+      this.isValid = true;
+    } else {
+      this.localStorageService.set('memberName',null);
+      this.localStorageService.set('memberId',null);
+      this.isValid = false;
     }
   }
 

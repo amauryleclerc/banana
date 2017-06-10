@@ -105,7 +105,10 @@ export class GraphService {
     }).map((story) => {
       return story.name;
     }).reduce((acc, name) => {
-      return acc + ' ' + name;
+      if(acc === ''){
+        return name;
+      }
+      return acc + ', ' + name;
     }, '');
   }
 

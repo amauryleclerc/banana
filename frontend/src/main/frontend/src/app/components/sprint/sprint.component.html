@@ -4,31 +4,31 @@
 <div class="container">
   <table class="table table-striped">
     <tbody>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>start</td>
         <td>{{sprint.start | date : 'dd/MM/yyyy'}}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>end</td>
         <td>{{sprint.end | date : 'dd/MM/yyyy'}}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>complexity</td>
         <td>{{sprint.complexity}}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>engagedComplexity</td>
         <td>{{sprint.engagedComplexity}}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>closedComplexity</td>
         <td>{{sprint.closedComplexity }}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>closedComplexity</td>
         <td>{{sprint.closedComplexity }}</td>
       </tr>
-      <tr class="row">
+      <tr >
         <td class="col-sm-2" translate>businessvalue</td>
         <td>{{sprint.businessValue }}</td>
       </tr>
@@ -43,7 +43,7 @@
   </h2>
   <table class="table table-hover">
     <thead>
-      <tr class="row">
+      <tr >
         <th class="col-sm-2" translate>name</th>
         <th class="col-sm-1" translate>complexity</th>
         <th class="col-sm-1" translate>bv</th>
@@ -54,7 +54,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let storyInSprint of sprint.stories"  class="row">
+      <tr *ngFor="let storyInSprint of sprint.stories"  >
         <td class="col-sm-2">
           <textfield-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.name"></textfield-cell>
         </td>

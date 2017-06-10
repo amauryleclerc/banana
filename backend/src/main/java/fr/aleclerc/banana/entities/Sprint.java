@@ -78,39 +78,47 @@ public class Sprint implements Serializable {
 	}
 
 	public Float getBusinessValue() {
-		return (float) stories.stream()//
+		return stories.stream()//
 				.map(s -> s.getStory())
 				.filter(s -> s.getBusinessValue() != null)//
-				.mapToLong(s -> s.getBusinessValue().longValue())//
-				.sum();
+				.map(s -> s.getComplexity())
+				.reduce(0f,(acc,v)->{
+					return acc + v;
+				});
 	}
-	
+
 	public Float getComplexity() {
-		return (float) stories.stream()//
+		return stories.stream()//
 				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
-				.mapToLong(s -> s.getComplexity().longValue())//
-				.sum();
+				.map(s -> s.getComplexity())
+				.reduce(0f,(acc,v)->{
+					return acc + v;
+				});
 	}
 	
 	public Float getEngagedComplexity() {
-		return (float) stories.stream()//
+		return  stories.stream()//
 				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
 				.filter(s -> s.getAddDate() != null)//
 				.filter(s -> s.getAddDate().equals(this.start))//
-				.mapToLong(s -> s.getComplexity().longValue())//
-				.sum();
+				.map(s -> s.getComplexity())
+				.reduce(0f,(acc,v)->{
+					return acc + v;
+				});
 	}
 	
 	public Float getClosedComplexity() {
-		return (float) stories.stream()//
+		return stories.stream()//
 				.map(s -> s.getStory())//
 				.filter(s -> s.getComplexity() != null)//
 				.filter(s -> s.getCloseDate() != null)//
 				.filter(s -> s.getCloseDate().equals(this.end) || s.getCloseDate().isBefore(this.end) )//
-				.mapToLong(s -> s.getComplexity().longValue())//
-				.sum();
+				.map(s -> s.getComplexity())
+				.reduce(0f,(acc,v)->{
+					return acc + v;
+				});
 	}
 	@Override
 	public int hashCode() {

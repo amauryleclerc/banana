@@ -8,7 +8,7 @@
     <div class="col-xs-6 col-md-4  alert" *ngFor="let state of plushs" [ngClass]="{'alert-info': !state.owner, 'alert-success': (state.owner != null && state.owner.id === memberId), 'alert-danger':(state.owner != null && state.owner.id != memberId)}"
       role="alert">
       <h1>{{state.plush.name}}</h1>
-      <div>
+      <div *ngIf="isValid">
         <button *ngIf="!state.owner" class="btn btn-primary btn-lg " (click)="take(state.plush)" translate>take</button>
         <button *ngIf="(state.owner != null && state.owner.id === memberId) ||  memberId === 'admin'" class="btn btn-default  btn-lg"
           (click)="release(state.plush)" translate>release</button>
