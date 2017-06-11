@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-    <input type="checkbox" #cb class="custom-control-input" [(ngModel)]="isFullScreen" (ngModelChange)="onFullScreenChange(cb.checked)" />
+    <input type="checkbox" #cbFullScreen class="custom-control-input" [(ngModel)]="isFullScreen" (ngModelChange)="onFullScreenChange(cbFullScreen.checked)" />
     <span class="custom-control-indicator"></span>
     <span class="custom-control-description" translate>fullScreen</span>
   </label>
@@ -22,7 +22,7 @@
 
   <div class="form-group">
     <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-    <input type="checkbox" #cb class="custom-control-input" [(ngModel)]="isShowWeekend" (ngModelChange)="onShowWeekendChange(cb.checked)" />
+    <input type="checkbox" #cbWeekend class="custom-control-input" [(ngModel)]="isShowWeekend" (ngModelChange)="onShowWeekendChange(cbWeekend.checked)" />
     <span class="custom-control-indicator"></span>
     <span class="custom-control-description" translate>showWeekend</span>
   </label>

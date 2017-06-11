@@ -3,7 +3,6 @@ import { NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstra
 import * as moment from 'moment';
 
 
-@Injectable()
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
     constructor(private momentFormat: string) {
         super();
