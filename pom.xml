@@ -19,7 +19,6 @@
 		
 		<!-- dependencies version -->
 		<querydsl.version>4.0.7</querydsl.version>
-		<spring.boot.version>1.5.3.RELEASE</spring.boot.version>
 		<springfox.version>2.6.1</springfox.version>
 		<rxjava.version>2.0.6</rxjava.version>
 		
@@ -34,7 +33,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.4.RELEASE</version>
 	</parent>
 
 	<modules>
