@@ -59,8 +59,9 @@
   "search": "search",
   "reset": "reset",
   "fullScreen": "FullScreen",
-  "lang":"Language",
+  "lang": "Language",
   "fr": "French",
-  "en": "English"
+  "en": "English",
+  "showWeekend": "Show weekends"
 
 }

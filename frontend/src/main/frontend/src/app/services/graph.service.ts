@@ -17,6 +17,8 @@ export class GraphService {
     this.reloadSub = new BehaviorSubject(true);
   }
 
+
+
   public getTitle(): Observable<string> {
     return this.getSprint()//
       .map(sprint => sprint.name);
@@ -38,17 +40,39 @@ export class GraphService {
 
   public getXAxis(): Observable<any> {
     return this.getSprint()//
-      .map(sprint => {
-        return {
-          min: sprint.start.getTime(),
-          max: sprint.end.getTime(),
-          type: 'datetime'
-        };
-      });
+      .flatMap(sprint => sprint.getDates()//
+        .bufferCount(2, 1)//
+        .filter(dates => dates[0] != null && dates[1] != null)//
+        .reduce((acc, dates) => {
+          const firstIsWeekend: boolean = DateUtils.isWeekend(dates[0]);
+          const secondIsWeekend: boolean = DateUtils.isWeekend(dates[1]);
+          if (!firstIsWeekend && secondIsWeekend) {
+            acc.push(Break.create(dates[0], dates[1]));
+          } else if (firstIsWeekend && secondIsWeekend && acc.length === 0) {
+            acc.push(Break.create(dates[0], dates[1]));
+          } else if (firstIsWeekend && secondIsWeekend && acc.length >= 0) {
+            acc[acc.length - 1].to = dates[1].getTime();
+          } 
+          return acc;
+        }, Array<Break>())//
+        .withLatestFrom(this.contextService.getShowWeekend(),(breaks, showWeekend) => {
+          if(showWeekend){
+            return [];
+          }
+          return breaks;
+        })
+        .map(breaks => {
+          return {
+            min: sprint.start.getTime(),
+            max: sprint.end.getTime(),
+            type: 'datetime',
+            breaks: breaks
+          };
+        }));
   }
 
   public getComplexities(): Observable<Array<Point>> {
-    return this.getSprint().switchMap(sprint => sprint.getDates()//
+    return this.getSprint().switchMap(sprint => this.getFilteredDate(sprint)//
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
       .map(date => {
         return new Point(date.getTime(), this.getComplexity(date, sprint.stories.map(s => s.story), sprint),
@@ -58,7 +82,7 @@ export class GraphService {
   }
 
   public getBonusComplexities(): Observable<Array<Point>> {
-    return this.getSprint().switchMap(sprint => sprint.getDates()//
+    return this.getSprint().switchMap(sprint => this.getFilteredDate(sprint)//
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
       .map(date => {
         return new Point(date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint),
@@ -69,7 +93,7 @@ export class GraphService {
   public getIdealComplexities(): Observable<Array<Point>> {
     return this.getSprint().switchMap(sprint =>
       sprint.getComplexityPerDay()//
-        .flatMap(complexityPerDay => sprint.getDates()//
+        .flatMap(complexityPerDay => this.getFilteredDate(sprint)//
           .reduce((acc, date) => {
             if (acc.length === 0) {
               acc.push(new Point(date.getTime(), sprint.engagedComplexity, null));
@@ -105,7 +129,7 @@ export class GraphService {
     }).map((story) => {
       return story.name;
     }).reduce((acc, name) => {
-      if(acc === ''){
+      if (acc === '') {
         return name;
       }
       return acc + ', ' + name;
@@ -134,6 +158,26 @@ export class GraphService {
     return DateUtils.dayDiff(sprint.start, story.addDate) > 0 && (story.addDate == null || DateUtils.dayDiff(story.addDate, date) >= 0);
   }
 
+  private getFilteredDate(sprint: Sprint): Observable<Date> {
+    return sprint.getDates()//
+      .withLatestFrom(this.contextService.getShowWeekend(), (date, showWeekend) => { return { 'date': date, 'showWeekend': showWeekend } })//
+      .filter(tuple => <boolean>tuple.showWeekend || !DateUtils.isWeekend(tuple.date))//
+      .map(tuple => tuple.date);
+  }
+
+}
+
+
+export class Break {
+
+  public static create(from: Date, to: Date): Break {
+    return new Break(from.getTime(), to.getTime(), 0);
+  }
+
+  constructor(public from: number, public to: number, public breakSize: number) {
+
+  }
+
 }
 
 export class Point {
@@ -141,9 +185,7 @@ export class Point {
   constructor(public x: number, public y: number, public dataLabels: Label) {
 
   }
-
 }
-
 export class Label {
   public enabled: any = false;
   constructor(public format: string) {

@@ -13,6 +13,7 @@ export class ContextService {
 
     private sprintSelected: Subject<string> = new BehaviorSubject(null);
     private fullScreenMode: Subject<Boolean> = new BehaviorSubject(false);
+    private showWeekend: Subject<Boolean> = new BehaviorSubject(false);
     private isFullScreen: Boolean = false;
     private viewSelected: Observable<string>;
 
@@ -40,6 +41,7 @@ export class ContextService {
             this.setFullScreenMode(!this.isFullScreen);
             return false;
         }));
+        this.setShowWeekend(this.localStorageService.get<Boolean>('showWeekend'));
     }
 
     public getSelectedSprintId(): Observable<string> {
@@ -68,5 +70,14 @@ export class ContextService {
         this.localStorageService.set('isFullScreen', checked);
         this.fullScreenMode.next(checked);
     }
+      public getShowWeekend(): Observable<Boolean> {
+        return this.showWeekend;
+    }
+
+    public setShowWeekend(show: Boolean) {
+        this.localStorageService.set('showWeekend', show);
+        this.showWeekend.next(show);
+    }
+
 
 }

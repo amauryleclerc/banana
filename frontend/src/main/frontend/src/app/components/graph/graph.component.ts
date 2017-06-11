@@ -103,6 +103,7 @@ export class GraphComponent implements OnInit {
     }, e => console.error(e));
 
     this.graphService.getXAxis().subscribe(xAxis => {
+      console.log(xAxis);
       this.chart.xAxis[0].update(xAxis);
     }, e => console.error(e));
 

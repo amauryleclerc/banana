@@ -61,5 +61,6 @@
   "fullScreen": "Plein écran",
   "lang": "Langage",
   "fr": "Français",
-  "en": "Anglais"
+  "en": "Anglais",
+  "showWeekend": "Montrer les weekends"
 }

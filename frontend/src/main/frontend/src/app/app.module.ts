@@ -54,6 +54,8 @@ export function HttpLoaderFactory(http: Http) {
 
 export function highchartsFactory() {
   const hc = require('highcharts');
+  const ba = require('highcharts/modules/broken-axis');
+  ba(hc);
   return hc;
 }
 
