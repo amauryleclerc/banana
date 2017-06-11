@@ -47,16 +47,20 @@ export class GraphService {
           const firstIsWeekend: boolean = DateUtils.isWeekend(dates[0]);
           const secondIsWeekend: boolean = DateUtils.isWeekend(dates[1]);
           if (!firstIsWeekend && secondIsWeekend) {
-            acc.push(Break.create(dates[0], dates[1]));
+            acc.push(Break.create(dates[1], dates[1]));
           } else if (firstIsWeekend && secondIsWeekend && acc.length === 0) {
             acc.push(Break.create(dates[0], dates[1]));
           } else if (firstIsWeekend && secondIsWeekend && acc.length >= 0) {
             acc[acc.length - 1].to = dates[1].getTime();
-          } 
+          } else if (firstIsWeekend && !secondIsWeekend && acc.length === 0) {
+            acc.push(Break.create(dates[0], dates[1]));
+          } else if (firstIsWeekend && !secondIsWeekend && acc.length >= 0) {
+            acc[acc.length - 1].to = dates[1].getTime();
+          }
           return acc;
         }, Array<Break>())//
-        .withLatestFrom(this.contextService.getShowWeekend(),(breaks, showWeekend) => {
-          if(showWeekend){
+        .withLatestFrom(this.contextService.getShowWeekend(), (breaks, showWeekend) => {
+          if (showWeekend) {
             return [];
           }
           return breaks;
@@ -76,7 +80,7 @@ export class GraphService {
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
       .map(date => {
         return new Point(date.getTime(), this.getComplexity(date, sprint.stories.map(s => s.story), sprint),
-          new Label(this.getClosedStory(date, sprint.stories.map(s => s.story))));
+          new Label(this.getClosedStory(date, sprint)));
       }).toArray());
 
   }
@@ -86,7 +90,7 @@ export class GraphService {
       .filter(date => date.getTime() <= DateUtils.getToday().getTime())//
       .map(date => {
         return new Point(date.getTime(), this.getBonusComplexity(date, sprint.stories.map(s => s.story), sprint),
-          new Label(''));
+          new Label(this.getBonusClosedStory(date, sprint)));
       }).toArray());
   }
 
@@ -121,20 +125,34 @@ export class GraphService {
     }, 0);
   }
 
-  private getClosedStory(date: Date, stories: Array<Story>): string {
-
-    return stories.filter(story => story.closeDate != null
-    ).filter((story) => {
-      return Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000;
-    }).map((story) => {
-      return story.name;
-    }).reduce((acc, name) => {
-      if (acc === '') {
-        return name;
-      }
-      return acc + ', ' + name;
-    }, '');
+  private getClosedStory(date: Date, sprint: Sprint): string {
+    return sprint.stories.map(s => s.story)//
+      .filter((story) => this.isCommitedStory(story, sprint))
+      .filter(story => story.closeDate != null)
+      .filter((story) => Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000)
+      .map((story) => story.name)
+      .reduce((acc, name) => {
+        if (acc === '') {
+          return name;
+        }
+        return acc + ', ' + name;
+      }, '');
   }
+
+  private getBonusClosedStory(date: Date, sprint: Sprint): string {
+    return sprint.stories.map(s => s.story)//
+      .filter((story) => this.isBonusStory(story, sprint,date))
+      .filter(story => story.closeDate != null)
+      .filter((story) => Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000)
+      .map((story) => story.name)
+      .reduce((acc, name) => {
+        if (acc === '') {
+          return name;
+        }
+        return acc + ', ' + name;
+      }, '');
+  }
+
 
 
   private getBonusComplexity(date: Date, stories: Array<Story>, sprint: Sprint): number {
@@ -174,16 +192,23 @@ export class Break {
     return new Break(from.getTime(), to.getTime(), 0);
   }
 
-  constructor(public from: number, public to: number, public breakSize: number) {
+  public from: number;
+  public to: number;
 
+  constructor(from: number, to: number, public breakSize: number) {
+    this.from = from + 1000 * 60 * 60 * 2;
+    this.to = to + 1000 * 60 * 60 * 2;
   }
 
 }
 
 export class Point {
 
-  constructor(public x: number, public y: number, public dataLabels: Label) {
-
+  public x: number;
+  public y: number;
+  constructor(x: number, y: number, public dataLabels: Label) {
+    this.x = x + 1000 * 60 * 60 * 2;
+    this.y = y;
   }
 }
 export class Label {
