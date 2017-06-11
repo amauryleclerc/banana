@@ -35,13 +35,9 @@ export class ContextService {
                 }
                 return url;
             }).shareReplay(1);
-
-        this.isFullScreen = this.localStorageService.get<Boolean>('isFullScreen');
-        this.fullScreenMode.next(this.isFullScreen);
+        this.setFullScreenMode(this.localStorageService.get<Boolean>('isFullScreen'));
         this.hotkeysService.add(new Hotkey('ctrl+shift+f', evt => {
-            this.isFullScreen = !this.isFullScreen;
-            this.localStorageService.set('isFullScreen', this.isFullScreen);
-            this.fullScreenMode.next(this.isFullScreen);
+            this.setFullScreenMode(!this.isFullScreen);
             return false;
         }));
     }
@@ -65,6 +61,12 @@ export class ContextService {
 
     public getFullScreenMode(): Observable<Boolean> {
         return this.fullScreenMode;
+    }
+
+    public setFullScreenMode(checked: Boolean) {
+        this.isFullScreen = checked;
+        this.localStorageService.set('isFullScreen', checked);
+        this.fullScreenMode.next(checked);
     }
 
 }

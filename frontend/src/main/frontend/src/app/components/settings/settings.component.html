@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <h1 translate>settings</h1>
+
+  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+    <input type="checkbox" #cb class="custom-control-input" [(ngModel)]="isFullScreen" (ngModelChange)="onFullScreenChange(cb.checked)" />
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">FullScreen</span>
+  </label>
+
+</div>

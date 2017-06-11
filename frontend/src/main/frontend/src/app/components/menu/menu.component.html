@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded" *ngIf="!isFullScreen" >
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded" *ngIf="!isFullScreen">
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
     data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
     aria-label="Toggle navigation">
@@ -18,6 +18,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/plush" routerLinkActive="active" translate>plush</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/settings" routerLinkActive="active" translate>settings</a>
     </li>
   </ul>
   <ul class="navbar-nav ">

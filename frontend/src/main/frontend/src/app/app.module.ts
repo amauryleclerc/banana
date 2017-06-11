@@ -32,6 +32,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 import { HotkeyModule } from 'angular2-hotkeys';
+import { SettingsComponent } from './components/settings/settings.component';
 
 declare var require: any;
 
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   { path: 'sprint/:id', component: SprintComponent },
   { path: 'graph', component: GraphComponent },
   { path: 'plush', component: PlushComponent },
+  { path: 'settings', component: SettingsComponent },
   { path: '', redirectTo: '/sprints', pathMatch: 'full' },
 ];
 
@@ -71,7 +73,8 @@ export function highchartsFactory() {
     SprintComponent,
     SprintsComponent,
     NewSprintComponent,
-    PlushComponent
+    PlushComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

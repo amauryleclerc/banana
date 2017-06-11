@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sprints',
-  templateUrl: './sprints.component.html',
-  styleUrls: ['./sprints.component.css']
+  templateUrl: './sprints.component.html'
 })
 export class SprintsComponent implements OnInit {
 
