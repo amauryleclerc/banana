@@ -44,4 +44,11 @@ export class MenuComponent implements OnInit {
   onSprintChange(sprint: Sprint) {
     this.contextService.setSelectedSprint(sprint.id);
   }
+
+  addPotentialNewSprint() {
+    this.sprintService.getAll()//
+      .filter(sprint => this.sprints.find(s => s.id === sprint.id) == null)//
+      .do(newSprint => this.sprints.push(newSprint))//
+      .subscribe(__ => { }, e => console.error(e));
+  }
 }

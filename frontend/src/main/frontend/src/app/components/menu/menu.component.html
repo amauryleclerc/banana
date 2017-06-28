@@ -24,7 +24,7 @@
   <ul class="navbar-nav ">
     <li class="nav-item pull-xs-right">
       <div class="form-group">
-        <select [hidden]="!showSprints" id="sprint" name="sprint" [(ngModel)]="sprint" class="custom-select" (ngModelChange)="onSprintChange($event)">
+        <select [hidden]="!showSprints" id="sprint" name="sprint" [(ngModel)]="sprint" class="custom-select" (click)="addPotentialNewSprint()" (ngModelChange)="onSprintChange($event)">
           <option *ngFor="let aSprint of sprints" [ngValue]="aSprint">{{aSprint.name}}</option>
         </select>
       </div>
