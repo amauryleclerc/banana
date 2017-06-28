@@ -16,6 +16,9 @@ import { DatepickerCellComponent } from './ui/datepicker-cell/datepicker-cell.co
 import { ActionCellComponent } from './ui/action-cell/action-cell.component';
 import { NewStoryComponent } from './components/new-story/new-story.component';
 import { DatepickerInputComponent } from './ui/datepicker-input/datepicker-input.component';
+import { ReleaseService } from './services/release.service';
+import { ReleasesComponent } from './components/releases/releases.component';
+import { NewReleaseComponent } from './components/new-release/new-release.component';
 import { SprintComponent } from './components/sprint/sprint.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
 import { NewSprintComponent } from './components/new-sprint/new-sprint.component';
@@ -39,6 +42,7 @@ declare var require: any;
 const appRoutes: Routes = [
   { path: 'stories', component: StoriesComponent },
   { path: 'story/:id', component: StoryComponent },
+  { path: 'releases', component: ReleasesComponent },
   { path: 'sprints', component: SprintsComponent },
   { path: 'sprint/:id', component: SprintComponent },
   { path: 'graph', component: GraphComponent },
@@ -72,6 +76,8 @@ export function highchartsFactory() {
     ActionCellComponent,
     NewStoryComponent,
     DatepickerInputComponent,
+    NewReleaseComponent,
+    ReleasesComponent,
     SprintComponent,
     SprintsComponent,
     NewSprintComponent,
@@ -99,7 +105,9 @@ export function highchartsFactory() {
     })
 
   ],
-  providers: [SprintService, //
+  providers: [//
+    ReleaseService,//
+    SprintService, //
     PlushService, //
     StoryService, //
     StoryInSprintService,
@@ -115,7 +123,11 @@ export function highchartsFactory() {
     },
     LocalStorageService
   ],
-  entryComponents: [NewStoryComponent, NewSprintComponent],
+  entryComponents: [//
+    NewReleaseComponent,//
+    NewStoryComponent,//
+    NewSprintComponent//
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
