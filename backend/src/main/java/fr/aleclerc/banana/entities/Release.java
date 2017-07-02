@@ -8,32 +8,35 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Project implements Serializable  {
+public class Release implements Serializable {
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4162649771462060263L;
+	private static final long serialVersionUID = -609653999674828587L;
 
 	@Id
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
 	private UUID id;
-	
+
 	@Column
 	private String name;
 	
-	@ManyToMany
-	private List<Member> members;
-	
-	@OneToMany(mappedBy="project")
-	private List<Release> release;
+	@OneToMany(mappedBy="release")
+	private List<Sprint> sprint;
 
+	@ManyToOne
+	private Project project;
+
+	
 	public UUID getId() {
 		return id;
 	}
@@ -50,22 +53,20 @@ public class Project implements Serializable  {
 		this.name = name;
 	}
 
-	public List<Member> getMembers() {
-		return members;
+	public List<Sprint> getSprint() {
+		return sprint;
 	}
 
-	public void setMembers(List<Member> members) {
-		this.members = members;
+	public void setSprint(List<Sprint> sprint) {
+		this.sprint = sprint;
 	}
 
-	
-	
-	public List<Release> getRelease() {
-		return release;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setRelease(List<Release> release) {
-		this.release = release;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	@Override
@@ -77,5 +78,13 @@ public class Project implements Serializable  {
 	public boolean equals(Object obj) {
 		return id.equals(obj);
 	}
+	
+	@Override
+	public String toString() {
+		return "Release [id=" + id + ", name=" + name + ", sprint=" + sprint + "]";
+	}
+	
+	
+	
 
 }

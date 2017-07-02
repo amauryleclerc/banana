@@ -34,11 +34,13 @@ public class Sprint implements Serializable {
 	private Instant start;
 	@Column
 	private Instant end;
+	
 	@OneToMany(mappedBy="sprint")
 	private Set<StoryInSprint> stories = new HashSet<>();
 	
 	@ManyToOne
-	private Project project;
+	private Release release;
+
 
 	public UUID getId() {
 		return id;
@@ -70,13 +72,14 @@ public class Sprint implements Serializable {
 	public void setStories(Set<StoryInSprint> stories) {
 		this.stories = stories;
 	}
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
 
+	public Release getRelease() {
+		return release;
+	}
+	public void setRelease(Release release) {
+		this.release = release;
+	}
+	
 	public Float getBusinessValue() {
 		return stories.stream()//
 				.map(s -> s.getStory())

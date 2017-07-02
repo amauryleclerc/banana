@@ -16,12 +16,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		
+
 		<!-- dependencies version -->
 		<querydsl.version>4.0.7</querydsl.version>
 		<springfox.version>2.6.1</springfox.version>
 		<rxjava.version>2.0.6</rxjava.version>
-		
+
 		<!-- plugins version -->
 		<frontend.plugin.version>1.4</frontend.plugin.version>
 		<node.version>v6.10.3</node.version>
@@ -122,4 +122,12 @@
 		</repository>
 	</distributionManagement>
 
+
+	<repositories>
+		<repository>
+			<id>atlassian</id>
+			<name>Atlassian</name>
+			<url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
+		</repository>
+	</repositories>
 </project>
