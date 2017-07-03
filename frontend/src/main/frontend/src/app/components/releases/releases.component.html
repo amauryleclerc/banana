@@ -8,14 +8,31 @@
     <thead>
       <tr>
         <th class="col-sm-2" translate>name</th>
+        <th class="col-sm-2" translate>businessvalue</th>
+        <th class="col-sm-3" translate>start</th>
+        <th class="col-sm-3" translate>end</th>
+        <th class="col-sm-2" translate>actions</th>
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let release of releases">
+      <tr *ngFor="let release of releases">
         <td class="col-sm-2">
-            <textfield-cell [id]="release.id" [selectedId]="selectedId" [(text)]="release.name"></textfield-cell>
+          <textfield-cell [id]="release.id" [selectedId]="selectedId" [(text)]="release.name"></textfield-cell>
         </td>
-    </tr>
+        <td class="col-sm-2">
+          <textfield-cell [id]="release.id" [selectedId]="selectedId" [(text)]="release.businessvalue"></textfield-cell>
+        </td>
+        <td class="col-sm-3">
+          <datepicker-cell [id]="release.id" [selectedId]="selectedId" [(date)]="release.start"></datepicker-cell>
+        </td>
+        <td class="col-sm-3">
+          <datepicker-cell [id]="release.id" [selectedId]="selectedId" [(date)]="release.end"></datepicker-cell>
+        </td>
+        <td class="col-sm-2">
+          <action-cell [id]="release.id" [(selectedId)]="selectedId" [value]="release" (onSave)="save($event)" (onCancel)="cancel($event)"
+            (onSelectMore)="selectMore($event)"></action-cell>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

@@ -4,8 +4,20 @@
 <div class="modal-body" id="modal-body">
   <form novalidate (ngSubmit)="save()" class="simple-form">
     <div class="form-group">
-      <label for="sprint" translate>name</label> <input type="text" class="form-control" id="release" name="name" [(ngModel)]="release.name"
+      <label for="release" translate>name</label> <input type="text" class="form-control" id="release" name="name" [(ngModel)]="release.name"
         focus-me="true" required>
+    </div>
+    <div class="form-group">
+      <label for="release" translate>businessvalue</label> <input type="text" class="form-control" id="release" name="businessValue"
+        [(ngModel)]="release.businessValue" focus-me="true" required>
+    </div>
+    <div class="form-group">
+      <label for="releaseStart" translate>start</label>
+      <datepicker-input [(date)]="release.start"></datepicker-input>
+    </div>
+    <div class="form-group">
+      <label for="releaseEnd" translate>close</label>
+      <datepicker-input [(date)]="release.end"></datepicker-input>
     </div>
   </form>
 </div>
