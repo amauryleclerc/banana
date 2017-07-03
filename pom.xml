@@ -123,11 +123,4 @@
 	</distributionManagement>
 
 
-	<repositories>
-		<repository>
-			<id>atlassian</id>
-			<name>Atlassian</name>
-			<url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
-		</repository>
-	</repositories>
 </project>
