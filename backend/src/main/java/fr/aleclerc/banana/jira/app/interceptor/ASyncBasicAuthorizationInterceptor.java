@@ -1,4 +1,4 @@
-package fr.aleclerc.banana.jira;
+package fr.aleclerc.banana.jira.app.interceptor;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

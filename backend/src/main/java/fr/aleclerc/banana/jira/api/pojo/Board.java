@@ -1,4 +1,4 @@
-package fr.aleclerc.banana.jira.pojo;
+package fr.aleclerc.banana.jira.api.pojo;
 
 public class Board {
 	private Integer id;

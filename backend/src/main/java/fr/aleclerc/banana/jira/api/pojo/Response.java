@@ -1,4 +1,4 @@
-package fr.aleclerc.banana.jira.pojo;
+package fr.aleclerc.banana.jira.api.pojo;
 
 import java.util.List;
 

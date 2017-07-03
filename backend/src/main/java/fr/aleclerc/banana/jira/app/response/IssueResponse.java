@@ -1,6 +1,8 @@
-package fr.aleclerc.banana.jira.pojo;
+package fr.aleclerc.banana.jira.app.response;
 
 import java.util.List;
+
+import fr.aleclerc.banana.jira.api.pojo.Issue;
 
 public class IssueResponse {
 	private String expand;
