@@ -2,6 +2,7 @@ export class Release {
 
     constructor(public id: string,
         public name: string,
+        public businessValue: string,
         public start: Date,
         public end: Date) {
     }
@@ -14,10 +15,11 @@ export class Release {
             return new Release(//
                 object.id,//
                 object.name,//
+                object.businessValue,//
                 object.start,//
                 object.end)
         }
-        return new Release(null, null, new Date(), null);
+        return new Release(null, null, null, new Date(), null);
     }
 
 }
