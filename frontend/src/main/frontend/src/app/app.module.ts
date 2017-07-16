@@ -26,11 +26,9 @@ import { SprintService } from './services/sprint.service';
 import { StoryService } from './services/story.service';
 import { StoryInSprintService } from './services/story-in-sprint.service';
 import { ContextService } from './services/context.service';
-import { ConfigService } from './services/config.service';
 import { PlushService } from './services/plush.service';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { PlushComponent } from './components/plush/plush.component';
-import { StompConfigService, StompService } from "@stomp/ng2-stompjs";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
@@ -39,7 +37,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { JiraProjectComponent } from './components/jira/project/jira-project.component';
 import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.component';
 import { JiraStoryComponent } from './components/jira/story/jira-story.component';
-
+import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 
 declare var require: any;
 
@@ -58,6 +56,29 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/sprints', pathMatch: 'full' },
   { path: '*', redirectTo: '/sprints', pathMatch: 'full' },
 ];
+
+const stompConfig: StompConfig = {
+  // Which server?
+  url: 'ws://' + window.location.host + '/websocket',
+
+  // Headers
+  headers: {
+  },
+
+  // How often to heartbeat?
+  // Interval in milliseconds, set to 0 to disable
+  heartbeat_in: 0, // Typical value 0 - disabled
+  heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
+
+  // Wait in milliseconds before attempting auto reconnect
+  // Set to 0 to disable
+  // Typical value 5000 (5 seconds)
+  reconnect_delay: 5000,
+
+  // Will log diagnostics on console
+  debug: true
+};
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -117,7 +138,7 @@ export function highchartsFactory() {
 
   ],
   providers: [//
-    ReleaseService,//
+    ReleaseService, //
     SprintService, //
     PlushService, //
     StoryService, //
@@ -127,16 +148,16 @@ export function highchartsFactory() {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     }, //
-    StompService, //
+    StompService,
     {
-      provide: StompConfigService,
-      useClass: ConfigService
+      provide: StompConfig,
+      useValue: stompConfig
     },
     LocalStorageService
   ],
   entryComponents: [//
-    NewReleaseComponent,//
-    NewStoryComponent,//
+    NewReleaseComponent, //
+    NewStoryComponent, //
     NewSprintComponent//
   ],
   bootstrap: [AppComponent]
