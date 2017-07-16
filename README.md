@@ -7,7 +7,9 @@ mvn clean install
 
 cd dist/target/banana-dist-1.0.0-SNAPSHOT-bin/bin
 
-./run-banana.sh or ./run-banana.bat
+> sh ./run-banana.sh 
+or 
+> run-banana.bat
 
 go to http://localhost:9000/
 
