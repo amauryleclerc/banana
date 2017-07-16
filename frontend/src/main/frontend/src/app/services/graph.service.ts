@@ -141,7 +141,7 @@ export class GraphService {
 
   private getBonusClosedStory(date: Date, sprint: Sprint): string {
     return sprint.stories.map(s => s.story)//
-      .filter((story) => this.isBonusStory(story, sprint,date))
+      .filter((story) => this.isBonusStory(story, sprint, date))
       .filter(story => story.closeDate != null)
       .filter((story) => Math.abs(story.closeDate.getTime() - date.getTime()) < 6000000)
       .map((story) => story.name)
@@ -178,7 +178,7 @@ export class GraphService {
 
   private getFilteredDate(sprint: Sprint): Observable<Date> {
     return sprint.getDates()//
-      .withLatestFrom(this.contextService.getShowWeekend(), (date, showWeekend) => { return { 'date': date, 'showWeekend': showWeekend } })//
+      .withLatestFrom(this.contextService.getShowWeekend(), (date, showWeekend) => { return{ 'date': date, 'showWeekend': showWeekend }})
       .filter(tuple => <boolean>tuple.showWeekend || !DateUtils.isWeekend(tuple.date))//
       .map(tuple => tuple.date);
   }
@@ -188,12 +188,14 @@ export class GraphService {
 
 export class Break {
 
+  public from: number;
+  public to: number;
+
   public static create(from: Date, to: Date): Break {
     return new Break(from.getTime(), to.getTime(), 0);
   }
 
-  public from: number;
-  public to: number;
+
 
   constructor(from: number, to: number, public breakSize: number) {
     this.from = from + 1000 * 60 * 60 * 2;

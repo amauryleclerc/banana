@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Story  implements Serializable{
 	/**
@@ -33,9 +35,13 @@ public class Story  implements Serializable{
 	@Column
 	private Float complexity;
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
 	private Instant addDate;
 	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
 	private Instant closeDate;
+	@Column
+	private String jiraId;
 	@Column
 	private Float businessValue;
 	@Column
@@ -111,6 +117,14 @@ public class Story  implements Serializable{
 
 	public void setSprints(Set<StoryInSprint> sprints) {
 		this.sprints = sprints;
+	}
+
+	public String getJiraId() {
+		return jiraId;
+	}
+
+	public void setJiraId(String jiraId) {
+		this.jiraId = jiraId;
 	}
 
 	@Override

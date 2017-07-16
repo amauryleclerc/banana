@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <h1>Jira Story</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-6" translate>name</th>
+        <th class="col-sm-6" translate>adddate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let story of stories">
+        <td class="col-sm-6">
+          {{story.name}}
+        </td>
+        <td class="col-sm-6">
+          <datepicker-cell [id]="story.id" [(date)]="story.addDate"></datepicker-cell>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

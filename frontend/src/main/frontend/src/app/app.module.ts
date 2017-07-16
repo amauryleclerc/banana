@@ -36,6 +36,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { SettingsComponent } from './components/settings/settings.component';
+import { JiraProjectComponent } from './components/jira/project/jira-project.component';
+import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.component';
+import { JiraStoryComponent } from './components/jira/story/jira-story.component';
+
 
 declare var require: any;
 
@@ -48,7 +52,11 @@ const appRoutes: Routes = [
   { path: 'graph', component: GraphComponent },
   { path: 'plush', component: PlushComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'jira/project', component: JiraProjectComponent },
+  { path: 'jira/sprint/:id', component: JiraSprintComponent },
+  { path: 'jira/story/:id', component: JiraStoryComponent },
   { path: '', redirectTo: '/sprints', pathMatch: 'full' },
+  { path: '*', redirectTo: '/sprints', pathMatch: 'full' },
 ];
 
 // AoT requires an exported function for factories
@@ -82,7 +90,10 @@ export function highchartsFactory() {
     SprintsComponent,
     NewSprintComponent,
     PlushComponent,
-    SettingsComponent
+    SettingsComponent,
+    JiraProjectComponent,
+    JiraSprintComponent,
+    JiraStoryComponent
   ],
   imports: [
     BrowserModule,

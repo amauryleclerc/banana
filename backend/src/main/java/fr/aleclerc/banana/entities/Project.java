@@ -28,6 +28,9 @@ public class Project implements Serializable  {
 	@Column
 	private String name;
 	
+	@Column
+	private String jiraId;
+	
 	@ManyToMany
 	private List<Member> members;
 	
@@ -58,8 +61,16 @@ public class Project implements Serializable  {
 		this.members = members;
 	}
 
+	 
 	
-	
+	public String getJiraId() {
+		return jiraId;
+	}
+
+	public void setJiraId(String jiraId) {
+		this.jiraId = jiraId;
+	}
+
 	public List<Release> getRelease() {
 		return release;
 	}

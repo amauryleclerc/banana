@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import fr.aleclerc.banana.jira.api.pojo.Issue;
 import fr.aleclerc.banana.jira.api.service.IIssueService;
 import fr.aleclerc.banana.jira.app.response.IssueResponse;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 @Service
-public class IssueService implements IIssueService{
-	
+public class IssueService implements IIssueService {
+
 	private RxRestService restService;
 
 	@Autowired
@@ -21,19 +21,16 @@ public class IssueService implements IIssueService{
 	}
 
 	@Override
-	public Observable<Issue> get(String id) {
-		return null;
+	public Single<Issue> get(String id) {
+		return restService.get("/rest/agile/1.0/issue/"+id, Issue.class);
 	}
 
-	@Override
-	public Observable<List<Issue>> getAll() {
-		return null;
-	}
+
 
 	@Override
-	public Observable<List<Issue>> getFromSprint(String boardId, String sprintId) {
-		return restService.get("http://localhost:8080/rest/agile/1.0/board/" + boardId + "/sprint/"+sprintId+"/issue", IssueResponse.class)//
-				.map(r -> r.getIssues());
+	public Single<List<Issue>> getFromSprint( String sprintId) {
+		return restService.get("/rest/agile/1.0/sprint/" + sprintId + "/issue", IssueResponse.class)//
+				.map(IssueResponse::getIssues);
 	}
 
 }

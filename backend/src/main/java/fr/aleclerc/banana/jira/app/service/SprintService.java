@@ -6,34 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.aleclerc.banana.jira.api.pojo.Sprint;
+import fr.aleclerc.banana.jira.api.service.IBoardService;
 import fr.aleclerc.banana.jira.api.service.ISprintService;
 import fr.aleclerc.banana.jira.app.response.SprintResponse;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 @Service
-public class SprintService implements ISprintService{
-	
+public class SprintService implements ISprintService {
+
 	private RxRestService restService;
+	private IBoardService boardService;
 
 	@Autowired
-	public SprintService(RxRestService restService) {
+	public SprintService(RxRestService restService, IBoardService boardService) {
 		this.restService = restService;
+		this.boardService = boardService;
 	}
 
 	@Override
-	public Observable<Sprint> get(String id) {
-		return null;
+	public Single<Sprint> get(String id) {
+		return restService.get("/rest/agile/1.0/sprint/" + id, Sprint.class);
 	}
 
-	@Override
-	public Observable<List<Sprint>> getAll() {
-		return null;
-	}
+
 
 	@Override
-	public Observable<List<Sprint>> getFromBoard(String boardId) {
-		return restService.get("http://localhost:8080/rest/agile/1.0/board/" + boardId + "/sprint", SprintResponse.class)//
-				.map(r -> r.getValues());
+	public Single<List<Sprint>> getFromBoard(String boardId) {
+		return restService.get("/rest/agile/1.0/board/" + boardId + "/sprint", SprintResponse.class)//
+				.map(SprintResponse::getValues);
 	}
 
 }

@@ -1,8 +1,5 @@
 package fr.aleclerc.banana.services;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,16 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import fr.aleclerc.banana.domain.plush.PlushConfig;
+import fr.aleclerc.banana.domain.plush.IPlushConfig;
 import fr.aleclerc.banana.domain.plush.PlushState;
 import fr.aleclerc.banana.domain.plush.User;
-import fr.aleclerc.banana.entities.Sprint;
-import fr.aleclerc.banana.entities.Story;
-import fr.aleclerc.banana.entities.StoryInSprint;
 import fr.aleclerc.banana.repositories.SprintRepository;
 import fr.aleclerc.banana.repositories.StoryInSprintRepository;
 import fr.aleclerc.banana.repositories.StoryRepository;
@@ -48,34 +38,24 @@ public class PlushService {
 
 	@Autowired
 	private StoryRepository storyrepo;
+	
+	@Autowired
+	private IPlushConfig plushConfig;
 
 	@PostConstruct
-	private void init() throws JsonParseException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream("plush-config.json");
+	private void init() {
 
-		PlushConfig config = mapper.readValue(input, PlushConfig.class);
 
-		LOGGER.info("init Plush : {}", config);
+		LOGGER.info("init Plush : {}", plushConfig);
 
-		config.getPlushs()//
+		plushConfig.getPlushs()//
 				.stream()//
 				.forEach(p -> {
 					PlushState state = new PlushState();
 					state.setPlush(p);
 					plushStates.put(p.getId(), state);
 				});
-//		Story s = new Story();
-//		s.setName("Story-00");
-//		s = storyrepo.save(s);
-//		Sprint sp = new Sprint();
-//		sp.setName("Sprint-00");
-//		sp = sprintrepo.save(sp);
-//		StoryInSprint sins = new StoryInSprint();
-//		sins.setSprint(sp);
-//		sins.setStory(s);
-//		sinsrepo.saveAndFlush(sins);
-//		System.err.println(sins);
+
 	}
 
 	public void take(User user, String plushId) {

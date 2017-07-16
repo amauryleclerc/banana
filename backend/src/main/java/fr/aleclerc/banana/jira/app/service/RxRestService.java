@@ -2,19 +2,18 @@ package fr.aleclerc.banana.jira.app.service;
 
 import java.util.Arrays;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.AsyncRestTemplate;
 
 import fr.aleclerc.banana.jira.api.config.IJiraClientConfig;
+import fr.aleclerc.banana.jira.api.service.IRxRestService;
 import fr.aleclerc.banana.jira.app.interceptor.ASyncBasicAuthorizationInterceptor;
 import fr.aleclerc.banana.utils.RxUtils;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 @Service
-public class RxRestService {
+public class RxRestService implements IRxRestService{
 
 	private final AsyncRestTemplate restTemplate;
 	private IJiraClientConfig config;
@@ -27,7 +26,8 @@ public class RxRestService {
 				Arrays.asList(new ASyncBasicAuthorizationInterceptor(config.getUser(), config.getPassword())));
 	}
 
-	public <T> Observable<T> get(String contextPath, Class<T> response) {
+	@Override
+	public <T> Single<T> get(String contextPath, Class<T> response) {
 		return RxUtils.fromListenableFuture(restTemplate.getForEntity(config.getUrl() + contextPath, response));
 	}
 }

@@ -2,12 +2,12 @@ package fr.aleclerc.banana.jira.api.service;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 
 public interface IJiraApiService<T> {
 	
-	Observable<T> get(String id);
+	Single<T> get(String id);
 	
-	Observable<List<T>> getAll();
-
+	
 }

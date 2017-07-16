@@ -14,6 +14,7 @@ export class Sprint {
                 object.name,
                 DateUtils.getDateIfPresent(object.start),
                 DateUtils.getDateIfPresent(object.end),
+                object.jiraId,
                 object.businessValue,
                 object.complexity,
                 object.engagedComplexity,
@@ -21,7 +22,7 @@ export class Sprint {
                 StoryInSprint.createArray(object._embedded.stories),
                 object._links);
         }
-        return new Sprint(null, null, new Date(), null, 0, 0, 0, 0, new Array(), null);
+        return new Sprint(null, null, new Date(), null, null, 0, 0, 0, 0, new Array(), null);
     }
 
 
@@ -29,6 +30,7 @@ export class Sprint {
         public name: string,
         public start: Date,
         public end: Date,
+        public jiraId: string,
         public businessValue: number,
         public complexity: number,
         public engagedComplexity: number,
@@ -54,7 +56,7 @@ export class Sprint {
         return this.getDates()//
             .filter(date => !DateUtils.isWeekend(date))
             .count()//
-            .map(nbDays => this.engagedComplexity / nbDays);
+            .map(nbDays => this.engagedComplexity / (nbDays - 1));
     }
 
 }

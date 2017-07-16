@@ -12,7 +12,7 @@ public class Fields {
 	private Project project;
 	private List<String> fixVersions;
 	private String aggregatetimespent;
-	private String resolution;
+	//private String resolution;
 	//private String timetracking;
 	//private String attachment;
 	private String aggregatetimeestimate;
@@ -97,12 +97,12 @@ public class Fields {
 	public void setAggregatetimespent(String aggregatetimespent) {
 		this.aggregatetimespent = aggregatetimespent;
 	}
-	public String getResolution() {
-		return resolution;
-	}
-	public void setResolution(String resolution) {
-		this.resolution = resolution;
-	}
+//	public String getResolution() {
+//		return resolution;
+//	}
+//	public void setResolution(String resolution) {
+//		this.resolution = resolution;
+//	}
 //	public String getTimetracking() {
 //		return timetracking;
 //	}
@@ -284,19 +284,19 @@ public class Fields {
 //	public void setStatus(String status) {
 //		this.status = status;
 //	}
-	@Override
-	public String toString() {
-		return "Fields [issueType=" + issuetype + ", components=" + components + ", timespent=" + timespent
-				+ ", timeoriginalestimate=" + timeoriginalestimate + ", sprint=" + sprint + ", description="
-				+ description + ", project=" + project + ", fixVersions=" + fixVersions + ", aggregatetimespent="
-				+ aggregatetimespent + ", resolution=" + resolution + ", aggregatetimeestimate=" + aggregatetimeestimate
-				+ ", flagged=" + flagged + ", resolutiondate=" + resolutiondate + ", workratio=" + workratio
-				+ ", summary=" + summary + ", lastViewed=" + lastViewed + ", created=" + created
-				+ ", customfield_10000=" + customfield_10000 + ", labels=" + labels + ", environment=" + environment
-				+ ", timeestimate=" + timeestimate + ", aggregatetimeoriginalestimate=" + aggregatetimeoriginalestimate
-				+ ", versions=" + versions + ", duedate=" + duedate + ", issueLinks=" + issueLinks + ", updated="
-				+ updated + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Fields [issueType=" + issuetype + ", components=" + components + ", timespent=" + timespent
+//				+ ", timeoriginalestimate=" + timeoriginalestimate + ", sprint=" + sprint + ", description="
+//				+ description + ", project=" + project + ", fixVersions=" + fixVersions + ", aggregatetimespent="
+//				+ aggregatetimespent + ", resolution=" + resolution + ", aggregatetimeestimate=" + aggregatetimeestimate
+//				+ ", flagged=" + flagged + ", resolutiondate=" + resolutiondate + ", workratio=" + workratio
+//				+ ", summary=" + summary + ", lastViewed=" + lastViewed + ", created=" + created
+//				+ ", customfield_10000=" + customfield_10000 + ", labels=" + labels + ", environment=" + environment
+//				+ ", timeestimate=" + timeestimate + ", aggregatetimeoriginalestimate=" + aggregatetimeoriginalestimate
+//				+ ", versions=" + versions + ", duedate=" + duedate + ", issueLinks=" + issueLinks + ", updated="
+//				+ updated + "]";
+//	}
 
 	
 	

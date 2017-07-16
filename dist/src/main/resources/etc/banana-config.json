@@ -1,0 +1,17 @@
+{
+	"plushs": [
+		{
+			"id": "minion",
+			"name": "Minion",
+			"img": "img/minion.jpg"
+		},
+		{
+			"id": "snake",
+			"name": "Snake",
+			"img": "img/snake.jpg"
+		}
+	],
+	"jiraUser": "username",
+	"jiraPassword": "password",
+	"jiraUrl": "http://localhost:8080"
+}

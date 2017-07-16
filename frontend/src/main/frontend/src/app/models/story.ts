@@ -10,11 +10,12 @@ export class Story {
                 object.complexity,
                 DateUtils.getDateIfPresent(object.addDate),
                 DateUtils.getDateIfPresent(object.closeDate),
+                object.jiraId,
                 object.businessValue,
                 object.type,
                 object._links);
         }
-        return new Story(null, null, 0, new Date(), null, 0, 'USER_STORY', null);
+        return new Story(null, null, 0, new Date(), null, null, 0, 'USER_STORY', null);
     }
 
 
@@ -23,6 +24,7 @@ export class Story {
         public complexity: number,
         public addDate: Date,
         public closeDate: Date,
+        public jiraId: string,
         public businessValue: number,
         public type: string,
         public _links: Links) {

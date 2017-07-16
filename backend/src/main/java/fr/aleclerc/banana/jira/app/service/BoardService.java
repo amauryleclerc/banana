@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.aleclerc.banana.jira.api.pojo.Board;
-import fr.aleclerc.banana.jira.api.service.IBoadService;
+import fr.aleclerc.banana.jira.api.service.IBoardService;
 import fr.aleclerc.banana.jira.app.response.BoardResponse;
-import io.reactivex.Observable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 @Service
-public class BoardService implements IBoadService{
+public class BoardService implements IBoardService{
 	
 	private RxRestService restService;
 
@@ -20,14 +21,14 @@ public class BoardService implements IBoadService{
 	}
 
 	@Override
-	public Observable<Board> get(String id) {
-		return null;
+	public Single<Board> get(String id) {
+		return restService.get("/rest/agile/1.0/board/"+id, Board.class);
 	}
 
 	@Override
-	public Observable<List<Board>> getAll() {
+	public Single<List<Board>> getAll() {
 		return restService.get("/rest/agile/1.0/board", BoardResponse.class)//
-				.map(r -> r.getValues());
+				.map(BoardResponse::getValues);
 	}
 
 }
