@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StompService, StompState } from '@stomp/ng2-stompjs';
 import { Observable } from 'rxjs/Rx';
-import { Message } from '@stomp/stompjs';
 import { PlushState } from '../models/plush-state';
 
 @Injectable()

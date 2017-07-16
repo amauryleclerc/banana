@@ -57,27 +57,32 @@ const appRoutes: Routes = [
   { path: '*', redirectTo: '/sprints', pathMatch: 'full' },
 ];
 
-const stompConfig: StompConfig = {
-  // Which server?
-  url: 'ws://' + window.location.host + '/websocket',
 
-  // Headers
-  headers: {
-  },
+export function getStompConfig() {
+  const url = 'ws://' + window.location.host + '/websocket';
+  const stompConfig: StompConfig = {
+    // Which server?
+    url: url,
 
-  // How often to heartbeat?
-  // Interval in milliseconds, set to 0 to disable
-  heartbeat_in: 0, // Typical value 0 - disabled
-  heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
+    // Headers
+    headers: {
+    },
 
-  // Wait in milliseconds before attempting auto reconnect
-  // Set to 0 to disable
-  // Typical value 5000 (5 seconds)
-  reconnect_delay: 5000,
+    // How often to heartbeat?
+    // Interval in milliseconds, set to 0 to disable
+    heartbeat_in: 0, // Typical value 0 - disabled
+    heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
 
-  // Will log diagnostics on console
-  debug: true
-};
+    // Wait in milliseconds before attempting auto reconnect
+    // Set to 0 to disable
+    // Typical value 5000 (5 seconds)
+    reconnect_delay: 5000,
+
+    // Will log diagnostics on console
+    debug: true
+  };
+  return stompConfig;
+}
 
 
 // AoT requires an exported function for factories
@@ -151,7 +156,7 @@ export function highchartsFactory() {
     StompService,
     {
       provide: StompConfig,
-      useValue: stompConfig
+      useFactory: getStompConfig
     },
     LocalStorageService
   ],
