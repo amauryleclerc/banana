@@ -21,7 +21,6 @@ export class JiraSprintComponent implements OnInit {
     ngOnInit() {
         this.route.params
             .switchMap((params: Params) => this.sprintJiraService.getFromProject(params['id']))//
-            .do(v => console.log(v))
             .subscribe(v => this.sprints.push(v), e => console.error(e));
     }
 

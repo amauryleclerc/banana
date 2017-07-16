@@ -38,6 +38,7 @@ import { JiraProjectComponent } from './components/jira/project/jira-project.com
 import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.component';
 import { JiraStoryComponent } from './components/jira/story/jira-story.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+import {HttpClientModule} from '@angular/common/http';
 
 declare var require: any;
 
@@ -125,6 +126,7 @@ export function highchartsFactory() {
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes, { useHash: true }),
     HotkeyModule.forRoot(),
