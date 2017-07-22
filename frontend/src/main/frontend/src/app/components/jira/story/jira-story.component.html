@@ -3,17 +3,29 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th class="col-sm-6" translate>name</th>
-        <th class="col-sm-6" translate>adddate</th>
+        <th class="col-sm-2" translate>name</th>
+        <th class="col-sm-2" translate>complexity</th>
+        <th class="col-sm-2" translate>bv</th>
+        <th class="col-sm-2" translate>adddate</th>
+        <th class="col-sm-2" translate>closedate</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let story of stories">
-        <td class="col-sm-6">
+        <td class="col-sm-2">
           {{story.name}}
         </td>
-        <td class="col-sm-6">
+        <td class="col-sm-2">
+          {{story.complexity}}
+        </td>
+        <td class="col-sm-2">
+          {{story.businessValue}}
+        </td>
+        <td class="col-sm-2">
           <datepicker-cell [id]="story.id" [(date)]="story.addDate"></datepicker-cell>
+        </td>
+        <td class="col-sm-2">
+          <datepicker-cell [id]="story.id" [(date)]="story.closeDate"></datepicker-cell>
         </td>
       </tr>
     </tbody>
