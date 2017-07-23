@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.aleclerc.banana</groupId>
 	<artifactId>banana-parent</artifactId>
@@ -20,6 +21,7 @@
 		<querydsl.version>4.0.7</querydsl.version>
 		<springfox.version>2.6.1</springfox.version>
 		<rxjava.version>2.0.6</rxjava.version>
+		<jasypt.version>1.9.2</jasypt.version>
 
 		<!-- plugins version -->
 		<frontend.plugin.version>1.4</frontend.plugin.version>
@@ -28,6 +30,7 @@
 		<release.plugin.version>2.5.3</release.plugin.version>
 		<apt.plugin.version>1.1.3</apt.plugin.version>
 		<wagon-ftp.version>2.10</wagon-ftp.version>
+
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -65,6 +68,12 @@
 				<groupId>io.reactivex.rxjava2</groupId>
 				<artifactId>rxjava</artifactId>
 				<version>${rxjava.version}</version>
+			</dependency>
+			<!-- jasypt -->
+			<dependency>
+				<groupId>org.jasypt</groupId>
+				<artifactId>jasypt</artifactId>
+				<version>${jasypt.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

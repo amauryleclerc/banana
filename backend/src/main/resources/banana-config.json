@@ -1,17 +1,27 @@
 {
-	"plushs": [
-		{
-			"id": "minion",
-			"name": "Minion",
-			"img": "img/minion.jpg"
-		},
-		{
-			"id": "snake",
-			"name": "Snake",
-			"img": "img/snake.jpg"
-		}
-	],
-	"jiraUser": "user",
-	"jiraPassword": "pwd",
-	"jiraUrl": "http://localhost:8080"
+  "plushs": [
+    {
+      "id": "minion",
+      "name": "Minion",
+      "img": "img/minion.jpg"
+    },
+    {
+      "id": "snake",
+      "name": "Snake",
+      "img": "img/snake.jpg"
+    }
+  ],
+  "jiraUser": "user",
+  "jiraPassword": "pwd",
+  "jiraUrl": "http://localhost:8080",
+  "customFields": {
+    "BV": "customfield_11140",
+    "SP": "customfield_10541",
+    "TYPE": "customfield_13940/id"
+  },
+  "types": {
+    "551910": "USER_STORY",
+    "551911": "TECHNICAL_STORY",
+    "556015": "BUG_STORY"
+  }
 }

@@ -4,8 +4,9 @@
     <thead>
       <tr>
         <th class="col-sm-2" translate>name</th>
-        <th class="col-sm-2" translate>complexity</th>
-        <th class="col-sm-2" translate>bv</th>
+        <th class="col-sm-1" translate>complexity</th>
+        <th class="col-sm-1" translate>bv</th>
+        <th class="col-sm-2" translate>type</th>
         <th class="col-sm-2" translate>adddate</th>
         <th class="col-sm-2" translate>closedate</th>
       </tr>
@@ -15,11 +16,14 @@
         <td class="col-sm-2">
           {{story.name}}
         </td>
-        <td class="col-sm-2">
+        <td class="col-sm-1">
           {{story.complexity}}
         </td>
-        <td class="col-sm-2">
+        <td class="col-sm-1">
           {{story.businessValue}}
+        </td>
+        <td class="col-sm-2">
+          {{story.type}}
         </td>
         <td class="col-sm-2">
           <datepicker-cell [id]="story.id" [(date)]="story.addDate"></datepicker-cell>

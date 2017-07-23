@@ -14,7 +14,7 @@ import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import fr.aleclerc.banana.domain.plush.PlushState;
-import fr.aleclerc.banana.services.PlushService;
+import fr.aleclerc.banana.services.plush.PlushService;
 import fr.aleclerc.banana.utils.RxUtils;
 
 

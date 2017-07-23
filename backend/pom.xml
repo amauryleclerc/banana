@@ -1,5 +1,6 @@
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>banana-backend</artifactId>
 	<packaging>jar</packaging>
@@ -44,7 +45,7 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -86,6 +87,11 @@
 			<artifactId>springfox-data-rest</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -108,22 +114,22 @@
 				</executions>
 			</plugin>
 			<!-- For QueryDSL support -->
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.mysema.maven</groupId> -->
-<!-- 				<artifactId>apt-maven-plugin</artifactId> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>generate-sources</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>process</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<outputDirectory>${project.build.directory}/generated-sources</outputDirectory> -->
-<!-- 							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>com.mysema.maven</groupId> -->
+			<!-- <artifactId>apt-maven-plugin</artifactId> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>generate-sources</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>process</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <outputDirectory>${project.build.directory}/generated-sources</outputDirectory> -->
+			<!-- <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 </project>

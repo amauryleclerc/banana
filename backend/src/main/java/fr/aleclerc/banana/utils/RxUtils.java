@@ -1,6 +1,8 @@
 package fr.aleclerc.banana.utils;
 
+import fr.aleclerc.banana.jira.app.utils.JiraApiUtils;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -9,6 +11,9 @@ import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
 public class RxUtils {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(RxUtils.class);
+	private static final long TIMEOUT = 60_000l;
 
 	private RxUtils() {
 
@@ -23,9 +28,12 @@ public class RxUtils {
 	}
 
 	public static <T> DeferredResult<T> toDeferredResult(Single<T> obs) {
-		DeferredResult<T> deffered = new DeferredResult<>();
-		obs.subscribe(deffered::setResult, deffered::setErrorResult);
-		return deffered;
+		DeferredResult<T> deferred = new DeferredResult<>(TIMEOUT);
+		obs.doOnError(RxUtils.logError(LOGGER))
+				.doOnSuccess(evt -> LOGGER.info("Request sucess"))
+				.subscribe(deferred::setResult, deferred::setErrorResult);
+		deferred.onTimeout(()->LOGGER.error("Request timeout"));
+		return deferred;
 	}
 
 }

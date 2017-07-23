@@ -1,5 +1,6 @@
 package fr.aleclerc.banana.jira;
 
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import fr.aleclerc.banana.config.BananaConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.AsyncRestTemplate;
 
@@ -28,28 +30,13 @@ public class TestApp {
 	
 	
 	public static void main(String[] args) throws Exception {
-		IJiraClientConfig config = new IJiraClientConfig() {
-			
-			@Override
-			public String getUser() {
-				// TODO Auto-generated method stub
-				return "user";
-			}
-			
-			@Override
-			public String getUrl() {
-				// TODO Auto-generated method stub
-				return "http://localhost";
-			}
-			
-			@Override
-			public String getPassword() {
-				// TODO Auto-generated method stub
-				return "password";
-			}
-		};
+		ObjectMapper mapper = new ObjectMapper();
+
+		IJiraClientConfig	config = mapper.readValue(Paths.get("H:\\banana-config.json").toFile(), BananaConfig.class);
+
+
 		RxRestService rs = new RxRestService(config);
-		IssueService is = new IssueService(rs);
+		IssueService is = new IssueService(rs, config);
 		
 		List<Issue> issues = is.getFromSprint("100").blockingGet();
 		
