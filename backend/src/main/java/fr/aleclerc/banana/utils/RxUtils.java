@@ -10,6 +10,9 @@ import org.springframework.web.context.request.async.DeferredResult;
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
+import java.time.Duration;
+import java.time.Instant;
+
 public class RxUtils {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RxUtils.class);
@@ -27,13 +30,19 @@ public class RxUtils {
 		return Single.<T>create(emitter -> future.addCallback(result -> emitter.onSuccess(result.getBody()), emitter::onError));
 	}
 
-	public static <T> DeferredResult<T> toDeferredResult(Single<T> obs) {
-		DeferredResult<T> deferred = new DeferredResult<>(TIMEOUT);
+	public static <T> DeferredResult<T> toDeferredResult(Single<T> obs, long timeout) {
+		DeferredResult<T> deferred = new DeferredResult<>(timeout);
+		Instant start = Instant.now();
+
 		obs.doOnError(RxUtils.logError(LOGGER))
-				.doOnSuccess(evt -> LOGGER.info("Request sucess"))
+				.doOnSuccess(evt -> LOGGER.info("Request sucess after {} ms", Duration.between(start,Instant.now()).toMillis()))
 				.subscribe(deferred::setResult, deferred::setErrorResult);
 		deferred.onTimeout(()->LOGGER.error("Request timeout"));
 		return deferred;
+	}
+
+	public static <T> DeferredResult<T> toDeferredResult(Single<T> obs) {
+		return RxUtils.toDeferredResult(obs,TIMEOUT );
 	}
 
 }
