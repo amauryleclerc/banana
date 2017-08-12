@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/amauryleclerc/banana.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:amauryleclerc/banana.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 

@@ -27,9 +27,8 @@ public class JiraApiUtils {
         return project;
     }
 
-    public static Sprint convert(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
+    public static Sprint convertWithoutId(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
         Sprint sprint = new Sprint();
-        sprint.setId(UUID.randomUUID());
         sprint.setName(s.getName());
         sprint.setJiraId(s.getId().toString());
         if (s.getEndDate() != null) {
@@ -41,9 +40,14 @@ public class JiraApiUtils {
         return sprint;
     }
 
-    public static Story convert(Issue i) {
+
+    public static Sprint convert(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
+        Sprint sprint = JiraApiUtils.convertWithoutId(s);
+        sprint.setId(UUID.randomUUID());
+        return sprint;
+    }
+    public static Story convertWithoutId(Issue i) {
         Story story = new Story();
-        story.setId(UUID.randomUUID());
         story.setName(i.getKey());
         story.setJiraId(i.getId());
         if (i.getFields() != null) {
@@ -81,6 +85,11 @@ public class JiraApiUtils {
             }
 
         }
+        return story;
+    }
+    public static Story convert(Issue i) {
+        Story story = JiraApiUtils.convertWithoutId(i);
+        story.setId(UUID.randomUUID());
         return story;
     }
 }

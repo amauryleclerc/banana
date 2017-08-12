@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <h1>Jira Sprint</h1>
+  {{test}}
   <table class="table table-hover">
     <thead>
       <tr>
@@ -24,6 +25,9 @@
           <a routerLink="/jira/story/{{sprint.jiraId}}" class="btn btn-info" role="button">
             <i class="fa fa-file-text-o " aria-hidden="true"></i>
             </a>
+            <button class="btn btn-warning" (click)="import(sprint)">
+              <i class="fa fa-file-text-o " aria-hidden="true"></i>
+            </button>
         </td>
 
       </tr>

@@ -2,8 +2,10 @@ package fr.aleclerc.banana.repositories;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import fr.aleclerc.banana.entities.Sprint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -26,4 +28,6 @@ public interface StoryRepository extends JpaRepository<Story, UUID> {
 
 	List<Story> findByAddDateBetweenAndCloseDateBetween(@Param("addDateFrom") Instant addDateFrom, @Param("addDateTo") Instant addDateTo,
 			@Param("closeDateFrom") Instant closeDateFrom, @Param("closeDateTo") Instant closeDateTo);
+
+	Optional<Story> findByJiraId(String jiraId);
 }

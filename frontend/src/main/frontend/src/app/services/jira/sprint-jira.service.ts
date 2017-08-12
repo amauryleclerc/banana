@@ -24,6 +24,14 @@ export class SprintJiraService {
             .map(p => Sprint.create(p));
     }
 
+    public import(id: string): Observable<string>{
+        return this.http.get<string>(this.getUrl() + '/sprint/import/' + id);
+    }
+
+    public test(id: string): Observable<string>{
+        return this.http.get<string>(this.getUrl() + '/sprint/test/' + id)
+    }
+
     private getUrl(): string {
         return 'http://' + window.location.host + '/api/jira';
     }

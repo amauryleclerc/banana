@@ -1,6 +1,8 @@
 package fr.aleclerc.banana.utils;
 
 import fr.aleclerc.banana.jira.app.utils.JiraApiUtils;
+import io.reactivex.Completable;
+import io.reactivex.Observable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +46,6 @@ public class RxUtils {
 	public static <T> DeferredResult<T> toDeferredResult(Single<T> obs) {
 		return RxUtils.toDeferredResult(obs,TIMEOUT );
 	}
+
 
 }

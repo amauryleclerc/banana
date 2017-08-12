@@ -1,6 +1,8 @@
 package fr.aleclerc.banana.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -99,6 +101,18 @@ public class StoryInSprint implements Serializable {
 	public String toString() {
 		return "StoryInSprint [story=" + story + ", sprint=" + sprint + ", isInScope=" + isInScope + "]";
 	}
-	
+	public static StoryInSprint create(Sprint sprint, Story story){
+		StoryInSprint storyInSprint = new StoryInSprint();
+		storyInSprint.setIsInScope(true);
+		storyInSprint.setSprint(sprint);
+		storyInSprint.setStory(story);
+		sprint.addStory(storyInSprint);
+		story.addSprint(storyInSprint);
+		return  storyInSprint;
+	}
+
+	public static List<StoryInSprint> create(Sprint sprint, List<Story> storyList){
+		return storyList.stream().map(story -> create(sprint,story)).collect(Collectors.toList());
+	}
 
 }

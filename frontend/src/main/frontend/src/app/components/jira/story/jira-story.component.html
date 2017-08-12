@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <h1>Jira Story</h1>
+  {{test}}
   <table class="table table-hover">
     <thead>
       <tr>
@@ -30,6 +31,11 @@
         </td>
         <td class="col-sm-2">
           <datepicker-cell [id]="story.id" [(date)]="story.closeDate"></datepicker-cell>
+        </td>
+        <td class="col-sm-3">
+            <button class="btn btn-warning" (click)="getWorklog(story)">
+              <i class="fa fa-file-text-o " aria-hidden="true"></i>
+            </button>
         </td>
       </tr>
     </tbody>

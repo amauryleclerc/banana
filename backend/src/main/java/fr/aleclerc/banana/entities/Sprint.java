@@ -28,7 +28,6 @@ public class Sprint implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
 	private UUID id;
-	@Column(unique = true)
 	@NotNull
 	private String name;
 	@Column
@@ -142,13 +141,21 @@ public class Sprint implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		return id.hashCode();
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Sprint sprint = (Sprint) o;
+
+		return id != null ? id.equals(sprint.id) : sprint.id == null;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		return id.equals(obj);
+	public int hashCode() {
+		return id != null ? id.hashCode() : 0;
 	}
 
+	public void addStory(StoryInSprint storyInSprint){
+		this.stories.add(storyInSprint);
+	}
 }
