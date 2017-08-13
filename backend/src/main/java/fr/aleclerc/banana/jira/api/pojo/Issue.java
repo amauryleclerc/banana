@@ -6,6 +6,8 @@ public class Issue {
 	private String self;
 	private String key;
 	private Fields fields;
+	private Changelog changelog;
+
 	public String getExpand() {
 		return expand;
 	}
@@ -36,6 +38,15 @@ public class Issue {
 	public void setFields(Fields fields) {
 		this.fields = fields;
 	}
+
+	public Changelog getChangelog() {
+		return changelog;
+	}
+
+	public void setChangelog(Changelog changelog) {
+		this.changelog = changelog;
+	}
+
 	@Override
 	public String toString() {
 		return "Issue [expand=" + expand + ", id=" + id + ", self=" + self + ", key=" + key + ", fields=" + fields

@@ -18,7 +18,7 @@ import java.time.Instant;
 public class RxUtils {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RxUtils.class);
-	private static final long TIMEOUT = 60_000l;
+	private static final long TIMEOUT = 60_000L;
 
 	private RxUtils() {
 
@@ -37,7 +37,7 @@ public class RxUtils {
 		Instant start = Instant.now();
 
 		obs.doOnError(RxUtils.logError(LOGGER))
-				.doOnSuccess(evt -> LOGGER.info("Request sucess after {} ms", Duration.between(start,Instant.now()).toMillis()))
+				.doOnSuccess(evt -> LOGGER.info("Request success after {} ms", Duration.between(start,Instant.now()).toMillis()))
 				.subscribe(deferred::setResult, deferred::setErrorResult);
 		deferred.onTimeout(()->LOGGER.error("Request timeout"));
 		return deferred;

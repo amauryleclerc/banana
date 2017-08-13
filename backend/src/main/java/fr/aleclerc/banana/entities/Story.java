@@ -32,7 +32,7 @@ public class Story  implements Serializable{
 	@NotNull
 	private String name;
 	@Column
-	private Float complexity;
+	private Float complexity = 0F;
 	@Column
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
 	private Instant addDate;
@@ -42,7 +42,7 @@ public class Story  implements Serializable{
 	@Column
 	private String jiraId;
 	@Column
-	private Float businessValue;
+	private Float businessValue = 0F;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private EStoryType type;

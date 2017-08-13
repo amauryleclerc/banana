@@ -42,7 +42,7 @@ public class IssueService implements IIssueService {
 
     @Override
     public Single<Issue> get(String id) {
-        return restService.get("/rest/agile/1.0/issue/" + id)//
+        return restService.get("/rest/agile/1.0/issue/" + id+ "?expand=changelog")//
                 .map(this::getIssue)//
                 .filter(Optional::isPresent)//
                 .map(Optional::get)//
@@ -51,7 +51,7 @@ public class IssueService implements IIssueService {
 
     @Override
     public Single<List<Issue>> getFromSprint(String sprintId) {
-        return restService.get("/rest/agile/1.0/sprint/" + sprintId + "/issue")//
+        return restService.get("/rest/agile/1.0/sprint/" + sprintId + "/issue?expand=changelog")//
                 .map(this::getIssues);
     }
 

@@ -1,0 +1,434 @@
+{
+  "expand": "renderedFields,names,schema,transitions,operations,editmeta,changelog",
+  "id": "1103119",
+  "self": "http://jiraatgl:8580/jiraatgl/rest/api/2/issue/1103119",
+  "key": "SI_COHORTE-2805",
+  "f
+
+  ields
+  ":{"
+  customfield_15240
+  ":null,"
+  customfield_9978
+  ":null,"
+  customfield_9975
+  ":null,"
+  customfield_13740
+  ":["
+  com.atlassian.greenhopper.service.sprint.Sprint@16d6d059[
+  id=35144,
+  rapidViewId=4683,
+  state=CLOSED,
+  name=CCH-Sprint
+  37,
+  startDate=2017-07-17T08
+  :
+  35
+  :
+  02.487
+  +
+  02
+  :
+  00,
+  endDate=2017-08-04T17
+  :
+  35
+  :
+  00.000
+  +
+  02
+  :
+  00,
+  comp
+
+  leteDate=2017-08-04T17
+  :
+  14
+  :
+  48.734
+  +
+  02
+  :
+  00,
+  sequence=35144
+]"],"fixVersions":[{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/version/78733","id":"78733","name":"Release 4","archived":false,"released":false,"releaseDate":"2017-08-25"},{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/version/86412","id": "86412", "name": "ProjetCompletCCH", "archived": false, "released": false}], "customfield_9976": null, "customfield_9973": null, "customfield_13741": "SI_COHORTE-319", "resolution": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/resolution/8999", "id": "8999","description": "Task Monitoring Resolution", "name": "F
+
+ixed"},"customfield_9972":null,"customfield_9970":null,"customfield_9908":null,"customfield_9909":null,"lastViewed":null,"customfield_9906":null,"customfield_9907":null,"customfield_9988":null,"customfield_10340":"9223372036854775807","customfield_9986":null,"customfield_9987":null,"customfield_9984
+
+":null,"priority":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/priority/9998","iconUrl":"http://jiraatgl:8580/jiraatgl/images/icons/priorities/critical.png","name":"High","id":"9998"},"customfield_9983":null,"labels":[],"customfield_9980":null,"customfield_13844":null,"customfield_9981":null,"a
+
+ggregatetimeoriginalestimate":null,"timeestimate":null,"versions":[{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/version/128014","id":"128014","description":"Pour tagguer les stories visibles ├á travers la livraison du sprint 35 CCH.","name":"Sprint_35_CCH","archived":false,"released":false}],"i
+
+ssuelinks":[],"assignee":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0173675","name":"T0173675","key":"t0173675","emailAddress":"mathieu-r.martin@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0173675&avatarId=67612","24x24":"htt
+
+p: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0173675&avatarId=67612","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0173675&avatarId=67612","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0173675&avatarId=67612"},"displ
+
+ayName":"MARTIN Mathieu","active":true,"timeZone":"Europe/Paris"},"status":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/status/6","description":"Action close","iconUrl":"http://jiraatgl:8580/jiraatgl/images/icons/statuses/closed.png","name":"Closed","id":"6","statusCategory":{"self":"http://jir
+
+aatgl: 8580/jiraatgl/rest/api/2/statuscategory/3","id":3,"key":"done","colorName":"green","name":"Done"}},"components":[],"customfield_10170":null,"customfield_9957":null,"customfield_15340":"0|hzzw58: ","customfield_11140":null,"customfield_9958":null,"customfield_9956":null,"customfield_8987":null,"
+
+customfield_15740":null,"customfield_13841":null,"customfield_9952":null,"customfield_13840":null,"customfield_13843":null,"customfield_13842":null,"customfield_8983":null,"aggregatetimeestimate":null,"creator":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T016758
+
+1","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:8580
+
+/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"subtasks":[],"customfield_9968":null,"customfield_996
+
+9":null,"customfield_8997":null,"customfield_9967":null,"reporter":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId
+
+=t0167581&avatarId=67611","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ow
+
+nerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"customfield_9965":null,"customfield_14640":"2017-07-05","customfield_10440":null,"aggregateprogress":{"progress":0,"total":0},"customfield_9962":null,"customfield_9963":null,"customfield_8992":null, "customfield_9960": null, "customfield_9961": null, "progress": {"progress": 0, "total":0}, "worklog": {"startAt": 0,"maxResults": 20, "total": 0, "worklogs":[]}, "issuetype": {"self": "http: //jiraatgl:8580/jiraatgl/rest/api/2/issuetype/10006", "id": "10006", "description": "Created by JIRA Agile - do not edit or delet
+
+e. Issue type for a user story.","iconUrl":"http: //jiraatgl:8580/jiraatgl/images/icons/issuetypes/story.png","name":"Story","subtask":false},"customfield_9939":null,"customfield_9937":null,"customfield_9938":null,"customfield_9935":null,"timespent":null,"customfield_10271":null,"customfield_9936":nu
+
+ll, "customfield_9933": null, "customfield_9934": null, "project": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/project/45512", "id": "45512", "key": "SI_COHORTE", "name": "TAP_SI_COHORTE_V2", "avatarUrls": {"48x48": "http://jiraatgl:8580/jiraatgl/secure/projectavatar?pid=45512&avatarId=42311", "24x24": "http:/
+
+/jiraatgl: 8580/jiraatgl/secure/projectavatar?size=small&pid=45512&avatarId=42311","16x16":"http: //jiraatgl:8580/jiraatgl/secure/projectavatar?size=xsmall&pid=45512&avatarId=42311","32x32":"http://jiraatgl:8580/jiraatgl/secure/projectavatar?size=medium&pid=45512&avatarId=42311"}},"customfield_9931":n
+
+ull, "customfield_9932": null, "customfield_13940": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/customFieldOption/556015", "value": "Bug", "id": "556015"}, "aggregatetimespent": null, "customfield_9930": null, "resolutiondate": "2017-07-19T10:33:57.000+0200", "workratio": -1, "watches": {
+"self": "http://jiraatgl: 8580/jiraatgl/rest/api/2/issue/SI_COHORTE-2805/watchers", "watchCount": 0, "isWatching": false},"created": "2017-06-14T11: 00: 20.000+0200", "customfield_12440": null, "customfield_9944":null, "customfield_9942": null, "customfield_9943": null,"customfield_9940": null, "customfield_9941": null, "customfield_10541":3
+
+.0, "updated": "2017-07-19T10:33:57.000+0200", "customfield_9919": null, "customfield_10090": "1_*:*_1_*:*_10348000_*|*_10007_*:*_1_*:*_81445000_*|*_9995_*:*_1_*:*_68924000_*|*_6_*:*_1_*:*_0_*|*_9996_*:*_1_*:*_1056558000_*|*_10006_*:*_2_*:*_1641780000_*|*_10005_*:*_2_*:*_163362000", "customfield_9917": null, "customfield_9918": null, "customfield_9915": null, "customfield_9916": null, "customfield_9913": null, "customfield_9914": null, "timeoriginalestimate": null, "customfield_9911": null, "customfield_9912": null, "description": "h5. R├®sum├®\r\n* Certains alternats en sorti du capteur ont une date de d├®but = date d
+
+e fin = date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnement\r\n* Plateforme: Mono-server\r\n* Poste: Mono-server (PEL)\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: Capteur (TRC6200)\r\n\r\nh5.
+
+Contexte \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: 6.3.24-SNAPSHOT\r\n* Version composants vlz: 4.34.0\r\n\r\nh5. S
+
+c├®nario de reproduction\r\n# Lancer le service-manager.bat.\r\n# Lancer l'application Cohorte SIV2.\r\n# Lancer une programmation.\r\n# Analyser les pistes.\r\n\r\nh5. Fr├®quence\r\n* Syst├®matique.\r\n\r\nh5. Probl├¿me constat├®\r\n* Lors de l'├®tude de la piste 00000000-1aa3-79cf-0000-00001c1fd13
+
+b entre le cycle 0 - 6 (cf image jointe) via le fichier de log fourni, on constate les diff├®rents alternats incoh├®rents.\r\n* Alternats avec une date de d├®but = date de fin = date de d├®but de cycle.\r\n* Alternats supprim├®s.\r\n* Anciens alternats activ├®s.\r\n\r\nh5. R├®sultat attendu\r\n* Ne
+
+pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but de cycle.\r\n* ├ètre notifi├® lors de la fusion d'alternats.\r\n\r\nh5. Contournement\r\n* Aucun.\r\n","customfield_9910":null,"customfield_9995":null,"customfield_9996":null,"timetracking":{},"customfield_9994":null,"cu
+
+stomfield_9992":null,"attachment":[{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/attachment/287177","id":"287177","filename":"alt.png","author":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.co
+
+m","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatar
+
+Id=67611","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11:26:04.000+0200","size":11539,"mimeType":"image/png","content":"http://jiraatgl:8580/jiraatgl
+
+/secure/attachment/287177/alt.png","thumbnail":"http: //jiraatgl:8580/jiraatgl/secure/thumbnail/287177/_thumb_287177.png"},{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/attachment/287178","id":"287178","filename":"cohorte-mono_server.2017-06-13.log","author":{"self":"http://jiraatgl:8580/jiraatgl
+
+/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t01
+
+67581&avatarId=67611","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"cr
+
+eated":"2017-06-14T11: 25: 01.000+0200","size":6481878,"mimeType":"text/plain","content":"http: //jiraatgl:8580/jiraatgl/secure/attachment/287178/cohorte-mono_server.2017-06-13.log"}],"summary":"[BUG-DEV] Pistage MRE - La gestion des fusions d'alternat n'est pas r├®alis├®e + alternats incoh├®rents","cu
+
+stomfield_14040":null,"customfield_9928":null,"customfield_9929":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/customFieldOption/552711","value":"DEV CCH","id":"552711"},"customfield_9926":null,"customfield_9927":null,"customfield_9925":null,"environment":null,"duedate":null,"comment":{"startAt": 0, "maxResults": 2, "total": 2, "comments":[
+{
+"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/issue/1103119/comment/1029295", "id": "1029295", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314", "name": "S0056314", "key": "s0056314", "emailAddress": "lucie.lhostis@external.thalesg
+
+roup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314
+
+&avatarId=57410","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"},"displayName":"L'HOSTIS Lucie","active":true,"timeZone":"Europe/Paris"},"body":"├á [~T0167581] : \r\n* Peux-tu compl├®ter le sc├®nario de reproduction puis me la r├®affecter stp ?
+
+","updateAuthor":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http:
+
+//jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"},"display
+
+Name":"L'HOSTIS Lucie","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T13:52:43.000+0200","updated":"2017-06-14T13:53:31.000+0200"},{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/issue/1103119/comment/1038933","id":"1038933","author":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/
+
+2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&
+
+avatarId=48111","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"body
+
+":"A r├®aliser dans la BS: \r\n# ne pas cr├®er d'UT/ alternat si tdebut= tfin\r\n# update tfin meme si pas cycle en cours","updateAuthor":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","a
+
+vatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48
+
+111","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-05T11:18:09.000+0200","updated":"2017-07-05T11:18:09.000+0200"}]}},"changelog":{"startAt":0,"maxRes
+
+ults":38,"total":38,"histories":[{"id":"6097110","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581
+
+&avatarId=67611","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t01
+
+67581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11: 00: 20.000+0200","items":[{"field":"Epic Link","fieldtype":"custom","from":null,"fromString":null,"to":"714796","toString":"SI_COHORTE-319"}]},{"id":"6097113","author":{"self":"http: /
+
+/jiraatgl: 8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar
+
+?size=small&ownerId=t0167581&avatarId=67611","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZo
+
+ne":"Europe/Paris"},"created":"2017-06-14T11: 00: 22.000+0200","items":[{"field":"Link","fieldtype":"jira","from":null,"fromString":null,"to":"SI_COHORTE-2284","toString":"This issue is child of SI_COHORTE-2284"}]},{"id":"6097118","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?usernam
+
+e=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","1
+
+6x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11:00: 31.000+0200","items":[{"field":"summary","fieldtype":"jira","from":null,"fromString":"[BUG-DEV] Pistage - des la gestion des fusions n'est pas r├®alis├®e + alternats incoh├®rents","to":null,"toString":"[BUG-DEV] Pistage - La gestion des fusions n'est pas r├®alis├®e + alternats incoh├®rents"}]},{"id
+
+":"6097169","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jira
+
+atgl: 8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":
+
+"VALLEE Teddy", "active": true, "timeZone": "Europe/Paris"}, "created": "2017-06-14T11:04:38.000+0200", "items":[
+{"field": "Version", "fieldtype": "jira", "from": null, "fromString": null, "to": "128014", "toString": "Sprint_35_CCH"}, {"field": "Version", "fieldtype": "jira", "from": "128013", "fromString": "Sprint_34_CCH", "
+
+to":null,"toString":null},{"field":"free_field_choice_01","fieldtype":"custom","from":null,"fromString":null,"to":"552711","toString":"DEV CCH"},{"field":"description","fieldtype":"jira","from":null,"fromString":"h5. R├®sum├®\r\n_D├®crire en 1 ligne le probl├¿me constat├®: _\r\n* Plus de pistes dans
+
+les graphes.\r\n\r\nh5. Environnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: OS S├®curis├®s + n┬░ de version | Mono-server | Autre (├á pr├®ciser)\r\n* Poste: SRVBD | OP1 | OP2 | OP3 | PEC | PTR |  Mono-server | Autre (├á pr├®ciser)\r\n* Configuration: CATIZ | SAEC | TOR | Mono_server (CATIZ) | Mo
+
+no_server (SAEC) | Mono_server (TOR)\r\n* ├ëquipement: Simulateur | Capteur r├®el...\r\n\r\nh5. Contexte\r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici : _\r\n* Version ewr_cohorte: \r\n* Version ewr_commonjava: \r\n* Version composants vlz: \r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _Pl
+
+us de pistes au bout de 30 secondes [KO]_\r\n\r\nh5. Fr├®quence\r\n_Pr├®cisez ici: _\r\n* Al├®atoire | Syst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n_Pr├®cisez ici le d├®faut constat├®_\r\n* Les pistes disparaissent au bout de 30 s de prog. active.\r\n\r\nh5. R├®sultat attendu\r\n_Indiquez ici le
+
+comportement ou la correction souhait├®e._\r\n* Les pistes restent affich├®es sur le graphes durant toute la prog. active.\r\n\r\nh5. Contournement\r\n_Indiquez ici si une proc├®dure de contournement a ├®t├® identifi├®e._ \r\n* Aucun.\r\n\r\nh5. Traces\r\n* _Chemin vers les fichiers de traces et/ou
+
+screenshots, si non fournis en pi├¿ce jointe_\r\n* _Pr├®cisez ici la date et lÔÇÖheure ├á laquelle le probl├¿me a ├®t├® constat├® (pour la corr├®lation avec les fichiers de logs fournis)_\r\n\r\nh5. Annexe\r\n* _Renseignez dans le champ \"Affects version/s\" le sprint concern├®, exemple: \"Sprint_21
+
+_CCH\"_\r\n* _Renseignez dans le champ \"Fix version/s\" la release dans laquelle la correction serait souhaitable (release 4, 5, 6)_\r\n* _Renseignez dans \"Epic Link\" s'il s'agit d'un bug \"Bug stories\" ou d'une demande client_\r\n", "to": null, "toString": "h5. R├®sum├®\r\nLes\r\n\r\n\r\nh5. Enviro
+
+nnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: Mono-server\r\n* Poste: PEL\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manage
+
+r: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici : _\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: \r\n* Version composants vlz: \r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\
+
+n# _Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _Plus de pistes au bout de 30 secondes [KO]_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n_Pr├®cisez ici le d├®faut constat├®_\r\n* Les pistes disparaissent au bout de 30 s de prog. active.\r\n\r\nh5. R
+
+├®sultat attendu\r\n_Indiquez ici le comportement ou la correction souhait├®e._\r\n* Les pistes restent affich├®es sur le graphes durant toute la prog. active.\r\n\r\nh5. Contournement\r\n* Aucun\r\n"}]},{"id":"6097215","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T016758
+
+1","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"ht
+
+tp: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11:10:05.000+0
+
+200","items":[{"field":"description","fieldtype":"jira","from":null,"fromString":"h5. R├®sum├®\r\nLes\r\n\r\n\r\nh5. Environnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: Mono-server\r\n* Poste: PEL\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\r\n_Pr├®cisez
+
+ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici: _\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: \r\n* Version composants vlz: \r\n\r\nh5. Sc
+
+├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _Plus de pistes au bout de 30 secondes [KO]_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me co
+
+nstat├®\r\n_Pr├®cisez ici le d├®faut constat├®_\r\n* Les pistes disparaissent au bout de 30 s de prog. active.\r\n\r\nh5. R├®sultat attendu\r\n_Indiquez ici le comportement ou la correction souhait├®e._\r\n* Les pistes restent affich├®es sur le graphes durant toute la prog. active.\r\n\r\nh5. Contou
+
+rnement\r\n* Aucun\r\n","to":null,"toString":"h5. R├®sum├®\r\nCertains alternats en sorti du capteur ont une date de d├®but = date de fin = date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: Mono-server\r\n* Poste: PEL\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\n
+
+h5. Versions\r\n_Pr├®cisez ici:_\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: \r\n* Version composants vlz: \r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _Je progamme une bande
+
+80-120 avec d├®sensibilisation ├á 3Db_\r\n# _J'analyse les logs_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n* Alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* Alternats supprim├®s\r\n* Anciens alternats activ├®s\r\n\r\nh5. R├®sultat attendu
+
+\r\n* Ne pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* ├ètre notif├® lors de la fusion d'alter\r\n\r\nh5. Contournement\r\n* Aucun\r\n"}]},{"id":"6097220","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T01675
+
+81","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:858
+
+0/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11:10:22.000+0200","items":[{"f
+
+ield":"summary","fieldtype":"jira","from":null,"fromString":"[BUG-DEV] Pistage - La gestion des fusions n'est pas r├®alis├®e + alternats incoh├®rents","to":null,"toString":"[BUG-DEV] Pistage - La gestion des fusions d'alternat n'est pas r├®alis├®e + alternats incoh├®rents"}]},{"id":"6097384","author
+
+":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&avatarId=67611","24x24":"http://jiraatgl:8580/jiraatgl/
+
+secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0167581&avatarId=67611"},"displayName":"VALLEE Teddy","act
+
+ive":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11: 26:12.000+0200","items":[{"field":"Attachment","fieldtype":"jira","from":null,"fromString":null,"to":"287177","toString":"alt.png"},{"field":"Attachment","fieldtype":"jira","from":null,"fromString":null,"to":"287178","toString":"cohorte-m
+
+ono_server.2017-06-13.log"}]},{"id":"6097614","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0167581","name":"T0167581","key":"t0167581","emailAddress":"teddy.vallee@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0167581&av
+
+atarId=67611","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0167581&avatarId=67611","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0167581&avatarId=67611","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t01675
+
+81&avatarId=67611"},"displayName":"VALLEE Teddy","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T11: 45: 06.000+0200","items":[{"field":"description","fieldtype":"jira","from":null,"fromString":"h5. R├®sum├®\r\nCertains alternats en sorti du capteur ont une date de d├®but = date de fin
+
+= date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: Mono-server\r\n* Poste: PEL\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\
+
+r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici: _\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: \r\n* Version composants vlz: \
+
+r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _J'analyse les logs_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n
+
+* Alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* Alternats supprim├®s\r\n* Anciens alternats activ├®s\r\n\r\nh5. R├®sultat attendu\r\n* Ne pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* ├ètre notif├® lors de la fusion d'a
+
+lter\r\n\r\nh5. Contournement\r\n* Aucun\r\n","to":null,"toString":"h5. R├®sum├®\r\nCertains alternats en sorti du capteur ont une date de d├®but = date de fin = date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnem
+
+ent\r\n_Pr├®cisez ici: _\r\n* Plateforme : Mono-server\r\n* Poste: PEL\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici: _\r\n* Version ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava : \r\n* Version composants vlz: \r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _
+
+Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _J'analyse les logs_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n* Lors de l'├®tude de la piste 00000000-1aa3-79cf-0000-00001c1fd13b entre le cycle 0 - 6 (cf image jointe) via le fichier de log fourni on c
+
+onstate les diff├®rents alternats incoh├®rents\r\n* Alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* Alternats supprim├®s\r\n* Anciens alternats activ├®s\r\n\r\nh5. R├®sultat attendu\r\n* Ne pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but
+
+de cycle\r\n* ├ètre notif├® lors de la fusion d'alter\r\n\r\nh5. Contournement\r\n* Aucun\r\n"}]},{"id":"6098356","author":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avatarUrls
+
+":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410","32x
+
+32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"},"displayName":"L'HOSTIS Lucie","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T13:52:04.000+0200","items":[{"field":"description","fieldtype":"jira","from":null,"fromString":"h5. R├®sum├
+
+®\r\nCertains alternats en sorti du capteur ont une date de d├®but = date de fin = date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnement\r\n_Pr├®cisez ici: _\r\n* Plateforme: Mono-server\r\n* Poste: PEL\r\n* Co
+
+nfiguration: Mono_server (CATIZ)\r\n* ├ëquipement: TRC6200\r\n\r\nh5. Contexte\r\n_Pr├®cisez ici: _  \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n_Pr├®cisez ici: _\r\n* Version ewr_cohort
+
+e: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: \r\n* Version composants vlz: \r\n\r\nh5. Sc├®nario de reproduction\r\n_D├®crivez les ├®tapes qui ont conduit au probl├¿me: _\r\n# _Je lance l'IHM avec capteur MRE_\r\n# _Je progamme une bande 80-120 avec d├®sensibilisation ├á 3Db_\r\n# _J'analyse le
+
+s logs_\r\n\r\nh5. Fr├®quence\r\nSyst├®matique\r\n\r\nh5. Probl├¿me constat├®\r\n* Lors de l'├®tude de la piste 00000000-1aa3-79cf-0000-00001c1fd13b entre le cycle 0 - 6 (cf image jointe) via le fichier de log fourni on constate les diff├®rents alternats incoh├®rents\r\n* Alternats avec une date de
+
+d├®but = date de fin = date de d├®but de cycle\r\n* Alternats supprim├®s\r\n* Anciens alternats activ├®s\r\n\r\nh5. R├®sultat attendu\r\n* Ne pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but de cycle\r\n* ├ètre notif├® lors de la fusion d'alter\r\n\r\nh5. Contournement
+
+\r\n* Aucun\r\n","to":null,"toString":"h5. R├®sum├®\r\n* Certains alternats en sorti du capteur ont une date de d├®but = date de fin = date de d├®but de cycle et certains anciens alternats sont r├®activ├®s et fusionn├®s avec des alternats en cours\r\n\r\n\r\nh5. Environnement\r\n* Plateforme: Mono-
+
+server\r\n* Poste: Mono-server (PEL)\r\n* Configuration: Mono_server (CATIZ)\r\n* ├ëquipement: Capteur (TRC6200)\r\n\r\nh5. Contexte \r\n* Profil connect├®: Chef de mission, Maintenance, Administrateur...\r\n* Type de d├®marrage du service manager: windows | .bat\r\n\r\nh5. Versions\r\n* Versio
+
+n ewr_cohorte: 4.35.1-SNAPSHOT\r\n* Version ewr_commonjava: 6.3.24-SNAPSHOT\r\n* Version composants vlz: 4.34.0\r\n\r\nh5. Sc├®nario de reproduction\r\n# Lancer le service-manager.bat.\r\n# Lancer l'application Cohorte SIV2.\r\n# Lancer une programmation.\r\n# Analyser les pistes.\r\n\r\nh5. Fr├®
+
+quence\r\n* Syst├®matique.\r\n\r\nh5. Probl├¿me constat├®\r\n* Lors de l'├®tude de la piste 00000000-1aa3-79cf-0000-00001c1fd13b entre le cycle 0 - 6 (cf image jointe) via le fichier de log fourni, on constate les diff├®rents alternats incoh├®rents.\r\n* Alternats avec une date de d├®but = date de f
+
+in = date de d├®but de cycle.\r\n* Alternats supprim├®s.\r\n* Anciens alternats activ├®s.\r\n\r\nh5. R├®sultat attendu\r\n* Ne pas recevoir d'alternats avec une date de d├®but = date de fin = date de d├®but de cycle.\r\n* ├ètre notifi├® lors de la fusion d'alternats.\r\n\r\nh5. Contournement\r\n* Au
+
+cun.\r\n"}]},{"id":"6098357","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=
+
+57410","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avat
+
+arId=57410"},"displayName":"L'HOSTIS Lucie","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T13:52:14.000+0200","items":[{"field":"Link","fieldtype":"jira","from":"SI_COHORTE-2284","fromString":"This issue is child of SI_COHORTE-2284","to":null,"toString":null}]},{"id":"6098362","autho
+
+r":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http://jiraatgl:858
+
+0/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"},"displayName":"L'HOSTI
+
+S Lucie","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T13: 52: 48.000+0200","items":[{"field":"status","fieldtype":"jira","from":"1","fromString":"Open","to":"10005","toString":"Writing"}]},{"id":"6098363","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=S00563
+
+14","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410",
+
+"16x16": "http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410", "32x32": "http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"}, "displayName": "L'HOSTIS Lucie","active": true, "timeZone": "Europe/Paris"}, "created": "2017-06-14T1
+
+3: 52: 52.000+0200","items":[{"field":"assignee","fieldtype":"jira","from":"s0056314","fromString":"L'HOSTIS Lucie","to":"t0167581","toString":"VALLEE Teddy"}]},{"id":"6098687","author":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailA
+
+ddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/userav
+
+atar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T14:21:57.000+0200","items":[{"field":"Rank","fieldt
+
+ype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked higher"}]},{"id":"6098689","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://ji
+
+raatgl: 8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:
+
+8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-14T14:22: 00.000+0200","items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked hi
+
+gher"}]},{"id":"6109919","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24
+
+x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111
+
+"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-06-16T10: 14:01.000+0200","items":[{"field":"status","fieldtype":"jira","from":"10005","fromString":"Writing","to":"10006","toString":"Discussing"}]},{"id":"6109920","author":{"self":"http://jiraatgl:8580/jir
+
+aatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ow
+
+nerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europ
+
+e/Paris"},"created":"2017-06-16T10: 14: 05.000+0200","items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked higher"}]},{"id":"6209837","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314", "emailAddress": "lucie.lhostis@external.thalesgroup.com", "avatarUrls":{"48x48": "http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410", "24x24": "http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410", "16x16": "http://jiraatgl:8580/jiraatgl
+
+/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"},"displayName":"L'HOSTIS Lucie","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-04T14:34:17.000+0200","items":[{"field":"s
+
+tatus","fieldtype":"jira","from":"10006","fromString":"Discussing","to":"10005","toString":"Writing"}]},{"id":"6209840","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=S0056314","name":"S0056314","key":"s0056314","emailAddress":"lucie.lhostis@external.thalesgroup.com","avata
+
+rUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=s0056314&avatarId=57410","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=s0056314&avatarId=57410","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=s0056314&avatarId=57410", "32x32": "http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=s0056314&avatarId=57410"}, "displayName":"L'HOSTIS Lucie", "active": true, "timeZone": "Europe/Paris"}, "created": "2017-07-04T14:34:36.000+0200", "items":[
+{
+"field": "Rank", "fieldtype": "custom", "from": null, "fromString": null, "to": nu
+
+ll, "toString": "Ranked lower"}
+]}, {"id": "6210967", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234", "name": "T0117234", "key":"t0117234", "emailAddress": "matthieu.caillet@thalesgroup.com", "avatarUrls": {"48x48": "http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117
+
+234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=
+
+t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-04T15: 35: 46.000+0200","items":[{"field":"status","fieldtype":"jira","from":"10005","fromString":"Writing","to":"10006","toString":"Discussing"}]},{"id":"6210973","author":{"self":"h
+
+ttp: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/u
+
+seravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active": true, "timeZone": "Europe/Paris"}, "created": "2017-07-04T15:35:52.000+0200", "items":[{"field": "Rank", "fieldtype": "custom", "from": null, "fromString": null, "to": null, "toString": "Ranked higher"}]}, {"id": "6210974", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234", "name": "T01
+
+17234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraa
+
+tgl: 8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-04T15:35:55.000+0200","
+
+items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked higher"}]},{"id":"6210983","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","
+
+avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=4
+
+8111","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-04T15:36:13.000+0200","items":[{"field":"priority","fieldtype":"jira","from":"3","fromString":"Nor
+
+mal","to":"9998","toString":"High"}]},{"id":"6215248","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId
+
+=t0117234&avatarId=48111","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ow
+
+nerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-05T11: 18: 24.000+0200","items":[{"field":"Story Points","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"3"}]},{"id":"6215250","author":{"self":"http: //
+
+jiraatgl: 8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/userava
+
+tar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,
+
+"timeZone": "Europe/Paris"
+}, "created": "2017-07-05T11:18:30.000+0200", "items":[
+{"field": "Ready Date", "fieldtype": "custom", "from": null, "fromString": null, "to": "2017-07-05", "toString": "5/07/17"}, {"field": "status", "fieldtype": "jira", "from": "10006", "fromString": "Discussing", "to": "10007", "toString": "Ready"}
+]}, {"id": "6219837", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234", "name": "T0117234", "key":"t0117234", "emailAddress": "matthieu.caillet@thalesgroup.com", "avatarUrls": {"48x48": "http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111", "24x24": "
+
+http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"di
+
+splayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09: 17: 12.000+0200","items":[{"field":"Sprint","fieldtype":"custom","from":"17404","fromString":"Backlog BUG","to":null,"toString":null}]},{"id":"6219847","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/
+
+api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117
+
+234&avatarId=48111","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"
+
+created":"2017-07-06T09: 17: 13.000+0200","items":[{"field":"Sprint","fieldtype":"custom","from":null,"fromString":null,"to":"35144","toString":"CCH-Sprint 37"}]},{"id":"6219857","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emai
+
+lAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/user
+
+avatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09:17:17.000+0200","items":[{"field":"Rank","fiel
+
+dtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked higher"}]},{"id":"6219900","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://
+
+jiraatgl: 8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatg
+
+l: 8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09: 20: 49.000+0200","items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked
+
+higher"}]},{"id":"6220112","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","
+
+24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=481
+
+11"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09: 49: 47.000+0200","items":[{"field":"summary","fieldtype":"jira","from":null,"fromString":"[BUG-DEV] Pistage - La gestion des fusions d'alternat n'est pas r├®alis├®e + alternats incoh├®rents","to":n
+
+ull, "toString":"[BUG-DEV] Pistage MRE - La gestion des fusions d'alternat n'est pas r├®alis├®e + alternats incoh├®rents"
+}
+]
+}, {
+"id": "6220119", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234", "name": "T0117234", "key": "t0117234", "emailAddress": "matthieu.caillet@thalesgro
+
+up.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&a
+
+vatarId=48111","32x32":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09:50:09.000+0200","items":[{"field":"Sprint","fieldtype":"custom","from":"35144","fro
+
+mString":"CCH-Sprint 37","to":"33944","toString":"CCH-Sprint 36"}]},{"id":"6220120","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jira
+
+atgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/se
+
+cure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-06T09: 50: 09.000+0200","items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked lower"}]},{"id":"6
+
+220156","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0173675","name":"T0173675","key":"t0173675","emailAddress":"mathieu-r.martin@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0173675&avatarId=67612","24x24":"http://jira
+
+atgl: 8580/jiraatgl/secure/useravatar?size=small&ownerId=t0173675&avatarId=67612","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0173675&avatarId=67612","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0173675&avatarId=67612"},"displayName":
+
+"MARTIN Mathieu", "active": true, "timeZone": "Europe/Paris"}, "created": "2017-07-06T09:55:55.000+0200", "items":[{"field": "status", "fieldtype": "jira", "from": "10007", "fromString": "Ready", "to": "9996", "toString": "StartedWork"}]}, {"id": "6220161", "author": {"self": "http://jiraatgl:8580/jiraatgl/rest/api/2/user
+
+?username=T0173675","name":"T0173675","key":"t0173675","emailAddress":"mathieu-r.martin@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0173675&avatarId=67612","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0173675&avatar
+
+Id=67612","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0173675&avatarId=67612","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0173675&avatarId=67612"},"displayName":"MARTIN Mathieu","active":true,"timeZone":"Europe/Paris"},"created":"20
+
+17-07-06T09: 56: 04.000+0200","items":[{"field":"assignee","fieldtype":"jira","from":"t0167581","fromString":"VALLEE Teddy","to":"t0173675","toString":"MARTIN Mathieu"}]},{"id":"6258092","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t011723
+
+4","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/sec
+
+ure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-13T15:47:32.000+0200","items":[{"field":"Spr
+
+int","fieldtype":"custom","from":"33944","fromString":"CCH-Sprint 36","to":null,"toString":null}]},{"id":"6258096","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48
+
+x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"h
+
+ttp: //jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-13T15:47:33.000+0200","items":[{"field":"Sprint","fieldtype":"custom","from":null,"fromString":null,"to":"35144","
+
+toString":"CCH-Sprint 37"}]},{"id":"6258100","author":{"self":"http://jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234","key":"t0117234","emailAddress":"matthieu.caillet@thalesgroup.com","avatarUrls":{"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234
+
+&avatarId=48111","24x24":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111","16x16":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t01
+
+17234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-13T15: 47: 35.000+0200","items":[{"field":"Rank","fieldtype":"custom","from":null,"fromString":null,"to":null,"toString":"Ranked higher"}]},{"id":"6269484","author":{"self":"http: //jiraa
+
+tgl: 8580/jiraatgl/rest/api/2/user?username=T0173675","name":"T0173675","key":"t0173675","emailAddress":"mathieu-r.martin@thalesgroup.com","avatarUrls":{"48x48":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0173675&avatarId=67612","24x24":"http://jiraatgl:8580/jiraatgl/secure/useravatar?s
+
+ize=small&ownerId=t0173675&avatarId=67612","16x16":"http: //jiraatgl:8580/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0173675&avatarId=67612","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0173675&avatarId=67612"},"displayName":"MARTIN Mathieu","active":true,"timeZo
+
+ne":"Europe/Paris"},"created":"2017-07-18T15: 25: 13.000+0200","items":[{"field":"status","fieldtype":"jira","from":"9996","fromString":"StartedWork","to":"9995","toString":"Solved"}]},{"id":"6272266","author":{"self":"http: //jiraatgl:8580/jiraatgl/rest/api/2/user?username=T0117234","name":"T0117234",
+
+"key": "t0117234", "emailAddress": "matthieu.caillet@thalesgroup.com", "avatarUrls": {"48x48":"http://jiraatgl:8580/jiraatgl/secure/useravatar?ownerId=t0117234&avatarId=48111", "24x24": "http://jiraatgl:8580/jiraatgl/secure/useravatar?size=small&ownerId=t0117234&avatarId=48111", "16x16": "http://jiraatgl:858
+
+0/jiraatgl/secure/useravatar?size=xsmall&ownerId=t0117234&avatarId=48111","32x32":"http://jiraatgl:8580/jiraatgl/secure/useravatar?size=medium&ownerId=t0117234&avatarId=48111"},"displayName":"CAILLET Matthieu","active":true,"timeZone":"Europe/Paris"},"created":"2017-07-19T10:33:57.000+0200","items":
+
+[{"field": "resolution", "fieldtype": "jira", "from": null, "fromString": null, "to": "8999", "toString": "Fixed"}, {"field": "status", "fieldtype": "jira", "from": "9995", "fromString": "Solved", "to": "6", "toString": "Closed"}]
+}
+]
+}
+}

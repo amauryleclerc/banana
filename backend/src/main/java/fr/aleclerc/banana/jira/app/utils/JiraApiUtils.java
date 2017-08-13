@@ -5,10 +5,13 @@ import fr.aleclerc.banana.entities.Project;
 import fr.aleclerc.banana.entities.Sprint;
 import fr.aleclerc.banana.entities.Story;
 import fr.aleclerc.banana.jira.api.pojo.Board;
+import fr.aleclerc.banana.jira.api.pojo.History;
 import fr.aleclerc.banana.jira.api.pojo.Issue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.UUID;
 
 public class JiraApiUtils {
@@ -51,11 +54,20 @@ public class JiraApiUtils {
         story.setName(i.getKey());
         story.setJiraId(i.getId());
         if (i.getFields() != null) {
+//
+//            if (i.getFields().getSprint() != null && i.getFields().getSprint().getStartDate() != null) {
+//                story.setAddDate(i.getFields().getSprint().getStartDate().toInstant());
+//
+//            }
+            Optional<History> historyOptional = Optional.ofNullable(i.getChangelog())
+                    .flatMap(changelog -> changelog.getHistories()
+                            .stream()
+                            .filter(history -> history.getItems().stream().anyMatch(item -> item.getField().equals("Sprint")))
+                            .sorted(Comparator.comparing(History::getCreated))
+                            .reduce((first, second) -> second)
+                 );
+            historyOptional.ifPresent(history -> story.setAddDate(history.getCreated().toInstant()));
 
-            if (i.getFields().getSprint() != null && i.getFields().getSprint().getStartDate() != null) {
-                story.setAddDate(i.getFields().getSprint().getStartDate().toInstant());
-
-            }
             if (i.getFields().getResolutiondate() != null) {
                 story.setCloseDate(i.getFields().getResolutiondate().toInstant());
             }
