@@ -14,13 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class StoryInSprintService implements IStoryInSprintService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImportFromJiraService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StoryInSprintService.class);
 
     @Autowired
     private IssueService issueService;
@@ -38,23 +40,31 @@ public class StoryInSprintService implements IStoryInSprintService {
 
     @Transactional
     @Override
-    public Sprint save(Sprint sprintOriginal, List<Story> storiesOriginal) {
+    public Sprint save(Sprint sprintOriginal, List<Story> storiesOriginal, Map<Story, Instant> removedStories) {
         Sprint sprint = checkSprint(sprintOriginal);
         List<StoryInSprint> stories = storiesOriginal.stream()
                 .map(this::checkStory)
-                .map(story -> StoryInSprint.create(sprint,story))
+                .map(story -> StoryInSprint.create(sprint, story))
                 .collect(Collectors.toList());
+        stories.addAll(removedStories.entrySet().stream()//
+                .map(entry -> {
+                    Story story = checkStory(entry.getKey());
+                    LOGGER.error(story.getName());
+                    return StoryInSprint.create(sprint, story, entry.getValue());
+                })//
+                .collect(Collectors.toList()));
+
         storyInSprintRepository.save(stories);
         storyInSprintRepository.flush();
         return sprint;
     }
 
-    private Sprint checkSprint(Sprint sprint){
-        return  sprintRepository.findByJiraId(sprint.getJiraId()).orElseGet(() ->sprintRepository.save(sprint));
+    private Sprint checkSprint(Sprint sprint) {
+        return sprintRepository.findByJiraId(sprint.getJiraId()).orElseGet(() -> sprintRepository.save(sprint));
     }
 
-    private Story checkStory(Story story){
-        return  storyRepository.findByJiraId(story.getJiraId()).orElseGet(() ->storyRepository.save(story));
+    private Story checkStory(Story story) {
+        return storyRepository.findByJiraId(story.getJiraId()).orElseGet(() -> storyRepository.save(story));
     }
 }
 

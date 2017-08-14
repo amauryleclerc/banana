@@ -20,133 +20,136 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Story  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8548390530749817919L;
-	@Id
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	@GeneratedValue(generator = "uuid")
-	private UUID id;
-	@NotNull
-	private String name;
-	@Column
-	private Float complexity = 0F;
-	@Column
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
-	private Instant addDate;
-	@Column
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
-	private Instant closeDate;
-	@Column
-	private String jiraId;
-	@Column
-	private Float businessValue = 0F;
-	@Column
-	@Enumerated(EnumType.STRING)
-	private EStoryType type;
+public class Story implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8548390530749817919L;
+    @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
+    private UUID id;
+    @NotNull
+    private String name;
+    @Column
+    private Float complexity = 0F;
+    @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    private Instant addDate;
+    @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    private Instant closeDate;
+    @Column
+    private String jiraId;
+    @Column
+    private Float businessValue = 0F;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private EStoryType type;
 
-	@OneToMany(mappedBy="story")
-	private Set<StoryInSprint> sprints = new HashSet<>();
-	
-	public Story() {
+    @OneToMany(mappedBy = "story")
+    private Set<StoryInSprint> sprints = new HashSet<>();
 
-	}
+    public Story() {
 
-	public UUID getId() {
-		return id;
-	}
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Float getComplexity() {
-		return complexity;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setComplexity(Float complexity) {
-		this.complexity = complexity;
-	}
+    public Float getComplexity() {
+        return complexity;
+    }
 
-	public Instant getAddDate() {
-		return addDate;
-	}
+    public void setComplexity(Float complexity) {
+        this.complexity = complexity;
+    }
 
-	public void setAddDate(Instant addDate) {
-		this.addDate = addDate;
-	}
+    public Instant getAddDate() {
+        return addDate;
+    }
 
-	public Instant getCloseDate() {
-		return closeDate;
-	}
+    public void setAddDate(Instant addDate) {
+        this.addDate = addDate;
+    }
 
-	public void setCloseDate(Instant closeDate) {
-		this.closeDate = closeDate;
-	}
+    public Instant getCloseDate() {
+        return closeDate;
+    }
 
-	public Float getBusinessValue() {
-		return businessValue;
-	}
+    public void setCloseDate(Instant closeDate) {
+        this.closeDate = closeDate;
+    }
 
-	public void setBusinessValue(Float businessValue) {
-		this.businessValue = businessValue;
-	}
+    public Float getBusinessValue() {
+        return businessValue;
+    }
 
-	public EStoryType getType() {
-		return type;
-	}
+    public void setBusinessValue(Float businessValue) {
+        this.businessValue = businessValue;
+    }
 
-	public void setType(EStoryType type) {
-		this.type = type;
-	}
+    public EStoryType getType() {
+        return type;
+    }
 
-	public Set<StoryInSprint> getSprints() {
-		return sprints;
-	}
+    public void setType(EStoryType type) {
+        this.type = type;
+    }
 
-	public void setSprints(Set<StoryInSprint> sprints) {
-		this.sprints = sprints;
-	}
+    public Set<StoryInSprint> getSprints() {
+        return sprints;
+    }
 
-	public String getJiraId() {
-		return jiraId;
-	}
+    public void setSprints(Set<StoryInSprint> sprints) {
+        this.sprints = sprints;
+    }
 
-	public void setJiraId(String jiraId) {
-		this.jiraId = jiraId;
-	}
+    public String getJiraId() {
+        return jiraId;
+    }
 
-	@Override
-	public String toString() {
-		return "Story [id=" + id + ", name=" + name + ", complexity=" + complexity + ", addDate=" + addDate + ", closeDate=" + closeDate + "]";
-	}
+    public void setJiraId(String jiraId) {
+        this.jiraId = jiraId;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    @Override
+    public String toString() {
+        return "Story [id=" + id + ", name=" + name + ", complexity=" + complexity + ", addDate=" + addDate + ", closeDate=" + closeDate + "]";
+    }
 
-		Story story = (Story) o;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-		return id != null ? id.equals(story.id) : story.id == null;
-	}
+        Story story = (Story) o;
 
-	@Override
-	public int hashCode() {
-		return id != null ? id.hashCode() : 0;
-	}
+        if (id != null ? !id.equals(story.id) : story.id != null) return false;
+        return jiraId != null ? jiraId.equals(story.jiraId) : story.jiraId == null;
+    }
 
-	public void addSprint(StoryInSprint storyInSprint) {
-		this.sprints.add(storyInSprint);
-	}
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (jiraId != null ? jiraId.hashCode() : 0);
+        return result;
+    }
+
+    public void addSprint(StoryInSprint storyInSprint) {
+        this.sprints.add(storyInSprint);
+    }
 }

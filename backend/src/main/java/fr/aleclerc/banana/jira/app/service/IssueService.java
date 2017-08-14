@@ -42,6 +42,9 @@ public class IssueService implements IIssueService {
 
     @Override
     public Single<Issue> get(String id) {
+//        Issue i = new Issue();
+//        i.setId(id);
+//     return   Single.just(i );
         return restService.get("/rest/agile/1.0/issue/" + id+ "?expand=changelog")//
                 .map(this::getIssue)//
                 .filter(Optional::isPresent)//

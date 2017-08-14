@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -49,7 +50,7 @@ public class JiraSprintController {
     public DeferredResult<List<Story>> getStories(@PathVariable("id") String id) {
         return RxUtils.toDeferredResult(issueService.getFromSprint(id)//
                 .flatMapObservable(Observable::fromIterable)
-                .map(JiraApiUtils::convert)//
+                .map(i -> JiraApiUtils.convert(i, Optional.of(id)))//
                 .toList());
     }
 
@@ -58,10 +59,4 @@ public class JiraSprintController {
         return RxUtils.toDeferredResult(importFromJiraService.importFromJira(id));
     }
 
-    @RequestMapping(value = "/test/{id}", method = RequestMethod.GET)
-    public DeferredResult<String> test(@PathVariable("id") String id) {
-        return RxUtils.toDeferredResult(rxRestService.get("/rest/api/2/issue/" + id + "?expand=changelog", String.class)//
-                .doOnSuccess(v -> LOGGER.info("v {}", v))//
-        );
-    }
 }

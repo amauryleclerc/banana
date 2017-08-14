@@ -1,6 +1,7 @@
 package fr.aleclerc.banana.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
@@ -34,6 +36,10 @@ public class StoryInSprint implements Serializable {
 
 	@Column
 	private Boolean isInScope;
+
+	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+	private Instant removed;
 
 	public Story getStory() {
 		return story;
@@ -59,42 +65,34 @@ public class StoryInSprint implements Serializable {
 		this.isInScope = isInScope;
 	}
 
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((isInScope == null) ? 0 : isInScope.hashCode());
-		result = prime * result + ((sprint == null) ? 0 : sprint.hashCode());
-		result = prime * result + ((story == null) ? 0 : story.hashCode());
-		return result;
+	public Instant getRemoved() {
+		return removed;
+	}
+
+	public void setRemoved(Instant removed) {
+		this.removed = removed;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StoryInSprint other = (StoryInSprint) obj;
-		if (isInScope == null) {
-			if (other.isInScope != null)
-				return false;
-		} else if (!isInScope.equals(other.isInScope))
-			return false;
-		if (sprint == null) {
-			if (other.sprint != null)
-				return false;
-		} else if (!sprint.equals(other.sprint))
-			return false;
-		if (story == null) {
-			if (other.story != null)
-				return false;
-		} else if (!story.equals(other.story))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		StoryInSprint that = (StoryInSprint) o;
+
+		if (!story.equals(that.story)) return false;
+		if (!sprint.equals(that.sprint)) return false;
+		if (isInScope != null ? !isInScope.equals(that.isInScope) : that.isInScope != null) return false;
+		return removed != null ? removed.equals(that.removed) : that.removed == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = story.hashCode();
+		result = 31 * result + sprint.hashCode();
+		result = 31 * result + (isInScope != null ? isInScope.hashCode() : 0);
+		result = 31 * result + (removed != null ? removed.hashCode() : 0);
+		return result;
 	}
 
 	@Override
@@ -111,8 +109,18 @@ public class StoryInSprint implements Serializable {
 		return  storyInSprint;
 	}
 
-	public static List<StoryInSprint> create(Sprint sprint, List<Story> storyList){
-		return storyList.stream().map(story -> create(sprint,story)).collect(Collectors.toList());
+	public static StoryInSprint create(Sprint sprint, Story story, Instant removed){
+		StoryInSprint storyInSprint = new StoryInSprint();
+		storyInSprint.setIsInScope(false);
+		storyInSprint.setRemoved(removed);
+		storyInSprint.setSprint(sprint);
+		storyInSprint.setStory(story);
+		sprint.addStory(storyInSprint);
+		story.addSprint(storyInSprint);
+		return  storyInSprint;
 	}
+
+
+
 
 }

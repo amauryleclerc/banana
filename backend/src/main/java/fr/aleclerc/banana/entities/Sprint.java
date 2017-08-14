@@ -1,26 +1,17 @@
 package fr.aleclerc.banana.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.Period;
-import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Sprint implements Serializable {
@@ -36,6 +27,8 @@ public class Sprint implements Serializable {
     private String name;
     @Column
     private String jiraId;
+    @Column
+    private String boardId;
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant start;
@@ -105,6 +98,14 @@ public class Sprint implements Serializable {
         this.release = release;
     }
 
+    public String getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(String boardId) {
+        this.boardId = boardId;
+    }
+
     public Float getBusinessValue() {
         return stories.stream()//
                 .filter(Objects::nonNull)//
@@ -123,7 +124,7 @@ public class Sprint implements Serializable {
                 .filter(Objects::nonNull)//
                 .map(Story::getComplexity)//
                 .filter(Objects::nonNull)//
-                .reduce(0F, (acc, v) ->acc + v);
+                .reduce(0F, (acc, v) -> acc + v);
     }
 
     public Float getEngagedComplexity() {
@@ -136,7 +137,7 @@ public class Sprint implements Serializable {
                 .filter(s -> s.getAddDate().minus(Period.ofDays(1)).isBefore(this.start))//
                 .map(Story::getComplexity)//
                 .filter(Objects::nonNull)//
-                .reduce(0F, (acc, v) ->  acc + v);
+                .reduce(0F, (acc, v) -> acc + v);
     }
 
     public Float getClosedComplexity() {
@@ -149,7 +150,7 @@ public class Sprint implements Serializable {
                 .filter(s -> s.getCloseDate().minus(Period.ofDays(1)).isBefore(this.end))//
                 .map(Story::getComplexity)//
                 .filter(Objects::nonNull)//
-                .reduce(0f, (acc, v) ->    acc + v);
+                .reduce(0f, (acc, v) -> acc + v);
     }
 
     @Override
@@ -159,15 +160,20 @@ public class Sprint implements Serializable {
 
         Sprint sprint = (Sprint) o;
 
-        return id != null ? id.equals(sprint.id) : sprint.id == null;
+        if (id != null ? !id.equals(sprint.id) : sprint.id != null) return false;
+        return jiraId != null ? jiraId.equals(sprint.jiraId) : sprint.jiraId == null;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (jiraId != null ? jiraId.hashCode() : 0);
+        return result;
     }
 
     public void addStory(StoryInSprint storyInSprint) {
         this.stories.add(storyInSprint);
     }
+
+
 }
