@@ -7,12 +7,14 @@ import { StoryInSprintService } from '../../services/story-in-sprint.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { NgbModal, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { NewStoryComponent } from '../new-story/new-story.component';
+import { NewStoryInSprintComponent } from '../new-story-in-sprint/new-story-in-sprint.component';
+import { StoryFilter } from './story.filter';
 
 @Component({
   selector: 'app-sprint',
   templateUrl: './sprint.component.html',
-  styleUrls: ['./sprint.component.css']
+  styleUrls: ['./sprint.component.css'],
+  providers: [StoryFilter]
 })
 export class SprintComponent implements OnInit {
 
@@ -38,31 +40,28 @@ export class SprintComponent implements OnInit {
   }
 
   add() {
-    this.sprintService.setCurrentSprint(this.sprint);
-    const ref: NgbModalRef = this.modalService.open(NewStoryComponent);
+    const ref: NgbModalRef = this.modalService.open(NewStoryInSprintComponent);
+    ref.componentInstance.setSprint(this.sprint);
     Observable.fromPromise(ref.result)//
-      .flatMap(s => this.storyService.save(s))//
-      .map(s => new StoryInSprint(true, s))
-      .flatMap(s => this.storyInSprintService.save(s, this.sprint))//
+      .flatMap(s => this.storyService.save(s.story).do(story => s.story = story).map(story => s))//
+      .flatMap(s => this.storyInSprintService.save(s))//
       .subscribe((story: StoryInSprint) => this.sprint.stories.unshift(story), //
-      e => this.sprintService.setCurrentSprint(null), //
-      () => this.sprintService.setCurrentSprint(null));
+      e => console.error(e));
   }
 
-
-
-  private save(storyInSprint: StoryInSprint) {
+  save(storyInSprint: StoryInSprint) {
+    storyInSprint.setSprint(this.sprint);
     this.storyService.save(storyInSprint.story)//
-      .subscribe((s) => {
-        this.replace(new StoryInSprint(storyInSprint.isInScope, s));
-      });
+      .do(s => storyInSprint.story = s)//
+      .flatMap(s => this.storyInSprintService.save(storyInSprint))
+      .subscribe((s) =>   this.replace(s)  , e => console.error(e));
   }
 
-  private cancel(storyInSprint: StoryInSprint) {
+  cancel(storyInSprint: StoryInSprint) {
     this.replace(storyInSprint);
   }
 
-  private selectMore(storyInSprint: StoryInSprint) {
+  selectMore(storyInSprint: StoryInSprint) {
     this.router.navigate(['/story', storyInSprint.story.id]);
   }
 

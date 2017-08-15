@@ -9,17 +9,8 @@ export class ReleaseService extends AbstractRestClientService<Release>  {
 
     public static readonly EMBEDDED_NAME = 'releases';
 
-    private currentRelease: Release;
-
     constructor(private http: Http) {
         super(http, ReleaseService.EMBEDDED_NAME);
-    }
-
-    setCurrentRelease(release: Release) {
-        this.currentRelease = release;
-    }
-    getCurrentRelease(): Release {
-        return this.currentRelease;
     }
 
     public getAllByPage(): Observable<Release> {

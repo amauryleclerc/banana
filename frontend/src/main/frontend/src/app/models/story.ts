@@ -8,29 +8,24 @@ export class Story {
             return new Story(object.id,
                 object.name,
                 object.complexity,
-                DateUtils.getDateIfPresent(object.addDate),
                 DateUtils.getDateIfPresent(object.closeDate),
                 object.jiraId,
                 object.businessValue,
                 object.type,
                 object._links);
         }
-        return new Story(null, null, 0, new Date(), null, null, 0, 'USER_STORY', null);
+        return new Story(null, null, 0, null, null, 0, 'USER_STORY', null);
     }
 
 
     constructor(public id: string,
         public name: string,
         public complexity: number,
-        public addDate: Date,
         public closeDate: Date,
         public jiraId: string,
         public businessValue: number,
         public type: string,
         public _links: Links) {
-        if (this.addDate != null) {
-            this.addDate.setHours(0, 0, 0, 0);
-        }
         if (this.closeDate != null) {
             this.closeDate.setHours(0, 0, 0, 0);
         }
@@ -38,6 +33,7 @@ export class Story {
 
 }
 export class StoryInSprint {
+    private sprint: Sprint;
 
     static createArray(array: Array<any>): Array<StoryInSprint> {
         if (array != null) {
@@ -49,15 +45,24 @@ export class StoryInSprint {
     static create(object?: any): StoryInSprint {
         if (object != null) {
             return new StoryInSprint(
-                object.isInScope,
+                object.inScope,
+                object.bonus,
+                DateUtils.getDateIfPresent(object.added),
+                DateUtils.getDateIfPresent(object.removed),
                 Story.create(object.story));
         }
-        return new StoryInSprint(true, null);
+        return new StoryInSprint(true, false, DateUtils.getToday(), null, null);
     }
 
-    constructor(
-        public isInScope: boolean, public story: Story) {
 
+    constructor(
+        public inScope: boolean,  public bonus: boolean, public added: Date, public removed: Date, public story: Story) {
+    }
+    public getSprint(): Sprint {
+        return this.sprint;
+    }
+    public setSprint(sprint: Sprint) {
+        this.sprint = sprint;
     }
 }
 

@@ -50,7 +50,7 @@ public class JiraSprintController {
     public DeferredResult<List<Story>> getStories(@PathVariable("id") String id) {
         return RxUtils.toDeferredResult(issueService.getFromSprint(id)//
                 .flatMapObservable(Observable::fromIterable)
-                .map(i -> JiraApiUtils.convert(i, Optional.of(id)))//
+                .map(JiraApiUtils::convert)//
                 .toList());
     }
 

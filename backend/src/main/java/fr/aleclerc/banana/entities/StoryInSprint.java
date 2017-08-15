@@ -38,6 +38,13 @@ public class StoryInSprint implements Serializable {
 	private Boolean isInScope;
 
 	@Column
+	private Boolean isBonus;
+
+	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+	private Instant added;
+
+	@Column
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
 	private Instant removed;
 
@@ -57,12 +64,12 @@ public class StoryInSprint implements Serializable {
 		this.sprint = sprint;
 	}
 
-	public Boolean getIsInScope() {
+	public Boolean getInScope() {
 		return isInScope;
 	}
 
-	public void setIsInScope(Boolean isInScope) {
-		this.isInScope = isInScope;
+	public void setInScope(Boolean inScope) {
+		isInScope = inScope;
 	}
 
 	public Instant getRemoved() {
@@ -71,6 +78,22 @@ public class StoryInSprint implements Serializable {
 
 	public void setRemoved(Instant removed) {
 		this.removed = removed;
+	}
+
+	public Instant getAdded() {
+		return added;
+	}
+
+	public void setAdded(Instant added) {
+		this.added = added;
+	}
+
+	public Boolean getBonus() {
+		return isBonus;
+	}
+
+	public void setBonus(Boolean bonus) {
+		isBonus = bonus;
 	}
 
 	@Override
@@ -95,32 +118,16 @@ public class StoryInSprint implements Serializable {
 		return result;
 	}
 
+
 	@Override
 	public String toString() {
-		return "StoryInSprint [story=" + story + ", sprint=" + sprint + ", isInScope=" + isInScope + "]";
+		return "StoryInSprint{" +
+				"story=" + story +
+				", sprint=" + sprint +
+				", isInScope=" + isInScope +
+				", isBonus=" + isBonus +
+				", added=" + added +
+				", removed=" + removed +
+				'}';
 	}
-	public static StoryInSprint create(Sprint sprint, Story story){
-		StoryInSprint storyInSprint = new StoryInSprint();
-		storyInSprint.setIsInScope(true);
-		storyInSprint.setSprint(sprint);
-		storyInSprint.setStory(story);
-		sprint.addStory(storyInSprint);
-		story.addSprint(storyInSprint);
-		return  storyInSprint;
-	}
-
-	public static StoryInSprint create(Sprint sprint, Story story, Instant removed){
-		StoryInSprint storyInSprint = new StoryInSprint();
-		storyInSprint.setIsInScope(false);
-		storyInSprint.setRemoved(removed);
-		storyInSprint.setSprint(sprint);
-		storyInSprint.setStory(story);
-		sprint.addStory(storyInSprint);
-		story.addSprint(storyInSprint);
-		return  storyInSprint;
-	}
-
-
-
-
 }

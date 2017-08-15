@@ -86,7 +86,7 @@ export class GraphComponent implements OnInit {
         floating: true
       },
       chart: {},
-      yAxis:{
+      yAxis: {
         min: 0
       }
     };

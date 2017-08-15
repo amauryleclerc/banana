@@ -26,7 +26,5 @@ export class JiraStoryComponent implements OnInit {
             .subscribe(v => this.stories.push(v), e => console.error(e));
     }
 
-    getWorklog(story: Story) {
-        this.sprintJiraService.test(story.jiraId).do(v => console.log(v)).subscribe(v => this.test = v, e => console.error(e));
-    }
+
 }

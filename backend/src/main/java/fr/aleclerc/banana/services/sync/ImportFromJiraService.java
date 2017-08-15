@@ -34,19 +34,18 @@ public class ImportFromJiraService implements IImportFromJiraService {
     public Single<UUID> importFromJira(String id) {
         return sprintService.get(id)//
                 .doOnSuccess(sprint -> LOGGER.info("Récupération du sprint {}", sprint.getId()))
-                .map(JiraApiUtils::convertWithoutId)
+                .map(JiraApiUtils::convert)
                 .flatMap(sprint -> Single.zip(
-                        issueService.getFromSprint(String.valueOf(sprint.getJiraId()))//
-                                .flatMapObservable(Observable::fromIterable)
-                                .map(i -> JiraApiUtils.convertWithoutId(i, Optional.of(sprint.getJiraId())))//
-                                .toList(),
-
-                        sprintService.getRemovedStories(sprint.getBoardId(), sprint.getJiraId())//
-                                .map(Map::entrySet)//
+                        issueService.getFromSprint(String.valueOf(sprint.getJiraId())),//
+                        sprintService.getRemoved(sprint.getBoardId(), sprint.getJiraId())//
+                                ,(inScope,removed) -> {
+                                        inScope.addAll(removed);
+                                        return  inScope;
+                                })//
                                 .flatMapObservable(Observable::fromIterable)//
-                                .toMap(e -> JiraApiUtils.convertWithoutId(e.getKey(), Optional.of(sprint.getJiraId())), Map.Entry::getValue)
-
-                        , (stories, removedStories) -> storyInSprintService.save(sprint, stories, removedStories))
+                        .map(issue -> JiraApiUtils.convert(issue, sprint))//
+                        .toList()
+                        .map(stories -> storyInSprintService.save(sprint, stories))
                 )
                 .map(Sprint::getId);//
 

@@ -5,6 +5,7 @@ import fr.aleclerc.banana.entities.Story;
 import fr.aleclerc.banana.entities.StoryInSprint;
 import fr.aleclerc.banana.jira.app.service.IssueService;
 import fr.aleclerc.banana.jira.app.service.SprintService;
+import fr.aleclerc.banana.jira.app.utils.JiraApiUtils;
 import fr.aleclerc.banana.repositories.SprintRepository;
 import fr.aleclerc.banana.repositories.StoryInSprintRepository;
 import fr.aleclerc.banana.repositories.StoryRepository;
@@ -40,20 +41,11 @@ public class StoryInSprintService implements IStoryInSprintService {
 
     @Transactional
     @Override
-    public Sprint save(Sprint sprintOriginal, List<Story> storiesOriginal, Map<Story, Instant> removedStories) {
+    public Sprint save(Sprint sprintOriginal, List<StoryInSprint> storiesOriginal) {
         Sprint sprint = checkSprint(sprintOriginal);
         List<StoryInSprint> stories = storiesOriginal.stream()
-                .map(this::checkStory)
-                .map(story -> StoryInSprint.create(sprint, story))
+                .peek(s -> s.setStory(this.checkStory(s.getStory())))
                 .collect(Collectors.toList());
-        stories.addAll(removedStories.entrySet().stream()//
-                .map(entry -> {
-                    Story story = checkStory(entry.getKey());
-                    LOGGER.error(story.getName());
-                    return StoryInSprint.create(sprint, story, entry.getValue());
-                })//
-                .collect(Collectors.toList()));
-
         storyInSprintRepository.save(stories);
         storyInSprintRepository.flush();
         return sprint;

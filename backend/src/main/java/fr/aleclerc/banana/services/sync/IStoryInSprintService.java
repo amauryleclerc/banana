@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface IStoryInSprintService {
-    Sprint save(Sprint sprint, List<Story> stories, Map<Story, Instant> removedStories);
+    Sprint save(Sprint sprintOriginal, List<StoryInSprint> storiesOriginal);
 }

@@ -21,13 +21,13 @@ public interface StoryRepository extends JpaRepository<Story, UUID> {
 	// to add further methods, please refer to excellent documentation below:
 	// http://docs.spring.io/spring-data/jpa/docs/1.9.0.RELEASE/reference/html/#core.web.type-safe (chapter 4.3.2
 	// related to QueryDSL queries)
-
-	List<Story> findByAddDateBetween(@Param("addDateFrom") Instant addDateFrom, @Param("addDateTo") Instant addDateTo);
-
-	List<Story> findByCloseDateBetween(@Param("closeDateFrom") Instant closeDateFrom, @Param("closeDateTo") Instant closeDateTo);
-
-	List<Story> findByAddDateBetweenAndCloseDateBetween(@Param("addDateFrom") Instant addDateFrom, @Param("addDateTo") Instant addDateTo,
-			@Param("closeDateFrom") Instant closeDateFrom, @Param("closeDateTo") Instant closeDateTo);
+//
+//	List<Story> findByAddDateBetween(@Param("addDateFrom") Instant addDateFrom, @Param("addDateTo") Instant addDateTo);
+//
+//	List<Story> findByCloseDateBetween(@Param("closeDateFrom") Instant closeDateFrom, @Param("closeDateTo") Instant closeDateTo);
+//
+//	List<Story> findByAddDateBetweenAndCloseDateBetween(@Param("addDateFrom") Instant addDateFrom, @Param("addDateTo") Instant addDateTo,
+//			@Param("closeDateFrom") Instant closeDateFrom, @Param("closeDateTo") Instant closeDateTo);
 
 	Optional<Story> findByJiraId(String jiraId);
 }

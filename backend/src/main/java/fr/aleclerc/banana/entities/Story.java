@@ -35,9 +35,6 @@ public class Story implements Serializable {
     private Float complexity = 0F;
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
-    private Instant addDate;
-    @Column
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant closeDate;
     @Column
     private String jiraId;
@@ -76,14 +73,6 @@ public class Story implements Serializable {
 
     public void setComplexity(Float complexity) {
         this.complexity = complexity;
-    }
-
-    public Instant getAddDate() {
-        return addDate;
-    }
-
-    public void setAddDate(Instant addDate) {
-        this.addDate = addDate;
     }
 
     public Instant getCloseDate() {
@@ -128,7 +117,7 @@ public class Story implements Serializable {
 
     @Override
     public String toString() {
-        return "Story [id=" + id + ", name=" + name + ", complexity=" + complexity + ", addDate=" + addDate + ", closeDate=" + closeDate + "]";
+        return "Story [id=" + id + ", name=" + name + ", complexity=" + complexity + ", closeDate=" + closeDate + "]";
     }
 
     @Override

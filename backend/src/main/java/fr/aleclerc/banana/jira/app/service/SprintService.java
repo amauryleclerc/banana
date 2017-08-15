@@ -3,14 +3,12 @@ package fr.aleclerc.banana.jira.app.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.aleclerc.banana.jira.api.pojo.Issue;
 import fr.aleclerc.banana.jira.api.pojo.Sprint;
-import fr.aleclerc.banana.jira.api.service.IBoardService;
 import fr.aleclerc.banana.jira.api.service.IIssueService;
 import fr.aleclerc.banana.jira.api.service.ISprintService;
 import fr.aleclerc.banana.jira.app.response.ScopeChange;
 import fr.aleclerc.banana.jira.app.response.ScopeChangeResponse;
 import fr.aleclerc.banana.jira.app.response.SprintReportResponse;
 import fr.aleclerc.banana.jira.app.response.SprintResponse;
-import fr.aleclerc.banana.services.sync.StoryInSprintService;
 import fr.aleclerc.banana.utils.Tuple;
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -73,6 +71,14 @@ public class SprintService implements ISprintService {
             e.printStackTrace();
             return Single.error(e);
         }
+    }
+
+    public Single<List<Issue>> getRemoved(String boardId, String sprintId) {
+        Single<SprintReportResponse> sprintReport = restService.get("/rest/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId=" + boardId + "&sprintId=" + sprintId, SprintReportResponse.class);
+        return sprintReport.map(r -> r.getContents().getPuntedIssues())
+                .flatMapObservable(Observable::fromIterable)//
+                .flatMap(t -> issueService.get(String.valueOf(t.getId())).toObservable())//
+                .toList();
     }
 
     public Single<Map<Issue, Instant>> getRemovedStories(String boardId, String sprintId) {

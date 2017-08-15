@@ -15,8 +15,12 @@ public interface InlineStoryInSprintProjection {
 
 	//Sprint getSprint();
 
-	Boolean getIsInScope();
+	Boolean getInScope();
+
+	Boolean getBonus();
 
 	Instant getRemoved();
+
+	Instant getAdded();
 
 }

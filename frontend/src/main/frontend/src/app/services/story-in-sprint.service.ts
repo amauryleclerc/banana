@@ -24,11 +24,14 @@ export class StoryInSprintService extends AbstractRestClientService<StoryInSprin
     return this._getOne(id).map(o => StoryInSprint.create(o));
   }
 
-  public save(storyInSprint: StoryInSprint, sprint: Sprint): Observable<StoryInSprint> {
+  public save(storyInSprint: StoryInSprint): Observable<StoryInSprint> {
     const object: any = {
       story: storyInSprint.story._links.self.href,
-      sprint: sprint._links.self.href,
-      isInScope: storyInSprint.isInScope
+      sprint: storyInSprint.getSprint()._links.self.href,
+      inScope: storyInSprint.inScope,
+      bonus: storyInSprint.bonus,
+      removed: storyInSprint.removed,
+      added: storyInSprint.added
     };
     return this.http.post(this.getUrl(), object)//
       .flatMap(res => this.handleResponse(res))

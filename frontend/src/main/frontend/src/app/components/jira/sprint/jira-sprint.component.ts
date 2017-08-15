@@ -10,7 +10,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class JiraSprintComponent implements OnInit {
 
-    test: string;
     sprints: Array<Sprint> = new Array();
 
     constructor(
@@ -25,6 +24,6 @@ export class JiraSprintComponent implements OnInit {
     }
 
     import(sprint: Sprint) {
-        this.sprintJiraService.import(sprint.jiraId).subscribe(v => this.test = v, e => console.error(e));
+        this.sprintJiraService.import(sprint.jiraId).subscribe(v => console.log(v), e => console.error(e));
     }
 }

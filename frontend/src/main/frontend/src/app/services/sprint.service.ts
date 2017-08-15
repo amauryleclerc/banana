@@ -11,18 +11,8 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
 
   public static readonly EMBEDDED_NAME = 'sprints';
 
-  private currentSprint: Sprint;
-
   constructor(private http: Http, private storyService: StoryService) {
     super(http, SprintService.EMBEDDED_NAME);
-  }
-
-
-  setCurrentSprint(sprint: Sprint) {
-    this.currentSprint = sprint;
-  }
-  getCurrentSprint(): Sprint {
-    return this.currentSprint;
   }
 
   /*  getStoriesInSprint(sprintId: string): Observable<StoryInSprint> {

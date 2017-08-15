@@ -15,11 +15,13 @@ import { ComboboxCellComponent } from './ui/combobox-cell/combobox-cell.componen
 import { DatepickerCellComponent } from './ui/datepicker-cell/datepicker-cell.component';
 import { ActionCellComponent } from './ui/action-cell/action-cell.component';
 import { NewStoryComponent } from './components/new-story/new-story.component';
+import { NewStoryInSprintComponent } from './components/new-story-in-sprint/new-story-in-sprint.component';
 import { DatepickerInputComponent } from './ui/datepicker-input/datepicker-input.component';
 import { ReleaseService } from './services/release.service';
 import { ReleasesComponent } from './components/releases/releases.component';
 import { NewReleaseComponent } from './components/new-release/new-release.component';
 import { SprintComponent } from './components/sprint/sprint.component';
+import { StoryFilter } from './components/sprint/story.filter';
 import { SprintsComponent } from './components/sprints/sprints.component';
 import { NewSprintComponent } from './components/new-sprint/new-sprint.component';
 import { SprintService } from './services/sprint.service';
@@ -110,6 +112,7 @@ export function highchartsFactory() {
     DatepickerCellComponent,
     ActionCellComponent,
     NewStoryComponent,
+    NewStoryInSprintComponent,
     DatepickerInputComponent,
     NewReleaseComponent,
     ReleasesComponent,
@@ -120,7 +123,8 @@ export function highchartsFactory() {
     SettingsComponent,
     JiraProjectComponent,
     JiraSprintComponent,
-    JiraStoryComponent
+    JiraStoryComponent,
+    StoryFilter
   ],
   imports: [
     BrowserModule,
@@ -165,6 +169,7 @@ export function highchartsFactory() {
   entryComponents: [//
     NewReleaseComponent, //
     NewStoryComponent, //
+    NewStoryInSprintComponent, //
     NewSprintComponent//
   ],
   bootstrap: [AppComponent]

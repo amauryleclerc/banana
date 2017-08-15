@@ -116,8 +116,32 @@ public class Sprint implements Serializable {
                 .reduce(0F, (acc, v) -> acc + v);
     }
 
-    public Float getComplexity() {
+    public Float getEngagedBusinessValue() {
+        return stories.stream()//
+                .filter(Objects::nonNull)//
+                .filter(s -> s.getAdded() != null)//
+                .filter(s -> s.getAdded().minus(Period.ofDays(1)).isBefore(this.start))//
+                .map(StoryInSprint::getStory)//
+                .filter(Objects::nonNull)//
+                .filter(s -> s.getBusinessValue() != null)//
+                .map(Story::getBusinessValue)//
+                .filter(Objects::nonNull)//
+                .reduce(0F, (acc, v) -> acc + v);
+    }
+    public Float getClosedBusinessValue() {
+        return stories.stream()//
+                .filter(Objects::nonNull)//
+                .map(StoryInSprint::getStory)//
+                .filter(Objects::nonNull)//
+                .filter(s -> s.getBusinessValue() != null)//
+                .filter(s -> s.getCloseDate() != null)//
+                .filter(s -> s.getCloseDate().minus(Period.ofDays(1)).isBefore(this.end))//
+                .map(Story::getBusinessValue)//
+                .filter(Objects::nonNull)//
+                .reduce(0f, (acc, v) -> acc + v);
+    }
 
+    public Float getComplexity() {
         return stories.stream()//
                 .filter(Objects::nonNull)//
                 .map(StoryInSprint::getStory)//
@@ -130,11 +154,11 @@ public class Sprint implements Serializable {
     public Float getEngagedComplexity() {
         return stories.stream()//
                 .filter(Objects::nonNull)//
+                .filter(s -> s.getAdded() != null)//
+                .filter(s -> s.getAdded().minus(Period.ofDays(1)).isBefore(this.start))//
                 .map(StoryInSprint::getStory)//
                 .filter(Objects::nonNull)//
                 .filter(s -> s.getComplexity() != null)//
-                .filter(s -> s.getAddDate() != null)//
-                .filter(s -> s.getAddDate().minus(Period.ofDays(1)).isBefore(this.start))//
                 .map(Story::getComplexity)//
                 .filter(Objects::nonNull)//
                 .reduce(0F, (acc, v) -> acc + v);

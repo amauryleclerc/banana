@@ -1,9 +1,6 @@
 package fr.aleclerc.banana.jira.app.utils;
 
-import fr.aleclerc.banana.entities.EStoryType;
-import fr.aleclerc.banana.entities.Project;
-import fr.aleclerc.banana.entities.Sprint;
-import fr.aleclerc.banana.entities.Story;
+import fr.aleclerc.banana.entities.*;
 import fr.aleclerc.banana.jira.api.pojo.Board;
 import fr.aleclerc.banana.jira.api.pojo.History;
 import fr.aleclerc.banana.jira.api.pojo.Issue;
@@ -13,9 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.text.html.Option;
 import java.time.Instant;
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class JiraApiUtils {
 
@@ -33,7 +28,7 @@ public class JiraApiUtils {
         return project;
     }
 
-    public static Sprint convertWithoutId(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
+    public static Sprint convert(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
         Sprint sprint = new Sprint();
         sprint.setName(s.getName());
         sprint.setJiraId(s.getId().toString());
@@ -48,33 +43,69 @@ public class JiraApiUtils {
     }
 
 
-    public static Sprint convert(fr.aleclerc.banana.jira.api.pojo.Sprint s) {
-        Sprint sprint = JiraApiUtils.convertWithoutId(s);
-        sprint.setId(UUID.randomUUID());
-        return sprint;
-    }
-
-    private static boolean isItemMatching(Item item, Optional<String> sprintId) {
+    private static boolean isItemToMatching(Item item, String sprintId) {
+        if (item.getField() == null || item.getTo() == null) {
+            return false;
+        }
         boolean isFieldMatching = "Sprint".equals(item.getField());
-        boolean isToMatching = sprintId.map(id -> id.equals(item.getTo())).orElse(true);
+        List<String> to = Arrays.asList(item.getTo().split(", "));
+        boolean isToMatching = to.contains(sprintId);
         return isFieldMatching && isToMatching;
 
     }
 
-    public static Story convertWithoutId(Issue i, Optional<String> sprintId) {
+    private static boolean isItemFromMatching(Item item, String sprintId) {
+        if (item.getField() == null || item.getTo() == null) {
+            return false;
+        }
+        boolean isFieldMatching = "Sprint".equals(item.getField());
+        List<String> to = Arrays.asList(item.getTo().split(", "));
+        boolean isToMatching = to.contains(sprintId);
+        return isFieldMatching && isToMatching;
+
+    }
+
+
+    public static StoryInSprint convert(Issue i, Sprint sprint) {
+        StoryInSprint storyInSprint = new StoryInSprint();
+        Story story = convert(i);
+        storyInSprint.setStory(story);
+        storyInSprint.setSprint(sprint);
+        storyInSprint.setInScope(true);
+        storyInSprint.setBonus(false);
+        Optional<History> historyToOptional = Optional.ofNullable(i.getChangelog())
+                .flatMap(changelog -> changelog.getHistories()
+                        .stream()
+                        .filter(history -> history.getItems().stream().anyMatch(item -> isItemToMatching(item, sprint.getJiraId())))
+                        .sorted(Comparator.comparing(History::getCreated))
+                        .reduce((first, second) -> second)
+                );
+        Optional<History> historyFromOptional = Optional.ofNullable(i.getChangelog())
+                .flatMap(changelog -> changelog.getHistories()
+                        .stream()
+                        .filter(history -> history.getItems().stream().anyMatch(item -> isItemFromMatching(item, sprint.getJiraId())))
+                        .sorted(Comparator.comparing(History::getCreated))
+                        .reduce((first, second) -> second)
+                );
+        if (historyToOptional.isPresent()) {
+            storyInSprint.setAdded(historyToOptional.get().getCreated().toInstant());
+        } else if (i.getFields() != null && i.getFields().getCreated() != null) {
+            storyInSprint.setAdded(i.getFields().getCreated().toInstant());
+        }
+        if (historyFromOptional.isPresent() && historyFromOptional.get().getCreated().toInstant().isAfter(storyInSprint.getAdded())) {
+            storyInSprint.setRemoved(historyFromOptional.get().getCreated().toInstant());
+            storyInSprint.setInScope(false);
+        }
+        return storyInSprint;
+
+    }
+
+
+    public static Story convert(Issue i) {
         Story story = new Story();
         story.setName(i.getKey());
         story.setJiraId(i.getId());
         if (i.getFields() != null) {
-            Optional<History> historyOptional = Optional.ofNullable(i.getChangelog())
-                    .flatMap(changelog -> changelog.getHistories()
-                            .stream()
-                            .filter(history -> history.getItems().stream().anyMatch(item -> isItemMatching(item, sprintId)))
-                            .sorted(Comparator.comparing(History::getCreated))
-                            .reduce((first, second) -> second)
-                    );
-            historyOptional.ifPresent(history -> story.setAddDate(history.getCreated().toInstant()));
-
             if (i.getFields().getResolutiondate() != null) {
                 story.setCloseDate(i.getFields().getResolutiondate().toInstant());
             }
@@ -105,26 +136,7 @@ public class JiraApiUtils {
 
         }
         return story;
-
     }
 
-    public static Story convertWithoutId(Issue i) {
-        return convertWithoutId(i, Optional.empty());
-    }
 
-    public static Story convert(Issue i, Optional<String> sprintId) {
-        Story story = JiraApiUtils.convertWithoutId(i, sprintId);
-        story.setId(UUID.randomUUID());
-        return story;
-    }
-
-    public static Story convert(Issue i) {
-        Story story = JiraApiUtils.convertWithoutId(i);
-        story.setId(UUID.randomUUID());
-        return story;
-    }
-
-    private void clearHours(Instant instant){
-        instant.
-    }
 }
