@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.aleclerc.banana</groupId>
 	<artifactId>banana-parent</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<scm>
 		<developerConnection>scm:git:git@github.com:amauryleclerc/banana.git</developerConnection>
-		<tag>banana-parent-1.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 
