@@ -6,13 +6,13 @@
 	<name>banana-backend</name>
 	<scm>
 		<developerConnection>scm:git:https://github.com/amauryleclerc/banana.git</developerConnection>
-		<tag>banana-parent-1.0.3</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<parent>
 		<groupId>fr.aleclerc.banana</groupId>
 		<artifactId>banana-parent</artifactId>
-		<version>1.0.3</version>
+		<version>1.0.4-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
