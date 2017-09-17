@@ -54,11 +54,12 @@
         <th class="col-sm-2" translate>type</th>
         <th class="col-sm-2" translate>adddate</th>
         <th class="col-sm-2" translate>close</th>
-        <th class="col-sm-2" translate>actions</th>
+        <th class="col-sm-1" translate>actions</th>
+        <th class="col-sm-1" translate>test</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let storyInSprint of sprint.stories | StoryFilter:{inScope:true}"  >
+      <tr  [ngClass]="{'alert-success': storyInSprint.story.closeDate != null, 'alert-warning': storyInSprint.added != null && storyInSprint.added > sprint.start }" *ngFor="let storyInSprint of sprint.stories | StoryFilter:{inScope:true}"  >
         <td class="col-sm-2">
           <textfield-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(text)]="storyInSprint.story.name"></textfield-cell>
         </td>
@@ -77,10 +78,15 @@
         <td class="col-sm-2">
           <datepicker-cell [id]="storyInSprint.story.id" [selectedId]="selectedId" [(date)]="storyInSprint.story.closeDate"></datepicker-cell>
         </td>
-        <td class="col-sm-2">
+        <td class="col-sm-1">
           <action-cell [id]="storyInSprint.story.id" [(selectedId)]="selectedId" [value]="storyInSprint" (onSave)="save($event)" (onCancel)="cancel($event)"
             (onSelectMore)="selectMore($event)"></action-cell>
         </td>
+        <td class="col-sm-1">
+            <button class="btn btn-warning" (click)="remove(storyInSprint)">
+                <i class="fa fa-file-text-o " aria-hidden="true"></i>
+           </button>
+          </td>
       </tr>
     </tbody>
   </table>

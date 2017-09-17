@@ -63,5 +63,7 @@
   "lang": "Langage",
   "fr": "Français",
   "en": "Anglais",
-  "showWeekend": "Montrer les weekends"
+  "showWeekend": "Montrer les weekends",
+  "storyAdded": "Ajouté",
+  "removeddate": "Suppression"
 }

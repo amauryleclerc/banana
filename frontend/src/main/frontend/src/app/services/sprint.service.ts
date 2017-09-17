@@ -15,23 +15,6 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
     super(http, SprintService.EMBEDDED_NAME);
   }
 
-  /*  getStoriesInSprint(sprintId: string): Observable<StoryInSprint> {
-      return this.http.get(super.getUrl() + '/' + sprintId + '/stories')//
-        .filter(res => res.status === 200)//
-        .map(res => res.json()._embedded.storiesInSprint)//
-        .flatMap(list => Observable.from(list))
-        .map(o => StoryInSprint.create(o));
-    }
-  
-    getStories(sprintId: string): Observable<Story> {
-      return this.http.get(super.getUrl() + '/' + sprintId + '/stories')//
-        .filter(res => res.status === 200)//
-        .map(res => res.json()._embedded.storiesInSprint)//
-        .flatMap(list => Observable.from(list))
-        .map(o => StoryInSprint.create(o))
-        .map(s => s.story);
-    }*/
-
   addStory(sprintId: string, story: Story): Observable<Story> {
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'text/uri-list');
@@ -59,19 +42,7 @@ export class SprintService extends AbstractRestClientService<Sprint>  {
     return this._getOne(id).map(o => Sprint.create(o));
   }
   public save(sprint: Sprint): Observable<Sprint> {
- //   let copy = {...sprint};
-    //copy.stories = null;
     return this._save(Sprint.create(sprint));
   }
-  /*  public saveStoryInSprint(storyInSprint: StoryInSprint): Observable<StoryInSprint> {
-      const object: any = {
-        story: storyInSprint.story._links.self.href,
-        sprint: storyInSprint.sprint._links.self.href,
-        isInScope: storyInSprint.isInScope
-      };
-  
-      return this.http.post(this.getUrl(), object)//
-        .flatMap(res => this.handleResponse(res));
-  
-    }*/
+
 }

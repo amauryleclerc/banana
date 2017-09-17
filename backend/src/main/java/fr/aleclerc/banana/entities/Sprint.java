@@ -109,6 +109,7 @@ public class Sprint implements Serializable {
     public Float getBusinessValue() {
         return stories.stream()//
                 .filter(Objects::nonNull)//
+                .filter(StoryInSprint::getInScope)//
                 .map(StoryInSprint::getStory)//
                 .filter(Objects::nonNull)//
                 .map(Story::getBusinessValue)//
@@ -121,6 +122,7 @@ public class Sprint implements Serializable {
                 .filter(Objects::nonNull)//
                 .filter(s -> s.getAdded() != null)//
                 .filter(s -> s.getAdded().minus(Period.ofDays(1)).isBefore(this.start))//
+                .filter(s -> s.getRemoved() == null || s.getRemoved().isAfter(this.start))//
                 .map(StoryInSprint::getStory)//
                 .filter(Objects::nonNull)//
                 .filter(s -> s.getBusinessValue() != null)//
@@ -144,6 +146,7 @@ public class Sprint implements Serializable {
     public Float getComplexity() {
         return stories.stream()//
                 .filter(Objects::nonNull)//
+                .filter(StoryInSprint::getInScope)//
                 .map(StoryInSprint::getStory)//
                 .filter(Objects::nonNull)//
                 .map(Story::getComplexity)//
@@ -156,6 +159,7 @@ public class Sprint implements Serializable {
                 .filter(Objects::nonNull)//
                 .filter(s -> s.getAdded() != null)//
                 .filter(s -> s.getAdded().minus(Period.ofDays(1)).isBefore(this.start))//
+                .filter(s -> s.getRemoved() == null || s.getRemoved().isAfter(this.start))//
                 .map(StoryInSprint::getStory)//
                 .filter(Objects::nonNull)//
                 .filter(s -> s.getComplexity() != null)//

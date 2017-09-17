@@ -5,7 +5,7 @@ import { Sprint } from '../models/sprint';
 import { StoryService } from './story.service';
 import { AbstractRestClientService } from './abstract-rest-client.service';
 import { Observable } from 'rxjs/Rx';
-
+import { DateUtils } from './date.service';
 @Injectable()
 export class StoryInSprintService extends AbstractRestClientService<StoryInSprint>  {
 
@@ -24,15 +24,22 @@ export class StoryInSprintService extends AbstractRestClientService<StoryInSprin
     return this._getOne(id).map(o => StoryInSprint.create(o));
   }
 
+  public remove(storyInSprint: StoryInSprint): Observable<StoryInSprint> {
+    storyInSprint.removed = DateUtils.getToday();
+    storyInSprint.inScope = false;
+    return this.save(storyInSprint);
+  }
+
   public save(storyInSprint: StoryInSprint): Observable<StoryInSprint> {
     const object: any = {
-      story: storyInSprint.story._links.self.href,
-      sprint: storyInSprint.getSprint()._links.self.href,
+      story: 'http://' + window.location.host + '/api/stories/' + storyInSprint.story.id,
+      sprint: 'http://' + window.location.host + '/api/sprints/' + storyInSprint.getSprint().id,
       inScope: storyInSprint.inScope,
       bonus: storyInSprint.bonus,
       removed: storyInSprint.removed,
       added: storyInSprint.added
     };
+    console.log(object);
     return this.http.post(this.getUrl(), object)//
       .flatMap(res => this.handleResponse(res))
       .flatMap(s => this.storyService.getOne(storyInSprint.story.id)//

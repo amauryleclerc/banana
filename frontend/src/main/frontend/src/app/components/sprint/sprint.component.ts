@@ -65,6 +65,10 @@ export class SprintComponent implements OnInit {
     this.router.navigate(['/story', storyInSprint.story.id]);
   }
 
+  remove(storyInSprint: StoryInSprint) {
+    storyInSprint.setSprint(this.sprint);
+    this.storyInSprintService.remove(storyInSprint).subscribe((s) =>   this.replace(s)  , e => console.error(e));
+  }
   private replace(storyInSprint: StoryInSprint) {
     const index = this.sprint.stories.findIndex(s => s.story.id === storyInSprint.story.id);
     if (index !== -1) {
