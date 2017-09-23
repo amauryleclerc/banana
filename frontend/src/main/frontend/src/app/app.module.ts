@@ -16,6 +16,7 @@ import { DatepickerCellComponent } from './ui/datepicker-cell/datepicker-cell.co
 import { ActionCellComponent } from './ui/action-cell/action-cell.component';
 import { NewStoryComponent } from './components/new-story/new-story.component';
 import { NewStoryInSprintComponent } from './components/new-story-in-sprint/new-story-in-sprint.component';
+import { AddStoryInSprintComponent } from './components/add-story-in-sprint/add-story-in-sprint.component';
 import { DatepickerInputComponent } from './ui/datepicker-input/datepicker-input.component';
 import { ReleaseService } from './services/release.service';
 import { ReleasesComponent } from './components/releases/releases.component';
@@ -113,6 +114,7 @@ export function highchartsFactory() {
     ActionCellComponent,
     NewStoryComponent,
     NewStoryInSprintComponent,
+    AddStoryInSprintComponent,
     DatepickerInputComponent,
     NewReleaseComponent,
     ReleasesComponent,
