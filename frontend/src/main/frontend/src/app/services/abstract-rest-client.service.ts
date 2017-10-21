@@ -41,7 +41,7 @@ export abstract class AbstractRestClientService<T> {
   }
 
   public getUrl(): string {
-    return 'http://' + window.location.host + '/api/' + this.contextPath;
+    return window.location.protocol + '//' + window.location.host + '/api/' + this.contextPath;
   }
 
   protected _save(item: T): Observable<T> {

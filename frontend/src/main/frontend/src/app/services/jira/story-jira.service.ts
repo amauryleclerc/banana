@@ -25,7 +25,7 @@ export class StoryJiraService {
     }
 
     private getUrl(): string {
-        return 'http://' + window.location.host + '/api/jira';
+        return window.location.protocol + '//' + window.location.host + '/api/jira';
     }
 
 }

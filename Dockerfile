@@ -1,33 +1,14 @@
-FROM debian:jessie
-MAINTAINER ptrouillard@gmail.com, https://github.com/amauryleclerc
-
-RUN \
-    echo "===> add webupd8 repository..."  && \
-    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list  && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886  && \
-    apt-get update  && \
-    \
-    \
-    echo "===> install Java"  && \
-    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-    DEBIAN_FRONTEND=noninteractive  apt-get install -y --force-yes oracle-java8-installer oracle-java8-set-default  && \
-    \
-    \
-    echo "===> clean up..."  && \
-    rm -rf /var/cache/oracle-jdk8-installer  && \
-    apt-get clean  && \
-    rm -rf /var/lib/apt/lists/*
-
-CMD ["java"]
-
-ADD target/sprint-graph-0.0.1-SNAPSHOT.jar /opt/
-
+FROM ubuntu:latest
+MAINTAINER amauryleclerc@hotmail.fr
+RUN apt-get -y update
+RUN apt-get -y install software-properties-common python-software-properties
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get -y update
+RUN echo oracle-java9-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && apt-get -y install oracle-java9-installer && apt-get -y install oracle-java9-set-default
+RUN java -version
+RUN javac -version
+ADD ./dist/target/banana-dist-1.0.5-SNAPSHOT-bin /opt/
 WORKDIR /opt
-
 EXPOSE 9000
-
 VOLUME /opt
-
-CMD java -jar sprint-graph-0.0.1-SNAPSHOT.jar > sprint-graph.log
+CMD ./bin/run-banana.sh

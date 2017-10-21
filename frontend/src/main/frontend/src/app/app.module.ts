@@ -63,7 +63,11 @@ const appRoutes: Routes = [
 
 
 export function getStompConfig() {
-  const url = 'ws://' + window.location.host + '/websocket';
+  let protocol = 'ws:';
+  if (window.location.protocol === 'https:') {
+    protocol = 'wss:';
+  }
+  const url = protocol + '//' + window.location.host + '/websocket';
   const stompConfig: StompConfig = {
     // Which server?
     url: url,

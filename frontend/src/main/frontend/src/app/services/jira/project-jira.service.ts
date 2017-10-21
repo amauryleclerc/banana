@@ -25,7 +25,7 @@ export class ProjectJiraService {
     }
 
     private getUrl(): string {
-        return 'http://' + window.location.host + '/api/jira/project';
+        return window.location.protocol + '//' + window.location.host + '/api/jira/project';
     }
 
 }

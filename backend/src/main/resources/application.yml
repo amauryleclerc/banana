@@ -17,4 +17,4 @@ spring:
       favicon:
         enabled: false
 server:
-    port: 9000
+    port: ${PORT:9000}
