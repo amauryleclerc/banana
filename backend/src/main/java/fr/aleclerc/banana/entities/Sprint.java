@@ -29,10 +29,10 @@ public class Sprint implements Serializable {
     private String jiraId;
     @Column
     private String boardId;
-    @Column
+    @Column(name = "start_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant start;
-    @Column
+    @Column(name = "end_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Instant end;
 

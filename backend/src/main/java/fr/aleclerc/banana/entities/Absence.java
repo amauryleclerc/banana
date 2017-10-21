@@ -21,11 +21,11 @@ public class Absence implements Serializable  {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(generator = "uuid")
 	private UUID id;
-	@Column
+	@Column(name = "start_date")
 	private Instant start;
 	@Column
 	private boolean startAfternoon = false;
-	@Column
+	@Column(name = "end_date")
 	private Instant end;
 	@Column
 	private boolean endAfternoon = false;

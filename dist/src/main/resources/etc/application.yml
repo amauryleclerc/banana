@@ -18,3 +18,16 @@ spring:
         enabled: false
 server:
     port: ${PORT:9000}
+---
+
+spring:
+    profiles: heroku
+    datasource:
+        platform: postgres
+        url: ${JDBC_DATABASE_URL}
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
+        driverClassName: org.postgresql.Driver
+    jpa:
+      database: POSTGRESQL
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
