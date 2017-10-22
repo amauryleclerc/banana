@@ -1,5 +1,5 @@
 # Banana
-
+[![Build Status](https://travis-ci.org/amauryleclerc/banana.svg?branch=master)](https://travis-ci.org/amauryleclerc/banana)
 ## Run
 
 ### Run in prod mode
