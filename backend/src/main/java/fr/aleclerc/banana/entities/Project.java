@@ -36,6 +36,9 @@ public class Project implements Serializable  {
 	
 	@OneToMany(mappedBy="project")
 	private List<Release> release;
+	
+	@OneToMany(mappedBy="project")
+	private List<Sprint> sprints;
 
 	public UUID getId() {
 		return id;
@@ -61,8 +64,6 @@ public class Project implements Serializable  {
 		this.members = members;
 	}
 
-	 
-	
 	public String getJiraId() {
 		return jiraId;
 	}
@@ -77,6 +78,14 @@ public class Project implements Serializable  {
 
 	public void setRelease(List<Release> release) {
 		this.release = release;
+	}
+	
+	public List<Sprint> getSprints() {
+		return sprints;
+	}
+	
+	public void setSprint(List<Sprint> sprints) {
+		this.sprints = sprints;
 	}
 
 	@Override

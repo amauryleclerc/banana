@@ -2,6 +2,7 @@ import { Links } from './links';
 import { Observable, Subject } from 'rxjs/Rx';
 import { DateUtils } from '../services/date.service';
 import { StoryInSprint } from './story';
+import { Project } from './project';
 export class Sprint {
 
 
@@ -21,10 +22,11 @@ export class Sprint {
                 object.complexity,
                 object.engagedComplexity,
                 object.closedComplexity,
+                object.project,
                 StoryInSprint.createArray(object._embedded.stories),
                 object._links);
         }
-        return new Sprint(null, null, new Date(), null, null, 0, 0, 0, 0, 0, 0, new Array(), null);
+        return new Sprint(null, null, new Date(), null, null, 0, 0, 0, 0, 0, 0, new Project('myId', 'proj', 'jiraId'), new Array(), null);
     }
 
 
@@ -39,6 +41,7 @@ export class Sprint {
         public complexity: number,
         public engagedComplexity: number,
         public closedComplexity: number,
+        public project: Project,
         public stories: Array<StoryInSprint>,
         public _links: Links) {
         if (this.start != null) {

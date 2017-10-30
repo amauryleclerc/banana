@@ -24,7 +24,7 @@ export class ReleaseService extends AbstractRestClientService<Release>  {
     }
     public save(release: Release): Observable<Release> {
         //   let copy = {...sprint};
-        //copy.stories = null;
+        // copy.stories = null;
         return this._save(Release.create(release));
     }
 

@@ -25,6 +25,10 @@
       <a class="nav-link" routerLink="/jira/project" routerLinkActive="active" translate>Jira</a>
     </li>
   </ul>
+
+  <h3 translate>projectSelection</h3>
+  <combobox-cell [id]="projects.project.id" [selectedId]="selectedId" [(text)]="menu.project" [values]="menu.project.name"></combobox-cell>
+
   <ul class="navbar-nav my-2 my-lg-0">
     <li class="nav-item pull-xs-right">
       <div class="form-group">

@@ -41,6 +41,9 @@ public class Sprint implements Serializable {
 
     @ManyToOne
     private Release release;
+    
+    @ManyToOne
+    private Project project;
 
     public UUID getId() {
         return id;

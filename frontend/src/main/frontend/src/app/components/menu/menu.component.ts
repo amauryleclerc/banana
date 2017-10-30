@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from '../../models/project';
 import { Sprint } from '../../models/sprint';
 import { SprintService } from '../../services/sprint.service';
 import { ContextService } from '../../services/context.service';
+import { ProjectJiraService } from '../../services/jira/project-jira.service';
 import { Observable } from 'rxjs/Rx';
 @Component({
   selector: 'app-menu',
@@ -9,12 +11,14 @@ import { Observable } from 'rxjs/Rx';
 })
 export class MenuComponent implements OnInit {
 
+  project: Project = null;
+  projects: Project[] = new Array<Project>();
   sprint: Sprint = null;
   sprints: Sprint[] = new Array<Sprint>();
   isCollapsed: Boolean = false;
   showSprints: Boolean = false;
   isFullScreen: Boolean = false;
-  constructor(private sprintService: SprintService, private contextService: ContextService) {
+  constructor(private sprintService: SprintService, private contextService: ContextService, private projectService: ProjectJiraService) {
 
   }
 
@@ -38,7 +42,9 @@ export class MenuComponent implements OnInit {
       .distinctUntilChanged()
       .subscribe(v => this.isFullScreen = v, e => console.error(e));
 
-
+    this.projectService.getAll()//
+      .do(a => console.log('log paulo !!!!!!!!!!!!'))
+      .subscribe(v => this.project = v, e => console.error('log paulo !!!!!!!!!!!!' + e));
   }
 
   onSprintChange(sprint: Sprint) {
