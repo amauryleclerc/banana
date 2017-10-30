@@ -3,7 +3,7 @@ import { Project } from '../../models/project';
 import { Sprint } from '../../models/sprint';
 import { SprintService } from '../../services/sprint.service';
 import { ContextService } from '../../services/context.service';
-import { ProjectJiraService } from '../../services/jira/project-jira.service';
+import { ProjectService } from '../../services/project.service';
 import { Observable } from 'rxjs/Rx';
 @Component({
   selector: 'app-menu',
@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   isCollapsed: Boolean = false;
   showSprints: Boolean = false;
   isFullScreen: Boolean = false;
-  constructor(private sprintService: SprintService, private contextService: ContextService, private projectService: ProjectJiraService) {
+  constructor(private sprintService: SprintService, private contextService: ContextService, private projectService: ProjectService) {
 
   }
 
@@ -44,7 +44,13 @@ export class MenuComponent implements OnInit {
 
     this.projectService.getAll()//
       .do(a => console.log('log paulo !!!!!!!!!!!!'))
-      .subscribe(v => this.project = v, e => console.error('log paulo !!!!!!!!!!!!' + e));
+      .subscribe(v => {
+        console.log(v);
+        this.projects.push(v);
+        if (this.project == null) {
+          this.project = v;
+        }
+      } , e => console.error('log paulo !!!!!!!!!!!!' + e));
   }
 
   onSprintChange(sprint: Sprint) {
@@ -56,5 +62,8 @@ export class MenuComponent implements OnInit {
       .filter(sprint => this.sprints.find(s => s.id === sprint.id) == null)//
       .do(newSprint => this.sprints.push(newSprint))//
       .subscribe(__ => { }, e => console.error(e));
+  }
+  onProjectSelectedChange(event: any) {
+      console.log('PROJECT CHANGE !!!' + this.project.name);
   }
 }

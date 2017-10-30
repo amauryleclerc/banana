@@ -27,7 +27,9 @@
   </ul>
 
   <h3 translate>projectSelection</h3>
-  <combobox-cell [id]="projects.project.id" [selectedId]="selectedId" [(text)]="menu.project" [values]="menu.project.name"></combobox-cell>
+<select [(ngModel)]="project" class="custom-select" (ngModelChange)="onProjectSelectedChange($event)">
+  <option *ngFor="let oneProject of projects" [ngValue]="oneProject">{{oneProject.name}}</option>
+</select>
 
   <ul class="navbar-nav my-2 my-lg-0">
     <li class="nav-item pull-xs-right">

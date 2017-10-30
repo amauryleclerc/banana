@@ -19,6 +19,7 @@ import { NewStoryInSprintComponent } from './components/new-story-in-sprint/new-
 import { AddStoryInSprintComponent } from './components/add-story-in-sprint/add-story-in-sprint.component';
 import { DatepickerInputComponent } from './ui/datepicker-input/datepicker-input.component';
 import { ReleaseService } from './services/release.service';
+import { ProjectService } from './services/project.service';
 import { ReleasesComponent } from './components/releases/releases.component';
 import { NewReleaseComponent } from './components/new-release/new-release.component';
 import { SprintComponent } from './components/sprint/sprint.component';
@@ -159,6 +160,7 @@ export function highchartsFactory() {
     SprintService, //
     PlushService, //
     StoryService, //
+    ProjectService,//
     StoryInSprintService,
     ContextService, //
     {
