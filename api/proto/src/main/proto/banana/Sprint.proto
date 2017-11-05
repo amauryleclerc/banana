@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package banana;
+
+option java_package = "banana";
+option java_outer_classname = "Sprint";
+
+message Sprint {
+    string name = 1;
+    int32 id = 2;
+    string email = 3;
+    repeated string phones = 4;
+}
