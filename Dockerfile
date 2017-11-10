@@ -1,14 +1,20 @@
-FROM debian:stretch
-MAINTAINER amauryleclerc@hotmail.fr
-RUN apt-get -y update
-RUN apt-get -y install software-properties-common
-RUN add-apt-repository ppa:webupd8team/java
-RUN apt-get -y update
-RUN echo oracle-java9-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && apt-get --allow-unauthenticated -y install oracle-java9-installer && apt-get --allow-unauthenticated -y install oracle-java9-set-default
-RUN java -version
-RUN javac -version
-ADD ./dist/target/banana-dist-1.0.5-SNAPSHOT-bin /opt/
+# BUILD
+FROM maven:3.5.2-ibmjava-9-alpine as builder
+WORKDIR /build
+ADD . /build
+RUN mvn install -B
+
+# RUN
+FROM openjdk:9-jre
+COPY --from=builder /build/dist/target/banana-dist-1.0.5-SNAPSHOT-bin /opt
 WORKDIR /opt
 EXPOSE 9000
 VOLUME /opt
+
+# Add Tini
+ENV TINI_VERSION v0.16.1
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
+
 CMD ./bin/run-banana.sh
