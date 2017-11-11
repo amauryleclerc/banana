@@ -39,7 +39,6 @@ public class PlushService implements IPlushService {
         LOGGER.info("init Plush : {}", plushConfig);
 
         plushConfig.getPlushs()//
-                .stream()//
                 .forEach(p -> {
                     PlushState state = new PlushState();
                     state.setPlush(p);

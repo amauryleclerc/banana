@@ -6,6 +6,10 @@
     "baseUrl": "./",
     "types": []
   },
+   "include": [
+    "../node_modules/@stomp/**/*.ts",
+    "../src/**/*.ts"
+   ],
   "exclude": [
     "test.ts",
     "**/*.spec.ts"

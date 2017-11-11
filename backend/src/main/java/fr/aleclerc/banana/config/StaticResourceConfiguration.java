@@ -1,42 +1,36 @@
 package fr.aleclerc.banana.config;
 
-import java.io.IOException;
-
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.resource.PathResourceResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
+public class StaticResourceConfiguration implements WebMvcConfigurer {
 
-	 
-	 private static final String[] ROUTER = {
-			 "/sprints", "/sprint/**",
-			 "/stories", "/story/**", "/plush", "/graph" };
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    private static final String[] ROUTER = {
+            "/sprints", "/sprint/**",
+            "/stories", "/story/**", "/plush", "/graph"};
 
-		registry.addResourceHandler("swagger-ui.html")//
-				.addResourceLocations("classpath:/META-INF/resources/");
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		registry.addResourceHandler("/webjars/**")//
-				.addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("swagger-ui.html")//
+                .addResourceLocations("classpath:/META-INF/resources/");
 
-		registry.addResourceHandler("/img/**")//
-				.addResourceLocations("classpath:/img/");
+        registry.addResourceHandler("/webjars/**")//
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
-		registry.addResourceHandler("/**")//
-				.addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/img/**")//
+                .addResourceLocations("classpath:/img/");
 
-		registry.addResourceHandler(ROUTER)//
-				.addResourceLocations("classpath:/static/index.html");
+        registry.addResourceHandler("/**")//
+                .addResourceLocations("classpath:/static/");
 
-	}
+        registry.addResourceHandler(ROUTER)//
+                .addResourceLocations("classpath:/static/index.html");
+
+    }
 
 
 }

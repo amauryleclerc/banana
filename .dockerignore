@@ -3,3 +3,9 @@ backend
 bin
 node_modules
 project_assets
+.git
+.idea
+.settings
+.vscode
+*.iml
+dist/src

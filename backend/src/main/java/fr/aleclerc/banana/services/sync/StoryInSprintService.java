@@ -46,7 +46,7 @@ public class StoryInSprintService implements IStoryInSprintService {
         List<StoryInSprint> stories = storiesOriginal.stream()
                 .peek(s -> s.setStory(this.checkStory(s.getStory())))
                 .collect(Collectors.toList());
-        storyInSprintRepository.save(stories);
+        storyInSprintRepository.saveAll(stories);
         storyInSprintRepository.flush();
         return sprint;
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import fr.aleclerc.banana.jira.api.config.IJiraClientConfig;
 import fr.aleclerc.banana.jira.api.pojo.Issue;
 import fr.aleclerc.banana.jira.api.service.IIssueService;
@@ -35,7 +36,7 @@ public class IssueService implements IIssueService {
     public IssueService(RxRestService restService, IJiraClientConfig config) {
         this.mapper = new ObjectMapper();
         this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        this.mapper.findAndRegisterModules();
+        this.mapper.registerModule(new Jdk8Module());
         this.restService = restService;
         this.config = config;
     }

@@ -41,8 +41,7 @@ import { JiraProjectComponent } from './components/jira/project/jira-project.com
 import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.component';
 import { JiraStoryComponent } from './components/jira/story/jira-story.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
-import {HttpClientModule} from '@angular/common/http';
-
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 declare var require: any;
 
 const appRoutes: Routes = [
@@ -94,7 +93,7 @@ export function getStompConfig() {
 
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
@@ -149,7 +148,7 @@ export function highchartsFactory() {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     })
 
