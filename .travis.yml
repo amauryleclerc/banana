@@ -1,9 +1,15 @@
-language: java
 sudo: required
-dist: trusty
-group: edge
-jdk: oraclejdk9
-addons:
-  apt:
-    packages:
-      - oracle-java9-installer
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker build -t amauryleclerc/banana .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" registry.heroku.com;
+    docker push registry.heroku.com/bananaaa/web;
+    fi
