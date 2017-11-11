@@ -16,9 +16,9 @@ JAVA_MAIN_CLASS=fr.aleclerc.banana.BananaApp
 LOGBACK_CONFIG_FILE=$BASEDIR/etc/logback.xml
 JAVACMD=$JAVA_HOME/bin/java
 JAVA_OPTIONS="-Dfile.encoding=UTF-8"
-MEM_OPTIONS="-Xms1024m -Xmx1024m"
+MEM_OPTIONS="-Xms512m -Xmx512m"
 if [ -d "$JAVA_HOME/bin/java" ] ; then
-	exec $JAVACMD -Xms512m -Xmx512m -classpath $CLASSPATH $JAVA_OPTIONS --add-modules=java.xml.bind -Dlogging.config=$LOGBACK_CONFIG_FILE $MEM_OPTIONS $JAVA_MAIN_CLASS
+	exec $JAVACMD -classpath $CLASSPATH $JAVA_OPTIONS --add-modules=java.xml.bind -Dlogging.config=$LOGBACK_CONFIG_FILE $MEM_OPTIONS $JAVA_MAIN_CLASS
 else
-	java -Xms512m -Xmx512m -classpath $CLASSPATH $JAVA_OPTIONS --add-modules=java.xml.bind -Dlogging.config=$LOGBACK_CONFIG_FILE $MEM_OPTIONS $JAVA_MAIN_CLASS
+	java -classpath $CLASSPATH $JAVA_OPTIONS --add-modules=java.xml.bind -Dlogging.config=$LOGBACK_CONFIG_FILE $MEM_OPTIONS $JAVA_MAIN_CLASS
 fi

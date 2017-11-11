@@ -16,6 +16,6 @@ set JAVACMD=%JAVA_HOME%/bin/java.exe
 
 set JAVA_OPTIONS=-Dfile.encoding=UTF-8
 
-set MEM_OPTIONS=-Xms1024m -Xmx1024m
+set MEM_OPTIONS=-Xms512m -Xmx512m
 
-"%JAVACMD%" -Xms512m -Xmx512m -classpath  %CLASSPATH% %JAVA_OPTIONS% --add-modules=java.xml.bind -Dlogging.config=%LOGBACK_CONFIG_FILE% %MEM_OPTIONS% %JAVA_MAIN_CLASS%
+"%JAVACMD%" -classpath  %CLASSPATH% %JAVA_OPTIONS% --add-modules=java.xml.bind -Dlogging.config=%LOGBACK_CONFIG_FILE% %MEM_OPTIONS% %JAVA_MAIN_CLASS%
