@@ -42,6 +42,7 @@ import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.compon
 import { JiraStoryComponent } from './components/jira/story/jira-story.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 import {HttpClientModule} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http/src/client';
 
 declare var require: any;
 
