@@ -41,8 +41,13 @@ import { JiraProjectComponent } from './components/jira/project/jira-project.com
 import { JiraSprintComponent } from './components/jira/sprint/jira-sprint.component';
 import { JiraStoryComponent } from './components/jira/story/jira-story.component';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
+<<<<<<< HEAD
 import {HttpClientModule, HttpClient} from '@angular/common/http';
+=======
+import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http/src/client';
+
+>>>>>>> 90e0f693304c10a6b2638af3b097efa9085a3c8c
 declare var require: any;
 
 const appRoutes: Routes = [

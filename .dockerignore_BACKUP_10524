@@ -1,0 +1,14 @@
+bin
+node_modules
+<<<<<<< HEAD
+project_assets
+.git
+.idea
+.settings
+.vscode
+*.iml
+dist/src
+=======
+frontend/src/main/frontend/node_modules
+project_assets
+>>>>>>> 90e0f693304c10a6b2638af3b097efa9085a3c8c

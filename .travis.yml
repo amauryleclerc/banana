@@ -1,9 +1,17 @@
-language: java
 sudo: required
-dist: trusty
-group: edge
-jdk: oraclejdk9
-addons:
-  apt:
-    packages:
-      - oracle-java9-installer
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+script:
+  - docker build -t registry.heroku.com/bananaaa/web .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" registry.heroku.com;
+    docker push registry.heroku.com/bananaaa/web;
+    fi

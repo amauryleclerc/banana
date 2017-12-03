@@ -1,11 +1,5 @@
-frontend
-backend
 bin
 node_modules
+frontend/src/main/frontend/node_modules
 project_assets
-.git
-.idea
-.settings
-.vscode
-*.iml
-dist/src
+
