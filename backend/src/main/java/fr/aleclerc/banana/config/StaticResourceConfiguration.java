@@ -12,11 +12,12 @@ public class StaticResourceConfiguration implements WebMvcConfigurer {
             "/sprints", "/sprint/**",
             "/stories", "/story/**", "/plush", "/graph"};
 
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("swagger-ui.html")//
-                .addResourceLocations("classpath:/META-INF/resources/");
+//
+//        registry.addResourceHandler("swagger-ui.html")//
+//                .addResourceLocations("classpath:/META-INF/resources/");
 
         registry.addResourceHandler("/webjars/**")//
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
