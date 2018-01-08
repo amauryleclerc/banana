@@ -38,6 +38,31 @@ ctrl+maj+f for activate fullscreen mode
 ## Deployment
 
 ### Release
+
+## Use Jira feature
+
+Use the encrypt/decrypt API to create a secure token of you Jira password.
+
+http://localhost:9000/api/encrypt/your_password_url_encoded
+
+The API will return a token like this one:
+
++x57Ni6eZI3VRiPMWrF2lA==
+
+To check that your password has been encoded properly (using url encode), you can uncrypt it with the following call:
+
+http://localhost:9000/api/decrypt/+x57Ni6eZI3VRiPMWrF2lA==
+
+The string returned is your password as clear text (be careful !)
+
+Once you have produced the secure token, you need to update the config file with this token.
+
+Finally, restart Banana, and click on Jira menu. You should see the list of your backlogs, sprint and so on.
+
+You can import a sprint by pushing the "orange" button on the right of the row.
+
+
+
 mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
 
 ### Build the docker image
