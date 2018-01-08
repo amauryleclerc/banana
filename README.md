@@ -38,6 +38,22 @@ ctrl+maj+f for activate fullscreen mode
 ## Deployment
 
 ### Release
+mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
+
+### Build the docker image
+docker build -t amauryleclerc/banana .
+
+### Deploy the image within your container
+docker run -p 9000:9000 amauryleclerc/banana
+
+### Undeploy
+docker stop <ID>
+
+## CI
+Jenkins 2 runs the build.pipeline script after each commit (delayed to 5 minutes) : if the build is successfull, the artifact is deployed to FTP (credentials needed) 
+
+## Trouble shooting
+If the file QStory.java seems missing, you should configure your IDE to include target/generated-sources to the list of source directories
 
 ## Use Jira feature
 
@@ -61,21 +77,3 @@ Finally, restart Banana, and click on Jira menu. You should see the list of your
 
 You can import a sprint by pushing the "orange" button on the right of the row.
 
-
-
-mvn -Dusername=your_scm_username release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true"
-
-### Build the docker image
-docker build -t amauryleclerc/banana .
-
-### Deploy the image within your container
-docker run -p 9000:9000 amauryleclerc/banana
-
-### Undeploy
-docker stop <ID>
-
-## CI
-Jenkins 2 runs the build.pipeline script after each commit (delayed to 5 minutes) : if the build is successfull, the artifact is deployed to FTP (credentials needed) 
-
-## Trouble shooting
-If the file QStory.java seems missing, you should configure your IDE to include target/generated-sources to the list of source directories
